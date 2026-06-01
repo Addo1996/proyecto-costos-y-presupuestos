@@ -59,11 +59,6 @@
         <a href="#" onclick="mostrarPagina('equilibrio')">
             Equilibrio
         </a>
-
-        <a href="#" onclick="mostrarPagina('test')">
-            Evaluación
-        </a>
-
     </nav>
 
     <!-- ========================= -->
@@ -99,15 +94,29 @@
 
     <section id="teoria" class="pagina">
 
-        <h2>📚 Material de Estudio</h2>
+    <h2>📚 Material de Estudio</h2>
+
+    <div class="botones-teoria">
+
+        <button onclick="mostrarSubSeccion('material')">
+            📖 Material de Estudio
+        </button>
+
+        <button onclick="mostrarSubSeccion('evaluacion')">
+            📝 Evaluación
+        </button>
+
+    </div>
+
+    <!-- MATERIAL -->
+    <div id="material" class="subseccion">
 
         <article>
 
             <h3>Costeo de Recetas</h3>
 
             <p>
-                Permite calcular el costo total
-                de una preparación.
+                Permite calcular el costo total de una preparación.
             </p>
 
         </article>
@@ -117,8 +126,7 @@
             <h3>Margen de Ganancia</h3>
 
             <p>
-                Diferencia entre el precio de venta
-                y el costo total.
+                Es la diferencia entre el costo y el precio de venta.
             </p>
 
         </article>
@@ -128,14 +136,48 @@
             <h3>Punto de Equilibrio</h3>
 
             <p>
-                Cantidad mínima de ventas necesarias
-                para cubrir todos los costos.
+                Cantidad mínima de ventas necesarias para cubrir costos.
             </p>
 
         </article>
 
-    </section>
+    </div>
 
+    <!-- EVALUACION -->
+    <div id="evaluacion" class="subseccion">
+
+        <h3>📝 Evaluación</h3>
+
+        <form>
+
+            <p>
+                1. ¿Qué es el costeo de recetas?
+            </p>
+
+            <input type="radio" name="p1">
+            Calcular el costo de los ingredientes
+
+            <br>
+
+            <input type="radio" name="p1">
+            Contratar empleados
+
+            <br>
+
+            <input type="radio" name="p1">
+            Comprar maquinaria
+
+            <br><br>
+
+            <button type="button">
+                Calificar
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
     <!-- ========================= -->
     <!-- COSTEO -->
     <!-- ========================= -->
@@ -319,45 +361,6 @@
             unidades
 
         </h3>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- TEST -->
-    <!-- ========================= -->
-
-    <section id="test" class="pagina">
-
-        <h2>📝 Evaluación</h2>
-
-        <form>
-
-            <p>
-                1. ¿Qué es el costeo de recetas?
-            </p>
-
-            <input type="radio" name="p1">
-            Calcular el costo de los ingredientes
-
-            <br>
-
-            <input type="radio" name="p1">
-            Contratar empleados
-
-            <br>
-
-            <input type="radio" name="p1">
-            Comprar maquinaria
-
-            <br><br>
-
-            <button type="button">
-
-                Calificar
-
-            </button>
-
-        </form>
 
     </section>
 

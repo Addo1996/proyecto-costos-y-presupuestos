@@ -275,3 +275,15 @@ footer{
     margin-top: 10px;
     color: #ff3131;
 }
+.subseccion{
+    display: none;
+}
+
+.botones-teoria{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.botones-teoria button{
+    margin: 10px;
+}
