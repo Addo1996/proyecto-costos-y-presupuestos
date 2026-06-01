@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood Express</title>
+
+    <link rel="stylesheet" href="fastfood.css">
+    <script src="fastfood.js"></script>
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
+
+    <header>
+
+        <h1>🍔 FastFood Express</h1>
+
+        <p>
+            Sistema de Costeo para Restaurante
+        </p>
+
+    </header>
+
+    <!-- ========================= -->
+    <!-- MENU -->
+    <!-- ========================= -->
+
+    <nav>
+
+        <a href="#" onclick="mostrarPagina('inicio')">
+            Inicio
+        </a>
+
+        <a href="#" onclick="mostrarPagina('teoria')">
+            Teoría
+        </a>
+
+        <a href="#" onclick="mostrarPagina('costeo')">
+            Costeo
+        </a>
+
+        <a href="#" onclick="mostrarPagina('manoObra')">
+            Mano de Obra
+        </a>
+
+        <a href="#" onclick="mostrarPagina('costosIndirectos')">
+            Costos Indirectos
+        </a>
+
+        <a href="#" onclick="mostrarPagina('ganancia')">
+            Ganancia
+        </a>
+
+        <a href="#" onclick="mostrarPagina('equilibrio')">
+            Equilibrio
+        </a>
+
+        <a href="#" onclick="mostrarPagina('test')">
+            Evaluación
+        </a>
+
+    </nav>
+
+    <!-- ========================= -->
+    <!-- INICIO -->
+    <!-- ========================= -->
+
+   <section id="inicio" class="pagina">
+
+    <h2>🍔 Bienvenido a FastFood Express</h2>
+
+    <p>
+        Sistema de costeo para hamburguesas y salchipapas.
+    </p>
+
+    <div class="contenedor-imagenes">
+
+        <div class="card-imagen">
+            <img src="img/hamburguesa.png" alt="Hamburguesa">
+            <h3>Hamburguesa</h3>
+        </div>
+
+        <div class="card-imagen">
+            <img src="img/salchipapas.png" alt="Salchipapa">
+            <h3>Salchipapa</h3>
+        </div>
+
+    </div>
+
+</section>
+    <!-- ========================= -->
+    <!-- TEORIA -->
+    <!-- ========================= -->
+
+    <section id="teoria" class="pagina">
+
+        <h2>📚 Material de Estudio</h2>
+
+        <article>
+
+            <h3>Costeo de Recetas</h3>
+
+            <p>
+                Permite calcular el costo total
+                de una preparación.
+            </p>
+
+        </article>
+
+        <article>
+
+            <h3>Margen de Ganancia</h3>
+
+            <p>
+                Diferencia entre el precio de venta
+                y el costo total.
+            </p>
+
+        </article>
+
+        <article>
+
+            <h3>Punto de Equilibrio</h3>
+
+            <p>
+                Cantidad mínima de ventas necesarias
+                para cubrir todos los costos.
+            </p>
+
+        </article>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- COSTEO -->
+    <!-- ========================= -->
+
+    <section id="costeo" class="pagina">
+
+        <h2>🍟 Costeo de Recetas</h2>
+
+        <input type="text"
+               id="ingrediente"
+               placeholder="Ingrediente">
+
+        <input type="number"
+               id="cantidadReceta"
+               placeholder="Cantidad usada">
+
+        <select id="unidadUso">
+
+            <option>gramos</option>
+            <option>kilogramos</option>
+            <option>libras</option>
+            <option>unidades</option>
+
+        </select>
+
+        <input type="number"
+               id="precioCompra"
+               placeholder="Precio compra">
+
+        <button id="btnAgregar">
+            Agregar Ingrediente
+        </button>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Ingrediente</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Costo</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaIngredientes">
+
+            </tbody>
+
+        </table>
+
+        <h3>
+            Total Ingredientes:
+            $<span id="totalIngredientes">0.00</span>
+        </h3>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- MANO DE OBRA -->
+    <!-- ========================= -->
+
+    <section id="manoObra" class="pagina">
+
+        <h2>👨‍🍳 Mano de Obra</h2>
+
+        <input type="number"
+               id="trabajadores"
+               placeholder="Número de trabajadores">
+
+        <input type="number"
+               id="horas"
+               placeholder="Horas trabajadas">
+
+        <input type="number"
+               id="pagoHora"
+               placeholder="Pago por hora">
+
+        <button id="btnManoObra">
+
+            Calcular Mano de Obra
+
+        </button>
+
+        <h3>
+
+            Total:
+            $<span id="resultadoManoObra">0.00</span>
+
+        </h3>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- COSTOS INDIRECTOS -->
+    <!-- ========================= -->
+
+    <section id="costosIndirectos" class="pagina">
+
+        <h2>💡 Costos Indirectos</h2>
+
+        <input type="number"
+               id="agua"
+               placeholder="Costo de agua">
+
+        <input type="number"
+               id="luz"
+               placeholder="Costo de luz">
+
+        <input type="number"
+               id="gas"
+               placeholder="Costo de gas">
+
+        <button id="btnIndirectos">
+
+            Calcular Costos
+
+        </button>
+
+        <h3>
+
+            Total:
+            $<span id="resultadoIndirectos">0.00</span>
+
+        </h3>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- GANANCIA -->
+    <!-- ========================= -->
+
+    <section id="ganancia" class="pagina">
+
+        <h2>💰 Margen de Ganancia</h2>
+
+        <input type="number"
+               id="porcentajeGanancia"
+               placeholder="% de ganancia">
+
+        <button id="btnGanancia">
+
+            Calcular
+
+        </button>
+
+        <h3>
+
+            Precio de Venta:
+            $<span id="precioVenta">0.00</span>
+
+        </h3>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- EQUILIBRIO -->
+    <!-- ========================= -->
+
+    <section id="equilibrio" class="pagina">
+
+        <h2>📈 Punto de Equilibrio</h2>
+
+        <input type="number"
+               id="costosFijos"
+               placeholder="Costos Fijos">
+
+        <button id="btnEquilibrio">
+
+            Calcular
+
+        </button>
+
+        <h3>
+
+            Debe vender:
+            <span id="resultadoPE">0</span>
+            unidades
+
+        </h3>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- TEST -->
+    <!-- ========================= -->
+
+    <section id="test" class="pagina">
+
+        <h2>📝 Evaluación</h2>
+
+        <form>
+
+            <p>
+                1. ¿Qué es el costeo de recetas?
+            </p>
+
+            <input type="radio" name="p1">
+            Calcular el costo de los ingredientes
+
+            <br>
+
+            <input type="radio" name="p1">
+            Contratar empleados
+
+            <br>
+
+            <input type="radio" name="p1">
+            Comprar maquinaria
+
+            <br><br>
+
+            <button type="button">
+
+                Calificar
+
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer>
+
+        <p>
+            © FastFood Express - Proyecto de Matemáticas
+        </p>
+
+    </footer>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

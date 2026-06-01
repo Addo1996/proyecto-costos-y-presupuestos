@@ -1,0 +1,277 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background: linear-gradient(135deg,#ff3131,#ff914d);
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+header h1{
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p{
+    font-size: 1.2rem;
+}
+
+/* =========================
+   MENU
+========================= */
+
+nav{
+    background-color: #222;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover{
+    color: #ffd000;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+section{
+    background-color: white;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,.1);
+}
+
+section h2{
+    color: #ff3131;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   IMAGEN PRINCIPAL
+========================= */
+
+#inicio{
+    text-align: center;
+}
+
+#inicio img{
+    width: 300px;
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+/* =========================
+   TEORIA
+========================= */
+
+article{
+    background-color: #fff7e6;
+    padding: 20px;
+    margin-top: 15px;
+    border-left: 5px solid orange;
+    border-radius: 10px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+select{
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+input:focus,
+select:focus{
+    outline: none;
+    border-color: #ff3131;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+button{
+    background-color: #ff3131;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #cc0000;
+}
+
+/* =========================
+   TABLAS
+========================= */
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th{
+    background-color: #ff3131;
+    color: white;
+    padding: 12px;
+}
+
+table td{
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table tr:nth-child(even){
+    background-color: #f8f8f8;
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+
+h3{
+    margin-top: 20px;
+}
+
+#costoTotal,
+#precioVenta,
+#resultadoPE{
+    color: green;
+    font-weight: bold;
+}
+
+/* =========================
+   TEST
+========================= */
+
+#test p{
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#test input[type="radio"]{
+    width: auto;
+    margin-right: 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    header h1{
+        font-size: 2rem;
+    }
+
+    nav{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    section{
+        width: 95%;
+    }
+
+}
+.pagina{
+    display: none;
+}
+
+/* Contenedor de las tarjetas */
+.contenedor-imagenes{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Cuadro o tarjeta */
+.card-imagen{
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* Imágenes del mismo tamaño */
+.card-imagen img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Título */
+.card-imagen h3{
+    margin-top: 10px;
+    color: #ff3131;
+}
