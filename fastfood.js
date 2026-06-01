@@ -109,10 +109,32 @@ function mostrarPagina(idPagina){
 
     document.getElementById(idPagina)
         .style.display = "block";
-}
 
+    if(idPagina === "teoria"){
+
+        mostrarSubSeccion("material");
+
+    }
+}
 window.onload = function(){
 
     mostrarPagina("inicio");
 
+}
+// ============================
+// Sub Secciones en Teoria (Addonys)
+// ============================
+function mostrarSubSeccion(idSubSeccion){
+
+    let subsecciones =
+        document.querySelectorAll(".subseccion");
+
+    subsecciones.forEach(function(sub){
+
+        sub.style.display = "none";
+
+    });
+
+    document.getElementById(idSubSeccion)
+        .style.display = "block";
 }
