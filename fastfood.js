@@ -110,16 +110,20 @@ function mostrarPagina(idPagina){
     document.getElementById(idPagina)
         .style.display = "block";
 
+    // Si entra a Teoría ocultar todas las subsecciones
+
     if(idPagina === "teoria"){
 
-        mostrarSubSeccion("material");
+        let subsecciones =
+            document.querySelectorAll(".subseccion");
+
+        subsecciones.forEach(function(sub){
+
+            sub.style.display = "none";
+
+        });
 
     }
-}
-window.onload = function(){
-
-    mostrarPagina("inicio");
-
 }
 // ============================
 // Sub Secciones en Teoria (Addonys)
