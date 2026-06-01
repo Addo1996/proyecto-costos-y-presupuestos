@@ -142,3 +142,17 @@ function mostrarSubSeccion(idSubSeccion){
     document.getElementById(idSubSeccion)
         .style.display = "block";
 }
+
+// ============================================
+// Control de los 8 Subtemas de Estudio
+// ============================================
+function mostrarSubTemas(idSubTema) {
+    // Ocultamos todos los contenidos de los subtemas
+    let subtemas = document.querySelectorAll(".subtema-contenido");
+    subtemas.forEach(function(tema) {
+        tema.style.display = "none";
+    });
+
+    // Mostramos únicamente el subtema seleccionado
+    document.getElementById(idSubTema).style.display = "block";
+}

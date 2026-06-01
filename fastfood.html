@@ -111,35 +111,139 @@
     <!-- MATERIAL -->
     <div id="material" class="subseccion">
 
-        <article>
+        <div class="botones-subtemas" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
+            <button type="button" onclick="mostrarSubTemas('sub1')">💵 Costos Fijos</button>
+            <button type="button" onclick="mostrarSubTemas('sub2')">📋 Costos Variables</button>
+            <button type="button" onclick="mostrarSubTemas('sub3')">💡 Costos Directos e Indirectos</button>
+            <button type="button" onclick="mostrarSubTemas('sub4')">🍔 Costos Materia Prima</button>
+            <button type="button" onclick="mostrarSubTemas('sub5')">👨‍🍳 Mano de Obra</button>
+            <button type="button" onclick="mostrarSubTemas('sub6')">🍟 Costeo de Recetas</button>
+            <button type="button" onclick="mostrarSubTemas('sub7')">💰 Margen de Ganancia</button>
+            <button type="button" onclick="mostrarSubTemas('sub8')">📈 Punto de Equilibrio</button>
+        </div>
 
-            <h3>Costeo de Recetas</h3>
+        <div id="sub1" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos Fijos</h2>
 
-            <p>
-                Permite calcular el costo total de una preparación.
-            </p>
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costosFijos.png">
+                     </div>
+                 </div>
 
-        </article>
+                <p></p>
+                <p>Son los gastos que permanecen constantes sin importar el nivel de producción o ventas de la empresa. Son esenciales para mantener el funcionamiento básico del negocio y deben cubrirse incluso si no hay actividad productiva, como el alquiler, seguros y sueldos administrativos.</p>
+            </article> 
+        </div>
 
-        <article>
+        <div id="sub2" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos Variables</h2>
 
-            <h3>Margen de Ganancia</h3>
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costosVariables.png">
+                     </div>
+                 </div>
 
-            <p>
-                Es la diferencia entre el costo y el precio de venta.
-            </p>
+                <p></p>
+                <p>A diferencia de los fijos, estos cambian en función de la cantidad de productos elaborados o servicios ofrecidos. Son proporcionales a la actividad del negocio; por ejemplo, a mayor producción de pizzas, mayor será el gasto en ingredientes y empaques.</p>
+            </article>
+        </div>
 
-        </article>
+        <div id="sub3" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos Directos e Indirectos</h2>
 
-        <article>
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costosDirectosIndirectos.png">
+                     </div>
+                 </div>
 
-            <h3>Punto de Equilibrio</h3>
+                <p></p>
+                <h3>Costos Directos:</h3>
+                <p>Gastos vinculados directamente con la fabricación de un producto específico, como la materia prima o la mano de obra del operario.</p>
+                <h3>Costos Indirectos</h3>
+                <p>Gastos generales de funcionamiento necesarios para operar, pero que no se asocian a un solo producto, como la luz del local o el sueldo de un supervisor.</p>
+            </article>
+        </div>
 
-            <p>
-                Cantidad mínima de ventas necesarias para cubrir costos.
-            </p>
+        <div id="sub4" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos de Materia Prima</h2>
 
-        </article>
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/materiaPrima.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Representan el valor de los materiales utilizados en la fabricación. Se dividen en directa e indirecta, y su control adecuado es vital para reducir desperdicios y mejorar la rentabilidad final del producto.</p>
+            </article>
+        </div>
+
+        <div id="sub5" class="subtema-contenido" style="display: none;">
+           <article class="articulo-centrado">
+                <h2>Mano de Obra</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/manoDeObra.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Representan el valor de los materiales utilizados en la fabricación. Se dividen en directa e indirecta, y su control adecuado es vital para reducir desperdicios y mejorar la rentabilidad final del producto.</p>
+            </article>
+        </div>
+
+        <div id="sub6" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costeo de Recetas</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costeoRecetas.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Consiste en calcular el costo total de los ingredientes para preparar un alimento o bebida. Este proceso identifica cantidades y precios unitarios para establecer un precio de venta adecuado que garantice ganancias.</p>
+            </article>
+        </div>
+
+        <div id="sub7" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Margen de Ganancia</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/margenGanancia.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Es la diferencia entre el costo total de un producto y su precio de venta. Representa la utilidad real obtenida y ayuda a tomar decisiones estratégicas sobre la rentabilidad del negocio.</p>
+            </article>
+        </div>
+
+        <div id="sub8" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Punto de Equilibrio</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/puntoEquilibrio.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Es una herramienta financiera que determina el nivel de ventas necesario para que los ingresos igualen a los costos totales. En este punto, la empresa no tiene pérdidas ni ganancias, permitiendo conocer cuántas unidades mínimas deben venderse para cubrir la operación.</p>
+            </article>
+        </div>
 
     </div>
 
