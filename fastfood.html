@@ -250,34 +250,25 @@
     <!-- EVALUACION -->
     <div id="evaluacion" class="subseccion">
 
-        <h3>📝 Evaluación</h3>
+        <h3>📝 Evaluación de Costos</h3>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Se han seleccionado 5 preguntas aleatorias para evaluar tu conocimiento.</p>
 
-        <form>
+        <form id="formEvaluacion">
+            
+            <div id="contenedor-preguntas"></div>
 
-            <p>
-                1. ¿Qué es el costeo de recetas?
-            </p>
-
-            <input type="radio" name="p1">
-            Calcular el costo de los ingredientes
-
-            <br>
-
-            <input type="radio" name="p1">
-            Contratar empleados
-
-            <br>
-
-            <input type="radio" name="p1">
-            Comprar maquinaria
-
-            <br><br>
-
-            <button type="button">
-                Calificar
-            </button>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="button" id="btnCalificar" onclick="calificarEvaluacion()">
+                    Enviar Evaluación
+                </button>
+            </div>
 
         </form>
+
+        <div id="resultado-evaluacion" style="display: none; margin-top: 30px; padding: 20px; border-radius: 10px; background-color: #f9f9f9; border: 2px solid #ddd;">
+            <h3 id="puntaje-texto" style="text-align: center; margin-top: 0;"></h3>
+            <div id="retroalimentacion-detalles" style="margin-top: 15px;"></div>
+        </div>
 
     </div>
 
@@ -480,7 +471,6 @@
 
     </footer>
 
-    <script src="js/app.js"></script>
 
 </body>
 

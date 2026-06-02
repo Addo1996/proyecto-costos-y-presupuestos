@@ -304,3 +304,17 @@ footer{
     transform: translateY(-2px);
     background: #ff3131;
 }
+
+/* =========================================
+   ESTILOS DINÁMICOS DE EVALUACIÓN
+========================= */
+
+.pregunta-bloque label:hover {
+    background-color: #fff8f5;
+    border-radius: 4px;
+}
+
+#resultado-evaluacion p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
