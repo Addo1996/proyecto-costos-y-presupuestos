@@ -300,7 +300,9 @@ function generarEvaluacionAleatoria() {
         contenedor.innerHTML += preguntaHTML;
     });
 }
-
+//=========================================
+//CALIFICAR EVALUACION
+//=========================================
 function calificarEvaluacion() {
     let aciertos = 0;
     let retroalimentacionHTML = "";
@@ -355,6 +357,7 @@ function calificarEvaluacion() {
 
     nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
 });
+actualizarResultados();
     const contenedorResultados = document.getElementById("resultado-evaluacion");
     const textoPuntaje = document.getElementById("puntaje-texto");
     const detallesRetro = document.getElementById("retroalimentacion-detalles");
@@ -1034,4 +1037,36 @@ function limpiarSimuladorEquilibrio() {
 
     // Ocultar la pizarra de resultados
     document.getElementById("pizarraEquilibrio").style.display = "none";
+}
+// ====================================================
+// HISTORIAL DE NOTAS
+//=====================================================
+function actualizarResultados(){
+
+    let tabla =
+        document.getElementById(
+            "tablaResultados"
+        );
+
+    tabla.innerHTML = "";
+
+    historialNotas.forEach(function(estudiante){
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${estudiante.nombre}</td>
+
+            <td>${estudiante.apellido}</td>
+
+            <td>${estudiante.nota}/10</td>
+
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
 }
