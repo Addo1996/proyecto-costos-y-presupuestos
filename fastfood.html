@@ -59,6 +59,9 @@
         <a href="#" onclick="mostrarPagina('equilibrio')">
             Equilibrio
         </a>
+        <a href="#" onclick="mostrarPagina('resultados')">
+            Resultados
+        </a>
     </nav>
 
     <!-- ========================= -->
@@ -1048,7 +1051,35 @@
     <div id="evaluacion" class="subseccion">
 
         <h3>📝 Evaluación de Costos</h3>
-        <p style="text-align: center; color: #666; margin-bottom: 20px;">Se han seleccionado 5 preguntas aleatorias para evaluar tu conocimiento.</p>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;"> Se han seleccionado 5 preguntas aleatorias para evaluar tu conocimiento.</p>
+
+        <div id="registroEvaluacion">
+     <!-- ========================= -->
+        <!-- DATOS DEL ESTUDIANTE (AH.) -->
+        <!-- ========================= -->
+    <h3>👤 Datos del Estudiante</h3>
+
+    <input
+        type="text"
+        id="nombreEvaluacion"
+        placeholder="Ingrese su nombre">
+
+    <input
+        type="text"
+        id="apellidoEvaluacion"
+        placeholder="Ingrese su apellido">
+
+    <button
+        type="button"
+        onclick="iniciarEvaluacion()">
+
+        Comenzar Evaluación
+
+    </button>
+
+</div>
+
+<div id="contenidoEvaluacion" style="display:none;">
 
         <form id="formEvaluacion">
             

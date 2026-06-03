@@ -3,7 +3,38 @@
 // ============================================
 let totalIngredientes = 0;
 let preguntasSeleccionadas = [];
+let nombreActual = "";
+let apellidoActual = "";
+let historialNotas = [];
+// ============================================
+// INICIAR EVALUACION - VALIDACION DE NOMBRE Y APELLIDO
+// ============================================
+function iniciarEvaluacion(){
+    let nombre =
+        document.getElementById(
+            "nombreEvaluacion"
+        ).value.trim();
 
+    let apellido =
+        document.getElementById(
+            "apellidoEvaluacion"
+        ).value.trim();
+
+    if(nombre === "" || apellido === ""){
+
+        alert(
+            "Debe ingresar nombre y apellido."
+        );
+
+        return;
+    }
+    nombreActual = nombre;
+    apellidoActual = apellido;
+    document.getElementById(
+        "contenidoEvaluacion"
+    ).style.display = "block";
+    generarEvaluacionAleatoria();
+}
 const bancoPreguntas = [
     {
         id: 1,
@@ -66,6 +97,7 @@ const bancoPreguntas = [
         correcta: 1
     }
 ];
+
 
 // ============================================
 // INICIALIZACIÓN SEGURA DEL DOM
@@ -315,6 +347,14 @@ function calificarEvaluacion() {
     });
     
     let notaFinal = aciertos; 
+    historialNotas.push({
+
+    nombre: nombreActual,
+
+    apellido: apellidoActual,
+
+    nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
+});
     const contenedorResultados = document.getElementById("resultado-evaluacion");
     const textoPuntaje = document.getElementById("puntaje-texto");
     const detallesRetro = document.getElementById("retroalimentacion-detalles");
