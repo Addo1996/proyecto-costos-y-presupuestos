@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Escuchador original para agregar ingredientes (protegido aquí dentro)
     actualizarResultados();// Actualizamos el historial de notas al cargar la pagina
     actualizarValoraciones();// Actualizamos el historial de valoraciones al cargar la pagina
+    actualizarSlider();// Actualizamos el valor del slider al cargar la pagina
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
         btnAgregar.addEventListener("click", agregarIngrediente);
@@ -1130,10 +1131,31 @@ document.addEventListener(
 
             texto.textContent =
                 slider.value;
+            actualizarSlider();
 
         }
 
 });
+function actualizarSlider() {
+
+    const slider =
+        document.getElementById(
+            "valoracionUsuario"
+        );
+
+    const porcentaje =
+        ((slider.value - slider.min) /
+        (slider.max - slider.min)) * 100;
+
+    slider.style.background =
+        `linear-gradient(
+            to right,
+            #007bff 0%,
+            #007bff ${porcentaje}%,
+            #ddd ${porcentaje}%,
+            #ddd 100%
+        )`;
+}
 //===============================================
 // GUARDAR VALORACION DEL USUARIO EN LOCAL STORAGE
 //===============================================
