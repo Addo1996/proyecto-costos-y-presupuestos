@@ -62,6 +62,9 @@
         <a href="#" onclick="mostrarPagina('resultados')">
             Resultados
         </a>
+        <a href="#" onclick="mostrarPagina('valoracion')">
+            Valoración
+        </a>
     </nav>
 
     <!-- ========================= -->
@@ -1313,6 +1316,53 @@
 
     </table>
     <button onclick="borrarResultados()"> 🗑️ Borrar Resultados</button>
+
+</section>
+<section id="valoracion" class="pagina">
+
+    <h2>⭐ Califica la Página</h2>
+    <p>
+        Evalúa la utilidad de FastFood Express del 1 al 10.
+    </p>
+
+    <input
+        type="range"
+        id="valoracionUsuario"
+        min="1"
+        max="10"
+        value="5">
+    <h3>
+        Calificación:
+        <span id="valorActual">
+
+            5
+
+        </span>
+    </h3>
+
+    <button onclick="guardarValoracion()">
+        Enviar Calificación
+    </button>
+    <hr>
+    <h3>
+
+        Promedio General:
+        <span id="promedioValoracion">
+
+            0
+
+        </span>
+        /10
+    </h3>
+
+    <h3>
+        Total de Votos:
+        <span id="cantidadVotos">
+
+            0
+
+        </span>
+    </h3>
 
 </section>
 

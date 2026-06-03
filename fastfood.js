@@ -11,6 +11,10 @@ let historialNotas =
             "historialNotas"
         )
     ) || [];
+let valoraciones =
+JSON.parse(
+localStorage.getItem("valoraciones")
+) || [];
 // ============================================
 // INICIAR EVALUACION - VALIDACION DE NOMBRE Y APELLIDO
 // ============================================
@@ -110,6 +114,7 @@ const bancoPreguntas = [
 document.addEventListener("DOMContentLoaded", function() {
     // Escuchador original para agregar ingredientes (protegido aquí dentro)
     actualizarResultados();// Actualizamos el historial de notas al cargar la pagina
+    actualizarValoraciones();// Actualizamos el historial de valoraciones al cargar la pagina
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
         btnAgregar.addEventListener("click", agregarIngrediente);
@@ -1102,5 +1107,92 @@ function borrarResultados(){
         actualizarResultados();
 
     }
+
+}
+//==========================
+// SLIDER DE VALORACION
+//==========================
+document.addEventListener(
+    "input",
+    function(){
+
+        let slider =
+            document.getElementById(
+                "valoracionUsuario"
+            );
+
+        let texto =
+            document.getElementById(
+                "valorActual"
+            );
+
+        if(slider && texto){
+
+            texto.textContent =
+                slider.value;
+
+        }
+
+});
+//===============================================
+// GUARDAR VALORACION DEL USUARIO EN LOCAL STORAGE
+//===============================================
+function guardarValoracion(){
+
+    let nota =
+        parseInt(
+            document.getElementById(
+                "valoracionUsuario"
+            ).value
+        );
+
+    valoraciones.push(nota);
+
+    localStorage.setItem(
+        "valoraciones",
+        JSON.stringify(
+            valoraciones
+        )
+    );
+
+    actualizarValoraciones();
+
+    alert(
+        "Gracias por calificar la página."
+    );
+
+}
+//===============================================
+// ACTUALIZAR PROMEDIO DE VALORACIONES EN LA INTERFAZ
+//===============================================
+function actualizarValoraciones(){
+
+    let suma = 0;
+
+    valoraciones.forEach(function(valor){
+
+        suma += valor;
+
+    });
+
+    let promedio = 0;
+
+    if(valoraciones.length > 0){
+
+        promedio =
+            suma /
+            valoraciones.length;
+
+    }
+
+    document.getElementById(
+        "promedioValoracion"
+    ).textContent =
+        promedio.toFixed(2);
+
+    document.getElementById(
+        "cantidadVotos"
+    ).textContent =
+        valoraciones.length;
 
 }
