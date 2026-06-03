@@ -39,26 +39,6 @@
         <a href="#" onclick="mostrarPagina('teoria')">
             Teoría
         </a>
-
-        <a href="#" onclick="mostrarPagina('costeo')">
-            Costeo
-        </a>
-
-        <a href="#" onclick="mostrarPagina('manoObra')">
-            Mano de Obra
-        </a>
-
-        <a href="#" onclick="mostrarPagina('costosIndirectos')">
-            Costos Indirectos
-        </a>
-
-        <a href="#" onclick="mostrarPagina('ganancia')">
-            Ganancia
-        </a>
-
-        <a href="#" onclick="mostrarPagina('equilibrio')">
-            Equilibrio
-        </a>
         <a href="#" onclick="mostrarPagina('resultados')">
             Resultados
         </a>
@@ -1080,9 +1060,9 @@
 
     </button>
 
-</div>
+    </div>
 
-<div id="contenidoEvaluacion" style="display:none;">
+    <div id="contenidoEvaluacion" style="display:none;">
 
         <form id="formEvaluacion">
             
@@ -1102,191 +1082,6 @@
         </div>
 
     </div>
-
-</section>
-    <!-- ========================= -->
-    <!-- COSTEO -->
-    <!-- ========================= -->
-
-    <section id="costeo" class="pagina">
-
-        <h2>🍟 Costeo de Recetas</h2>
-
-        <input type="text"
-               id="ingrediente"
-               placeholder="Ingrediente">
-
-        <input type="number"
-               id="cantidadReceta"
-               placeholder="Cantidad usada">
-
-        <select id="unidadUso">
-
-            <option>gramos</option>
-            <option>kilogramos</option>
-            <option>libras</option>
-            <option>unidades</option>
-
-        </select>
-
-        <input type="number"
-               id="precioCompra"
-               placeholder="Precio compra">
-
-        <button id="btnAgregar">
-            Agregar Ingrediente
-        </button>
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Ingrediente</th>
-                    <th>Cantidad</th>
-                    <th>Unidad</th>
-                    <th>Costo</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaIngredientes">
-
-            </tbody>
-
-        </table>
-
-        <h3>
-            Total Ingredientes:
-            $<span id="totalIngredientes">0.00</span>
-        </h3>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- MANO DE OBRA -->
-    <!-- ========================= -->
-
-    <section id="manoObra" class="pagina">
-
-        <h2>👨‍🍳 Mano de Obra</h2>
-
-        <input type="number"
-               id="trabajadores"
-               placeholder="Número de trabajadores">
-
-        <input type="number"
-               id="horas"
-               placeholder="Horas trabajadas">
-
-        <input type="number"
-               id="pagoHora"
-               placeholder="Pago por hora">
-
-        <button id="btnManoObra">
-
-            Calcular Mano de Obra
-
-        </button>
-
-        <h3>
-
-            Total:
-            $<span id="resultadoManoObra">0.00</span>
-
-        </h3>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- COSTOS INDIRECTOS -->
-    <!-- ========================= -->
-
-    <section id="costosIndirectos" class="pagina">
-
-        <h2>💡 Costos Indirectos</h2>
-
-        <input type="number"
-               id="agua"
-               placeholder="Costo de agua">
-
-        <input type="number"
-               id="luz"
-               placeholder="Costo de luz">
-
-        <input type="number"
-               id="gas"
-               placeholder="Costo de gas">
-
-        <button id="btnIndirectos">
-
-            Calcular Costos
-
-        </button>
-
-        <h3>
-
-            Total:
-            $<span id="resultadoIndirectos">0.00</span>
-
-        </h3>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- GANANCIA -->
-    <!-- ========================= -->
-
-    <section id="ganancia" class="pagina">
-
-        <h2>💰 Margen de Ganancia</h2>
-
-        <input type="number"
-               id="porcentajeGanancia"
-               placeholder="% de ganancia">
-
-        <button id="btnGanancia">
-
-            Calcular
-
-        </button>
-
-        <h3>
-
-            Precio de Venta:
-            $<span id="precioVenta">0.00</span>
-
-        </h3>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- EQUILIBRIO -->
-    <!-- ========================= -->
-
-    <section id="equilibrio" class="pagina">
-
-        <h2>📈 Punto de Equilibrio</h2>
-
-        <input type="number"
-               id="costosFijos"
-               placeholder="Costos Fijos">
-
-        <button id="btnEquilibrio">
-
-            Calcular
-
-        </button>
-
-        <h3>
-
-            Debe vender:
-            <span id="resultadoPE">0</span>
-            unidades
-
-        </h3>
 
     </section>
     <!-- ========================= -->
@@ -1315,7 +1110,9 @@
         </tbody>
 
     </table>
-    <button onclick="borrarResultados()"> 🗑️ Borrar Resultados</button>
+    <button type="button" onclick="borrarResultados()" style="background-color: #666; margin: 0;">
+        🗑️ Borrar Resultados
+    </button>
 
 </section>
 <section id="valoracion" class="pagina">

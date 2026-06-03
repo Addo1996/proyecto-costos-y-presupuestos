@@ -54,7 +54,7 @@ const bancoPreguntas = [
     {
         id: 2,
         pregunta: "Si una empresa debe pagar $3 en ingredientes por cada pizza fabricada, ¿cómo se clasifica este gasto?",
-        opciones: ["A) Costo Fijo.", "B) Costo Variable.", "B) Marngen de Ganancia.", "D) Amortización Alemana."],
+        opciones: ["A) Costo Fijo.", "B) Costo Variable.", "C) Marngen de Ganancia.", "D) Amortización Alemana."],
         correcta: 1
     },
     {
@@ -123,75 +123,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// ============================
-// FUNCION AGREGAR INGREDIENTE
-// ============================
-
-function agregarIngrediente() {
-
-    let ingrediente =
-        document.getElementById("ingrediente").value;
-
-    let cantidad =
-        parseFloat(
-            document.getElementById("cantidadReceta").value
-        );
-
-    let unidad =
-        document.getElementById("unidadUso").value;
-
-    let precio =
-        parseFloat(
-            document.getElementById("precioCompra").value
-        );
-
-    // Validación
-
-    if (
-        ingrediente === "" ||
-        isNaN(cantidad) ||
-        isNaN(precio)
-    ) {
-
-        alert("Complete todos los campos");
-
-        return;
-    }
-
-    // Calcular costo
-
-    let costo = cantidad * precio;
-
-    // Acumular total
-
-    totalIngredientes += costo;
-
-    // Agregar fila
-
-    let tabla =
-        document.getElementById("tablaIngredientes");
-
-    let fila =
-        document.createElement("tr");
-
-    fila.innerHTML = `
-        <td>${ingrediente}</td>
-        <td>${cantidad}</td>
-        <td>${unidad}</td>
-        <td>$${costo.toFixed(2)}</td>
-    `;
-
-    tabla.appendChild(fila);
-
-    // Mostrar total
-
-    document.getElementById(
-        "totalIngredientes"
-    ).textContent =
-        totalIngredientes.toFixed(2);
-
-    limpiarFormulario();
-}
 
 // ============================
 // LIMPIAR CAMPOS
@@ -380,7 +311,7 @@ actualizarResultados();
     const textoPuntaje = document.getElementById("puntaje-texto");
     const detallesRetro = document.getElementById("retroalimentacion-detalles");
     
-    textoPuntaje.textContent = `🎯 Tu puntaje es: ${notaFinal} / 5 (${(notaFinal * 2).toFixed(0)} / 10)`;
+    textoPuntaje.textContent = `🎯`+nombreActual+` `+apellidoActual+` Tu puntaje es: ${notaFinal} / 5 (${(notaFinal * 2).toFixed(0)} / 10)`;
     textoPuntaje.style.color = notaFinal >= 3 ? "#2e7d32" : "#c62828";
     
     detallesRetro.innerHTML = retroalimentacionHTML;
