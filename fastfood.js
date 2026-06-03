@@ -5,7 +5,12 @@ let totalIngredientes = 0;
 let preguntasSeleccionadas = [];
 let nombreActual = "";
 let apellidoActual = "";
-let historialNotas = [];
+let historialNotas =
+    JSON.parse(
+        localStorage.getItem(
+            "historialNotas"
+        )
+    ) || [];
 // ============================================
 // INICIAR EVALUACION - VALIDACION DE NOMBRE Y APELLIDO
 // ============================================
@@ -104,6 +109,7 @@ const bancoPreguntas = [
 // ============================================
 document.addEventListener("DOMContentLoaded", function() {
     // Escuchador original para agregar ingredientes (protegido aquí dentro)
+    actualizarResultados();// Actualizamos el historial de notas al cargar la pagina
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
         btnAgregar.addEventListener("click", agregarIngrediente);
@@ -357,6 +363,12 @@ function calificarEvaluacion() {
 
     nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
 });
+localStorage.setItem(
+    "historialNotas",
+    JSON.stringify(
+        historialNotas
+    )
+);
 actualizarResultados();
     const contenedorResultados = document.getElementById("resultado-evaluacion");
     const textoPuntaje = document.getElementById("puntaje-texto");
@@ -1068,5 +1080,27 @@ function actualizarResultados(){
         tabla.appendChild(fila);
 
     });
+
+}
+// ====================================================
+// BORRAR RESULTADOS
+//=====================================================
+function borrarResultados(){
+
+    if(
+        confirm(
+            "¿Desea eliminar todos los resultados?"
+        )
+    ){
+
+        historialNotas = [];
+
+        localStorage.removeItem(
+            "historialNotas"
+        );
+
+        actualizarResultados();
+
+    }
 
 }
