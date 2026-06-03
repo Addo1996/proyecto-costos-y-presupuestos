@@ -14,7 +14,7 @@ const bancoPreguntas = [
     {
         id: 2,
         pregunta: "Si una empresa debe pagar $3 en ingredientes por cada pizza fabricada, ¿cómo se clasifica este gasto?",
-        opciones: ["A) Costo Fijo.", "B) Costo Variable.", "B) Costo Variable.", "D) Amortización Alemana."],
+        opciones: ["A) Costo Fijo.", "B) Costo Variable.", "B) Marngen de Ganancia.", "D) Amortización Alemana."],
         correcta: 1
     },
     {
