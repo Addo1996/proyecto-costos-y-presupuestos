@@ -8,7 +8,7 @@ const bancoPreguntas = [
     {
         id: 1,
         pregunta: "¿Cuál de las siguientes opciones define correctamente a los costos fijos?",
-        opciones: ["A) Gastos que aumentan proporcionalmente con el volumen de ventas.", "A) Gastos que aumentan proporcionalmente con el volumen de ventas.", "C) Gastos que permanecen constantes independientemente del nivel de producción o ventas.", "D) Gastos destinados exclusivamente a la compra de materia prima."],
+        opciones: ["A) Gastos que aumentan proporcionalmente con el volumen de ventas.", "B) Gastos que cambian de acuerdo con la cantidad de productos elaborados.", "C) Gastos que permanecen constantes independientemente del nivel de producción o ventas.", "D) Gastos destinados exclusivamente a la compra de materia prima."],
         correcta: 2
     },
     {
@@ -62,7 +62,7 @@ const bancoPreguntas = [
     {
         id: 10,
         pregunta: "¿Qué utilidad estratégica tiene el PUNTO DE EQUILIBRIO para una empresa?",
-        opciones: ["A) Indica el momento en que se debe pagar el IVA al SRI.", "A) Indica el momento en que se debe pagar el IVA al SRI.", "C) Sirve para calcular el sueldo de los operarios de planta.", "D) Define el porcentaje exacto de impuestos que se debe aplicar a cada factura."],
+        opciones: ["A) Indica el momento en que se debe pagar el IVA al SRI.", "B) Ayuda a determinar el número mínimo de unidades que deben venderse para cubrir todos los gastos operativos sin generar pérdidas.", "C) Sirve para calcular el sueldo de los operarios de planta.", "D) Define el porcentaje exacto de impuestos que se debe aplicar a cada factura."],
         correcta: 1
     }
 ];
