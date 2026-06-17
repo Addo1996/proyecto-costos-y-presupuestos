@@ -12,13 +12,21 @@ let historialNotas =
         )
     ) || [];
 let valoraciones =
-JSON.parse(
-localStorage.getItem("valoraciones")
-) || [];
+    JSON.parse(
+        localStorage.getItem("valoraciones")
+    ) || [];
+// ============================
+// AH. MATERIA PRIMA este arreglo guarda los ingredientes registrados.
+// ============================
+
+let materiasPrimas =
+    JSON.parse(
+        localStorage.getItem("materiasPrimas")
+    ) || [];
 // ============================================
 // INICIAR EVALUACION - VALIDACION DE NOMBRE Y APELLIDO
 // ============================================
-function iniciarEvaluacion(){
+function iniciarEvaluacion() {
     let nombre =
         document.getElementById(
             "nombreEvaluacion"
@@ -29,7 +37,7 @@ function iniciarEvaluacion(){
             "apellidoEvaluacion"
         ).value.trim();
 
-    if(nombre === "" || apellido === ""){
+    if (nombre === "" || apellido === "") {
 
         alert(
             "Debe ingresar nombre y apellido."
@@ -111,10 +119,11 @@ const bancoPreguntas = [
 // ============================================
 // INICIALIZACIÓN SEGURA DEL DOM
 // ============================================
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Escuchador original para agregar ingredientes (protegido aquí dentro)
     actualizarResultados();// Actualizamos el historial de notas al cargar la pagina
     actualizarValoraciones();// Actualizamos el historial de valoraciones al cargar la pagina
+    actualizarTablaMateriaPrima();// Actualizamos la tabla de materia prima al cargar la pagina
     actualizarSlider();// Actualizamos el valor del slider al cargar la pagina
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
@@ -138,12 +147,12 @@ function limpiarFormulario() {
 
 }
 
-function mostrarPagina(idPagina){
+function mostrarPagina(idPagina) {
 
     let paginas =
         document.querySelectorAll(".pagina");
 
-    paginas.forEach(function(pagina){
+    paginas.forEach(function (pagina) {
 
         pagina.style.display = "none";
 
@@ -154,12 +163,12 @@ function mostrarPagina(idPagina){
 
     // Si entra a Teoría ocultar todas las subsecciones
 
-    if(idPagina === "teoria"){
+    if (idPagina === "teoria") {
 
         let subsecciones =
             document.querySelectorAll(".subseccion");
 
-        subsecciones.forEach(function(sub){
+        subsecciones.forEach(function (sub) {
 
             sub.style.display = "none";
 
@@ -175,7 +184,7 @@ function mostrarPagina(idPagina){
 function mostrarSubTemas(idSubTema) {
     // Ocultamos todos los contenidos de los subtemas
     let subtemas = document.querySelectorAll(".subtema-contenido");
-    subtemas.forEach(function(tema) {
+    subtemas.forEach(function (tema) {
         tema.style.display = "none";
     });
 
@@ -186,12 +195,12 @@ function mostrarSubTemas(idSubTema) {
 // ============================================
 // Sub Secciones en Teoria (Addonys) - Actualizada
 // ============================================
-function mostrarSubSeccion(idSubSeccion){
+function mostrarSubSeccion(idSubSeccion) {
 
     let subsecciones =
         document.querySelectorAll(".subseccion");
 
-    subsecciones.forEach(function(sub){
+    subsecciones.forEach(function (sub) {
 
         sub.style.display = "none";
 
@@ -212,24 +221,24 @@ function mostrarSubSeccion(idSubSeccion){
 function generarEvaluacionAleatoria() {
     document.getElementById("resultado-evaluacion").style.display = "none";
     document.getElementById("retroalimentacion-detalles").innerHTML = "";
-    
+
     let preguntasClonadas = [...bancoPreguntas];
     for (let i = preguntasClonadas.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [preguntasClonadas[i], preguntasClonadas[j]] = [preguntasClonadas[j], preguntasClonadas[i]];
     }
-    
+
     preguntasSeleccionadas = preguntasClonadas.slice(0, 5);
-    
+
     const contenedor = document.getElementById("contenedor-preguntas");
     contenedor.innerHTML = "";
-    
+
     preguntasSeleccionadas.forEach((item, index) => {
         let preguntaHTML = `
             <div class="pregunta-bloque" style="margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
                 <p style="font-weight: bold; margin-bottom: 10px;">${index + 1}. ${item.pregunta}</p>
         `;
-        
+
         item.opciones.forEach((opcion, opcIndex) => {
             preguntaHTML += `
                 <label style="display: block; margin-bottom: 5px; cursor: pointer;">
@@ -238,7 +247,7 @@ function generarEvaluacionAleatoria() {
                 </label>
             `;
         });
-        
+
         preguntaHTML += `</div>`;
         contenedor.innerHTML += preguntaHTML;
     });
@@ -249,7 +258,7 @@ function generarEvaluacionAleatoria() {
 function calificarEvaluacion() {
     let aciertos = 0;
     let retroalimentacionHTML = "";
-    
+
     for (let i = 0; i < preguntasSeleccionadas.length; i++) {
         const opciones = document.getElementsByName(`pregunta_${i}`);
         let respondida = false;
@@ -264,17 +273,17 @@ function calificarEvaluacion() {
             return;
         }
     }
-    
+
     preguntasSeleccionadas.forEach((item, index) => {
         const opciones = document.getElementsByName(`pregunta_${index}`);
         let respuestaUsuario = -1;
-        
+
         opciones.forEach((opcion) => {
             if (opcion.checked) {
                 respuestaUsuario = parseInt(opcion.value);
             }
         });
-        
+
         if (respuestaUsuario === item.correcta) {
             aciertos++;
             retroalimentacionHTML += `
@@ -290,33 +299,33 @@ function calificarEvaluacion() {
             `;
         }
     });
-    
-    let notaFinal = aciertos; 
+
+    let notaFinal = aciertos;
     historialNotas.push({
 
-    nombre: nombreActual,
+        nombre: nombreActual,
 
-    apellido: apellidoActual,
+        apellido: apellidoActual,
 
-    nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
-});
-localStorage.setItem(
-    "historialNotas",
-    JSON.stringify(
-        historialNotas
-    )
-);
-actualizarResultados();
+        nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
+    });
+    localStorage.setItem(
+        "historialNotas",
+        JSON.stringify(
+            historialNotas
+        )
+    );
+    actualizarResultados();
     const contenedorResultados = document.getElementById("resultado-evaluacion");
     const textoPuntaje = document.getElementById("puntaje-texto");
     const detallesRetro = document.getElementById("retroalimentacion-detalles");
-    
-    textoPuntaje.textContent = `🎯`+nombreActual+` `+apellidoActual+` Tu puntaje es: ${notaFinal} / 5 (${(notaFinal * 2).toFixed(0)} / 10)`;
+
+    textoPuntaje.textContent = `🎯` + nombreActual + ` ` + apellidoActual + ` Tu puntaje es: ${notaFinal} / 5 (${(notaFinal * 2).toFixed(0)} / 10)`;
     textoPuntaje.style.color = notaFinal >= 3 ? "#2e7d32" : "#c62828";
-    
+
     detallesRetro.innerHTML = retroalimentacionHTML;
     contenedorResultados.style.display = "block";
-    
+
     contenedorResultados.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -357,7 +366,7 @@ function calcularSimuladorFijos() {
     let costoFijoTotal = 0;
 
     // Sumamos dinámicamente cada uno de ellos
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoFijoTotal += parseFloat(input.value) || 0;
     });
 
@@ -370,14 +379,14 @@ function calcularSimuladorFijos() {
     // Muestra el panel de resultados
     let pizarra = document.getElementById("pizarraFijos");
     pizarra.style.display = "block";
-    
+
     pizarra.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function limpiarSimuladorFijos() {
 
     let lista = document.getElementById("listaParametrosFijos");
-    
+
     while (lista.children.length > 3) {
         lista.removeChild(lista.lastChild);
     }
@@ -421,7 +430,7 @@ function calcularSimuladorVariables() {
     let costoVariableUnitario = 0;
 
     // Sumamos el valor individual de cada ingrediente del plato
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoVariableUnitario += parseFloat(input.value) || 0;
     });
 
@@ -445,9 +454,9 @@ function calcularSimuladorVariables() {
 function limpiarSimuladorVariables() {
     // Reestablecer valores por defecto de la receta base
     let inputsBase = document.querySelectorAll(".input-costo-variable");
-    if(inputsBase[0]) inputsBase[0].value = "1.50";
-    if(inputsBase[1]) inputsBase[1].value = "0.30";
-    if(inputsBase[2]) inputsBase[2].value = "0.20";
+    if (inputsBase[0]) inputsBase[0].value = "1.50";
+    if (inputsBase[1]) inputsBase[1].value = "0.30";
+    if (inputsBase[2]) inputsBase[2].value = "0.20";
 
     // Eliminar insumos extras agregados por el estudiante
     let lista = document.getElementById("listaParametrosVariables");
@@ -505,12 +514,12 @@ function agregarParametroMixto() {
 
 function calcularSimuladorMixto() {
     let inputs = document.querySelectorAll(".input-costo-mixto");
-    
+
     let totalDirectos = 0;
     let totalIndirectos = 0;
 
     // Clasificar y sumar usando el atributo personalizado data-tipo
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         let valor = parseFloat(input.value) || 0;
         let tipo = input.getAttribute("data-tipo");
 
@@ -537,9 +546,9 @@ function calcularSimuladorMixto() {
 function limpiarSimuladorMixto() {
     // Reestablecer valores iniciales de los tres inputs base
     let inputsBase = document.querySelectorAll(".input-costo-mixto");
-    if(inputsBase[0]) inputsBase[0].value = "600";
-    if(inputsBase[1]) inputsBase[1].value = "80";
-    if(inputsBase[2]) inputsBase[2].value = "40";
+    if (inputsBase[0]) inputsBase[0].value = "600";
+    if (inputsBase[1]) inputsBase[1].value = "80";
+    if (inputsBase[2]) inputsBase[2].value = "40";
 
     // Eliminar los parámetros extras creados dinámicamente (manteniendo los 3 iniciales)
     let lista = document.getElementById("listaParametrosDirectosIndirectos");
@@ -597,7 +606,7 @@ function calcularSimuladorMateria() {
     let costoMateriaUnitario = 0;
 
     // Sumatoria de cada ingrediente del plato individual
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoMateriaUnitario += parseFloat(input.value) || 0;
     });
 
@@ -621,9 +630,9 @@ function limpiarSimuladorMateria() {
 
     // Reestablecer valores iniciales de la receta base
     let inputsBase = document.querySelectorAll(".input-costo-materia");
-    if(inputsBase[0]) inputsBase[0].value = "0.60";
-    if(inputsBase[1]) inputsBase[1].value = "0.40";
-    if(inputsBase[2]) inputsBase[2].value = "0.15";
+    if (inputsBase[0]) inputsBase[0].value = "0.60";
+    if (inputsBase[1]) inputsBase[1].value = "0.40";
+    if (inputsBase[2]) inputsBase[2].value = "0.15";
 
     // Eliminar ingredientes dinámicos extras creados por el alumno (manteniendo los 3 base)
     let lista = document.getElementById("listaParametrosMateria");
@@ -680,7 +689,7 @@ function calcularSimuladorMano() {
     let sueldoTotalMensual = 0;
 
     // Sumar todos los sueldos de la lista actual
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         sueldoTotalMensual += parseFloat(input.value) || 0;
     });
 
@@ -704,8 +713,8 @@ function limpiarSimuladorMano() {
 
     // Reestablecer valores por defecto del equipo inicial
     let inputsBase = document.querySelectorAll(".input-costo-mano");
-    if(inputsBase[0]) inputsBase[0].value = "450";
-    if(inputsBase[1]) inputsBase[1].value = "400";
+    if (inputsBase[0]) inputsBase[0].value = "450";
+    if (inputsBase[1]) inputsBase[1].value = "400";
 
     // Eliminar personal extra creado dinámicamente por el estudiante (manteniendo los 2 base)
     let lista = document.getElementById("listaParametrosMano");
@@ -762,7 +771,7 @@ function calcularSimuladorReceta() {
     let costoProduccionTotal = 0;
 
     // Calcular la suma absoluta de todos los costos de la receta por porción
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoProduccionTotal += parseFloat(input.value) || 0;
     });
 
@@ -787,9 +796,9 @@ function limpiarSimuladorReceta() {
 
     // Restaurar los 3 costos predeterminados del ejemplo base
     let inputsBase = document.querySelectorAll(".input-costo-receta");
-    if(inputsBase[0]) inputsBase[0].value = "2.00";
-    if(inputsBase[1]) inputsBase[1].value = "0.50";
-    if(inputsBase[2]) inputsBase[2].value = "0.30";
+    if (inputsBase[0]) inputsBase[0].value = "2.00";
+    if (inputsBase[1]) inputsBase[1].value = "0.50";
+    if (inputsBase[2]) inputsBase[2].value = "0.30";
 
     // Eliminar componentes de costo extras creados por el alumno (manteniendo los 3 iniciales)
     let lista = document.getElementById("listaComponentesReceta");
@@ -845,7 +854,7 @@ function calcularSimuladorMargen() {
 
     let costoTotal = 0;
     // Sumamos el costo base más todos los parámetros dinámicos creados
-    inputsCosto.forEach(function(input) {
+    inputsCosto.forEach(function (input) {
         costoTotal += parseFloat(input.value) || 0;
     });
 
@@ -880,7 +889,7 @@ function limpiarSimuladorMargen() {
 
     // Restaurar el primer input de costo (Costo base de producción)
     let inputsCosto = document.querySelectorAll(".input-costo-margen");
-    if(inputsCosto[0]) inputsCosto[0].value = "3.00";
+    if (inputsCosto[0]) inputsCosto[0].value = "3.00";
 
     // Eliminar costos extras dinámicos del contenedor (manteniendo el costo base)
     let lista = document.getElementById("listaComponentesMargen");
@@ -943,7 +952,7 @@ function calcularSimuladorEquilibrio() {
 
     let costosFijosTotales = 0;
     // Sumamos todos los costos fijos de la lista de inputs
-    inputsFijos.forEach(function(input) {
+    inputsFijos.forEach(function (input) {
         costosFijosTotales += parseFloat(input.value) || 0;
     });
 
@@ -971,8 +980,8 @@ function limpiarSimuladorEquilibrio() {
 
     // Reestablecer los costos fijos por defecto (Alquiler y Servicios)
     let inputsFijos = document.querySelectorAll(".input-costo-fijo");
-    if(inputsFijos[0]) inputsFijos[0].value = "400";
-    if(inputsFijos[1]) inputsFijos[1].value = "200";
+    if (inputsFijos[0]) inputsFijos[0].value = "400";
+    if (inputsFijos[1]) inputsFijos[1].value = "200";
 
     //Remover los nodos hijos extras que superen los 2 iniciales
     let lista = document.getElementById("listaCostosFijosEquilibrio");
@@ -990,7 +999,7 @@ function limpiarSimuladorEquilibrio() {
 // ====================================================
 // HISTORIAL DE NOTAS
 //=====================================================
-function actualizarResultados(){
+function actualizarResultados() {
 
     let tabla =
         document.getElementById(
@@ -999,7 +1008,7 @@ function actualizarResultados(){
 
     tabla.innerHTML = "";
 
-    historialNotas.forEach(function(estudiante){
+    historialNotas.forEach(function (estudiante) {
 
         let fila =
             document.createElement("tr");
@@ -1022,13 +1031,13 @@ function actualizarResultados(){
 // ====================================================
 // BORRAR RESULTADOS
 //=====================================================
-function borrarResultados(){
+function borrarResultados() {
 
-    if(
+    if (
         confirm(
             "¿Desea eliminar todos los resultados?"
         )
-    ){
+    ) {
 
         historialNotas = [];
 
@@ -1046,7 +1055,7 @@ function borrarResultados(){
 //==========================
 document.addEventListener(
     "input",
-    function(){
+    function () {
 
         let slider =
             document.getElementById(
@@ -1058,7 +1067,7 @@ document.addEventListener(
                 "valorActual"
             );
 
-        if(slider && texto){
+        if (slider && texto) {
 
             texto.textContent =
                 slider.value;
@@ -1066,7 +1075,7 @@ document.addEventListener(
 
         }
 
-});
+    });
 function actualizarSlider() {
 
     const slider =
@@ -1076,7 +1085,7 @@ function actualizarSlider() {
 
     const porcentaje =
         ((slider.value - slider.min) /
-        (slider.max - slider.min)) * 100;
+            (slider.max - slider.min)) * 100;
 
     slider.style.background =
         `linear-gradient(
@@ -1090,7 +1099,7 @@ function actualizarSlider() {
 //===============================================
 // GUARDAR VALORACION DEL USUARIO EN LOCAL STORAGE
 //===============================================
-function guardarValoracion(){
+function guardarValoracion() {
 
     let nota =
         parseInt(
@@ -1118,11 +1127,11 @@ function guardarValoracion(){
 //===============================================
 // ACTUALIZAR PROMEDIO DE VALORACIONES EN LA INTERFAZ
 //===============================================
-function actualizarValoraciones(){
+function actualizarValoraciones() {
 
     let suma = 0;
 
-    valoraciones.forEach(function(valor){
+    valoraciones.forEach(function (valor) {
 
         suma += valor;
 
@@ -1130,7 +1139,7 @@ function actualizarValoraciones(){
 
     let promedio = 0;
 
-    if(valoraciones.length > 0){
+    if (valoraciones.length > 0) {
 
         promedio =
             suma /
@@ -1148,4 +1157,233 @@ function actualizarValoraciones(){
     ).textContent =
         valoraciones.length;
 
+}
+//=========================================
+// AH. Agregar materia prima al simulador.
+//=========================================
+function agregarMateriaPrima() {
+
+    let nombre =
+        document.getElementById(
+            "nombreMP"
+        ).value.trim();
+
+    let unidad =
+        document.getElementById(
+            "unidadMP"
+        ).value;
+
+    let cantidad =
+        parseFloat(
+            document.getElementById(
+                "cantidadCompraMP"
+            ).value
+        );
+
+    let precio =
+        parseFloat(
+            document.getElementById(
+                "precioCompraMP"
+            ).value
+        );
+
+    let merma =
+        parseFloat(
+            document.getElementById(
+                "mermaMP"
+            ).value
+        );
+
+    // Validación
+
+    if (
+        nombre === "" ||
+        isNaN(cantidad) ||
+        isNaN(precio) ||
+        isNaN(merma)
+    ) {
+
+        alert(
+            "Complete todos los campos."
+        );
+
+        return;
+    }
+
+    materiasPrimas.push({
+
+        nombre: nombre,
+
+        unidad: unidad,
+
+        cantidad: cantidad,
+
+        precio: precio,
+
+        merma: merma
+
+    });
+
+    localStorage.setItem(
+
+        "materiasPrimas",
+
+        JSON.stringify(
+            materiasPrimas
+        )
+
+    );
+
+    actualizarTablaMateriaPrima();
+
+    limpiarMateriaPrima();
+}
+
+function actualizarTablaMateriaPrima() {
+
+    let tabla =
+        document.getElementById(
+            "tablaMateriaPrima"
+        );
+
+    tabla.innerHTML = "";
+
+    materiasPrimas.forEach(function (item, index) {
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${item.nombre}</td>
+
+            <td>${item.unidad}</td>
+
+            <td>${item.cantidad}</td>
+
+            <td>$${item.precio.toFixed(2)}</td>
+
+            <td>${item.merma}%</td>
+              <td>
+
+        <button onclick="editarMateriaPrima(${index})">
+            ✏️ Editar
+        </button>
+
+        <button onclick="eliminarMateriaPrima(${index})">
+            🗑️ Eliminar
+        </button>
+
+    </td>
+
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+
+function limpiarMateriaPrima() {
+
+    document.getElementById(
+        "nombreMP"
+    ).value = "";
+
+    document.getElementById(
+        "unidadMP"
+    ).selectedIndex = 0;
+
+    document.getElementById(
+        "cantidadCompraMP"
+    ).value = "";
+
+    document.getElementById(
+        "precioCompraMP"
+    ).value = "";
+
+    document.getElementById(
+        "mermaMP"
+    ).value = "";
+
+}
+
+function eliminarMateriaPrima(index){
+
+    let confirmar = confirm(
+        "¿Desea eliminar este ingrediente?"
+    );
+
+    if(confirmar){
+
+        materiasPrimas.splice(index, 1);
+
+        localStorage.setItem(
+            "materiasPrimas",
+            JSON.stringify(materiasPrimas)
+        );
+
+        actualizarTablaMateriaPrima();
+
+    }
+
+}
+
+function editarMateriaPrima(index){
+
+    let ingrediente = materiasPrimas[index];
+
+    let nuevoNombre = prompt(
+        "Nombre:",
+        ingrediente.nombre
+    );
+
+    if(nuevoNombre === null) return;
+
+    let nuevaUnidad = prompt(
+        "Unidad (kg, gramos, libras, unidades, litros, ml):",
+        ingrediente.unidad
+    );
+
+    if(nuevaUnidad === null) return;
+
+    let nuevaCantidad = parseFloat(
+        prompt(
+            "Cantidad comprada:",
+            ingrediente.cantidad
+        )
+    );
+
+    if(isNaN(nuevaCantidad)) return;
+
+    let nuevoPrecio = parseFloat(
+        prompt(
+            "Precio de compra:",
+            ingrediente.precio
+        )
+    );
+
+    if(isNaN(nuevoPrecio)) return;
+
+    let nuevaMerma = parseFloat(
+        prompt(
+            "% de merma:",
+            ingrediente.merma
+        )
+    );
+
+    if(isNaN(nuevaMerma)) return;
+
+    ingrediente.nombre = nuevoNombre;
+    ingrediente.unidad = nuevaUnidad;   // ← NUEVO
+    ingrediente.cantidad = nuevaCantidad;
+    ingrediente.precio = nuevoPrecio;
+    ingrediente.merma = nuevaMerma;
+
+    localStorage.setItem(
+        "materiasPrimas",
+        JSON.stringify(materiasPrimas)
+    );
+
+    actualizarTablaMateriaPrima();
 }
