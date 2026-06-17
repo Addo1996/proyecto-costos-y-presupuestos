@@ -45,6 +45,9 @@
         <a href="#" onclick="mostrarPagina('materiaPrima')">
             📦 Materia Prima
         </a>
+        <a href="#" onclick="mostrarPagina('recetas')">
+            🍔 Recetas
+        </a>
         <a href="#" onclick="mostrarPagina('valoracion')">
             Valoración
         </a>
@@ -1458,6 +1461,86 @@
             </thead>
 
             <tbody id="tablaMateriaPrima">
+
+            </tbody>
+
+        </table>
+        <h2>🥤 Bebidas y Productos de Venta Directa</h2>
+        <input type="text" id="nombreBebida" placeholder="Nombre de la bebida">
+
+        <select id="unidadBebida">
+
+            <option value="unidades">Unidades</option>
+
+        </select>
+
+        <input type="number" id="cantidadBebida" placeholder="Cantidad">
+
+        <input type="number" id="precioBebida" placeholder="Precio">
+
+        <button id="btnAgregarBebida">
+
+            Agregar Bebida
+
+        </button>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Producto</th>
+                    <th>Unidad</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaBebidas">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- RECETAS -->
+    <!-- ========================= -->
+
+    <section id="recetas" class="pagina">
+
+        <h2>🍔 Registro de Recetas</h2>
+
+        <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
+
+        <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
+
+        <input type="number" id="porciones" placeholder="Número de porciones">
+
+        <button type="button" onclick="crearReceta()">
+
+            Crear Receta
+
+        </button>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Receta</th>
+                    <th>Tiempo</th>
+                    <th>Porciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaRecetas">
 
             </tbody>
 

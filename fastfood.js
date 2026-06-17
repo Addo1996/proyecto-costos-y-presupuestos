@@ -3,6 +3,163 @@
 // ============================================
 let totalIngredientes = 0;
 let preguntasSeleccionadas = [];
+const ingredientesIniciales = [
+
+    {
+        nombre: "Carne molida",
+        unidad: "libras",
+        cantidad: 10,
+        precio: 45,
+        merma: 5
+    },
+
+    {
+        nombre: "Pan hamburguesa",
+        unidad: "unidades",
+        cantidad: 50,
+        precio: 20,
+        merma: 0
+    },
+
+    {
+        nombre: "Queso cheddar",
+        unidad: "unidades",
+        cantidad: 30,
+        precio: 15,
+        merma: 2
+    },
+
+    {
+        nombre: "Lechuga",
+        unidad: "kilogramos",
+        cantidad: 2,
+        precio: 6,
+        merma: 10
+    },
+
+    {
+        nombre: "Tomate",
+        unidad: "kilogramos",
+        cantidad: 3,
+        precio: 9,
+        merma: 8
+    },
+
+    {
+        nombre: "Papa",
+        unidad: "kilogramos",
+        cantidad: 10,
+        precio: 18,
+        merma: 15
+    },
+
+    {
+        nombre: "Salchicha",
+        unidad: "unidades",
+        cantidad: 40,
+        precio: 24,
+        merma: 0
+    },
+
+    {
+        nombre: "Mayonesa",
+        unidad: "litros",
+        cantidad: 2,
+        precio: 8,
+        merma: 2
+    },
+
+    {
+        nombre: "Salsa de tomate",
+        unidad: "litros",
+        cantidad: 2,
+        precio: 7,
+        merma: 2
+    },
+
+    {
+        nombre: "Mostaza",
+        unidad: "litros",
+        cantidad: 1,
+        precio: 4,
+        merma: 2
+    },
+
+    {
+        nombre: "Pan hot dog",
+        unidad: "unidades",
+        cantidad: 40,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Cebolla",
+        unidad: "kilogramos",
+        cantidad: 2,
+        precio: 4,
+        merma: 10
+    },
+
+    {
+        nombre: "Repollo",
+        unidad: "kilogramos",
+        cantidad: 2,
+        precio: 5,
+        merma: 12
+    },
+
+    {
+        nombre: "Nuggets",
+        unidad: "kilogramos",
+        cantidad: 5,
+        precio: 35,
+        merma: 0
+    },
+
+    {
+        nombre: "Aceite",
+        unidad: "litros",
+        cantidad: 5,
+        precio: 20,
+        merma: 5
+    }
+];
+const bebidasIniciales = [
+
+    {
+        nombre: "Coca-Cola 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Sprite 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Fanta 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Agua 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 12,
+        merma: 0
+    }
+
+];
 let nombreActual = "";
 let apellidoActual = "";
 let historialNotas =
@@ -22,6 +179,38 @@ let valoraciones =
 let materiasPrimas =
     JSON.parse(
         localStorage.getItem("materiasPrimas")
+    );
+
+let bebidas =
+    JSON.parse(
+        localStorage.getItem("bebidas")
+    );
+
+if (materiasPrimas === null) {
+
+    materiasPrimas = ingredientesIniciales;
+
+    localStorage.setItem(
+        "materiasPrimas",
+        JSON.stringify(materiasPrimas)
+    );
+
+}
+
+if (bebidas === null) {
+
+    bebidas = bebidasIniciales;
+
+    localStorage.setItem(
+        "bebidas",
+        JSON.stringify(bebidas)
+    );
+
+}
+
+let recetas =
+    JSON.parse(
+        localStorage.getItem("recetas")
     ) || [];
 // ============================================
 // INICIAR EVALUACION - VALIDACION DE NOMBRE Y APELLIDO
@@ -124,10 +313,23 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarResultados();// Actualizamos el historial de notas al cargar la pagina
     actualizarValoraciones();// Actualizamos el historial de valoraciones al cargar la pagina
     actualizarTablaMateriaPrima();// Actualizamos la tabla de materia prima al cargar la pagina
+    actualizarTablaBebidas();// Actualizamos la tabla de bebidas al cargar la pagina
+    actualizarTablaRecetas(); // Acrualizamos la tabla de recetas al cargar la pagina
     actualizarSlider();// Actualizamos el valor del slider al cargar la pagina
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
         btnAgregar.addEventListener("click", agregarIngrediente);
+    }
+    const btnAgregarBebida =
+        document.getElementById("btnAgregarBebida");
+
+    if (btnAgregarBebida) {
+
+        btnAgregarBebida.addEventListener(
+            "click",
+            agregarBebida
+        );
+
     }
 });
 
@@ -1283,6 +1485,40 @@ function actualizarTablaMateriaPrima() {
     });
 
 }
+function actualizarTablaBebidas() {
+
+    let tabla =
+        document.getElementById("tablaBebidas");
+
+    tabla.innerHTML = "";
+
+    bebidas.forEach(function (item, indice) {
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+            <td>${item.nombre}</td>
+            <td>${item.unidad}</td>
+            <td>${item.cantidad}</td>
+            <td>$${item.precio}</td>
+
+            <td>
+                <button onclick="editarBebida(${indice})">
+                    ✏️ Editar
+                </button>
+
+                <button onclick="eliminarBebida(${indice})">
+                    🗑️ Eliminar
+                </button>
+            </td>
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+}
 
 function limpiarMateriaPrima() {
 
@@ -1308,13 +1544,13 @@ function limpiarMateriaPrima() {
 
 }
 
-function eliminarMateriaPrima(index){
+function eliminarMateriaPrima(index) {
 
     let confirmar = confirm(
         "¿Desea eliminar este ingrediente?"
     );
 
-    if(confirmar){
+    if (confirmar) {
 
         materiasPrimas.splice(index, 1);
 
@@ -1328,8 +1564,129 @@ function eliminarMateriaPrima(index){
     }
 
 }
+function eliminarBebida(indice) {
 
-function editarMateriaPrima(index){
+    if (confirm("¿Desea eliminar esta bebida?")) {
+
+        bebidas.splice(indice, 1);
+
+        localStorage.setItem(
+            "bebidas",
+            JSON.stringify(bebidas)
+        );
+
+        actualizarTablaBebidas();
+
+    }
+
+}
+
+function editarBebida(indice) {
+
+    let bebida = bebidas[indice];
+
+    let nuevoNombre =
+        prompt(
+            "Nombre:",
+            bebida.nombre
+        );
+
+    if (nuevoNombre === null) return;
+
+    let nuevaCantidad =
+        prompt(
+            "Cantidad:",
+            bebida.cantidad
+        );
+
+    if (nuevaCantidad === null) return;
+
+    let nuevoPrecio =
+        prompt(
+            "Precio:",
+            bebida.precio
+        );
+
+    if (nuevoPrecio === null) return;
+
+    bebida.nombre = nuevoNombre;
+
+    bebida.cantidad =
+        parseFloat(nuevaCantidad);
+
+    bebida.precio =
+        parseFloat(nuevoPrecio);
+
+    localStorage.setItem(
+        "bebidas",
+        JSON.stringify(bebidas)
+    );
+
+    actualizarTablaBebidas();
+
+}
+
+function agregarBebida() {
+
+    let nombre =
+        document.getElementById("nombreBebida").value;
+
+    let unidad =
+        document.getElementById("unidadBebida").value;
+
+    let cantidad =
+        parseFloat(
+            document.getElementById("cantidadBebida").value
+        );
+
+    let precio =
+        parseFloat(
+            document.getElementById("precioBebida").value
+        );
+
+    if (
+        nombre === "" ||
+        isNaN(cantidad) ||
+        isNaN(precio)
+    ) {
+
+        alert("Complete todos los campos.");
+
+        return;
+    }
+
+    bebidas.push({
+
+        nombre: nombre,
+        unidad: unidad,
+        cantidad: cantidad,
+        precio: precio,
+        merma: 0
+
+    });
+
+    localStorage.setItem(
+        "bebidas",
+        JSON.stringify(bebidas)
+    );
+
+    actualizarTablaBebidas();
+
+    limpiarFormularioBebidas();
+
+}
+
+function limpiarFormularioBebidas() {
+
+    document.getElementById("nombreBebida").value = "";
+
+    document.getElementById("cantidadBebida").value = "";
+
+    document.getElementById("precioBebida").value = "";
+
+}
+
+function editarMateriaPrima(index) {
 
     let ingrediente = materiasPrimas[index];
 
@@ -1338,14 +1695,14 @@ function editarMateriaPrima(index){
         ingrediente.nombre
     );
 
-    if(nuevoNombre === null) return;
+    if (nuevoNombre === null) return;
 
     let nuevaUnidad = prompt(
         "Unidad (kg, gramos, libras, unidades, litros, ml):",
         ingrediente.unidad
     );
 
-    if(nuevaUnidad === null) return;
+    if (nuevaUnidad === null) return;
 
     let nuevaCantidad = parseFloat(
         prompt(
@@ -1354,7 +1711,7 @@ function editarMateriaPrima(index){
         )
     );
 
-    if(isNaN(nuevaCantidad)) return;
+    if (isNaN(nuevaCantidad)) return;
 
     let nuevoPrecio = parseFloat(
         prompt(
@@ -1363,7 +1720,7 @@ function editarMateriaPrima(index){
         )
     );
 
-    if(isNaN(nuevoPrecio)) return;
+    if (isNaN(nuevoPrecio)) return;
 
     let nuevaMerma = parseFloat(
         prompt(
@@ -1372,7 +1729,7 @@ function editarMateriaPrima(index){
         )
     );
 
-    if(isNaN(nuevaMerma)) return;
+    if (isNaN(nuevaMerma)) return;
 
     ingrediente.nombre = nuevoNombre;
     ingrediente.unidad = nuevaUnidad;   // ← NUEVO
@@ -1392,52 +1749,159 @@ function editarMateriaPrima(index){
 // CONVERSIÓN DE UNIDADES
 // ============================================
 
-function convertirUnidad(cantidad, unidadOrigen, unidadDestino){
+function convertirUnidad(cantidad, unidadOrigen, unidadDestino) {
 
     // Si son iguales, no convertir
-    if(unidadOrigen === unidadDestino){
+    if (unidadOrigen === unidadDestino) {
         return cantidad;
     }
 
     // Masa
-    if(unidadOrigen === "kg" && unidadDestino === "gramos"){
+    if (unidadOrigen === "kg" && unidadDestino === "gramos") {
         return cantidad * 1000;
     }
 
-    if(unidadOrigen === "gramos" && unidadDestino === "kg"){
+    if (unidadOrigen === "gramos" && unidadDestino === "kg") {
         return cantidad / 1000;
     }
 
-    if(unidadOrigen === "libras" && unidadDestino === "gramos"){
+    if (unidadOrigen === "libras" && unidadDestino === "gramos") {
         return cantidad * 453.592;
     }
 
-    if(unidadOrigen === "gramos" && unidadDestino === "libras"){
+    if (unidadOrigen === "gramos" && unidadDestino === "libras") {
         return cantidad / 453.592;
     }
 
-    if(unidadOrigen === "kg" && unidadDestino === "libras"){
+    if (unidadOrigen === "kg" && unidadDestino === "libras") {
         return cantidad * 2.20462;
     }
 
-    if(unidadOrigen === "libras" && unidadDestino === "kg"){
+    if (unidadOrigen === "libras" && unidadDestino === "kg") {
         return cantidad / 2.20462;
     }
 
     // Volumen
-    if(unidadOrigen === "litros" && unidadDestino === "mililitros"){
+    if (unidadOrigen === "litros" && unidadDestino === "mililitros") {
         return cantidad * 1000;
     }
 
-    if(unidadOrigen === "mililitros" && unidadDestino === "litros"){
+    if (unidadOrigen === "mililitros" && unidadDestino === "litros") {
         return cantidad / 1000;
     }
 
     // Unidades
-    if(unidadOrigen === "unidades" && unidadDestino === "unidades"){
+    if (unidadOrigen === "unidades" && unidadDestino === "unidades") {
         return cantidad;
     }
 
     // Si no existe conversión
     return null;
+}
+
+// ============================================
+// AH. Gestión de recetas y costos.
+// ============================================
+
+function crearReceta() {
+
+    let nombre =
+        document.getElementById(
+            "nombreReceta"
+        ).value.trim();
+
+    let tiempo =
+        parseFloat(
+            document.getElementById(
+                "tiempoPreparacion"
+            ).value
+        );
+
+    let porciones =
+        parseInt(
+            document.getElementById(
+                "porciones"
+            ).value
+        );
+
+    if (
+        nombre === "" ||
+        isNaN(tiempo) ||
+        isNaN(porciones)
+    ) {
+
+        alert(
+            "Complete todos los campos."
+        );
+
+        return;
+    }
+
+    recetas.push({
+
+        nombre: nombre,
+
+        tiempo: tiempo,
+
+        porciones: porciones,
+
+        ingredientes: []
+
+    });
+
+    localStorage.setItem(
+        "recetas",
+        JSON.stringify(recetas)
+    );
+
+    actualizarTablaRecetas();
+
+    limpiarReceta();
+
+}
+
+function actualizarTablaRecetas() {
+
+    let tabla =
+        document.getElementById(
+            "tablaRecetas"
+        );
+
+    tabla.innerHTML = "";
+
+    recetas.forEach(function (receta) {
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${receta.nombre}</td>
+
+            <td>${receta.tiempo} min</td>
+
+            <td>${receta.porciones}</td>
+
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+
+function limpiarReceta() {
+
+    document.getElementById(
+        "nombreReceta"
+    ).value = "";
+
+    document.getElementById(
+        "tiempoPreparacion"
+    ).value = "";
+
+    document.getElementById(
+        "porciones"
+    ).value = "";
+
 }
