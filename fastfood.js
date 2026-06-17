@@ -1387,3 +1387,57 @@ function editarMateriaPrima(index){
 
     actualizarTablaMateriaPrima();
 }
+
+// ============================================
+// CONVERSIÓN DE UNIDADES
+// ============================================
+
+function convertirUnidad(cantidad, unidadOrigen, unidadDestino){
+
+    // Si son iguales, no convertir
+    if(unidadOrigen === unidadDestino){
+        return cantidad;
+    }
+
+    // Masa
+    if(unidadOrigen === "kg" && unidadDestino === "gramos"){
+        return cantidad * 1000;
+    }
+
+    if(unidadOrigen === "gramos" && unidadDestino === "kg"){
+        return cantidad / 1000;
+    }
+
+    if(unidadOrigen === "libras" && unidadDestino === "gramos"){
+        return cantidad * 453.592;
+    }
+
+    if(unidadOrigen === "gramos" && unidadDestino === "libras"){
+        return cantidad / 453.592;
+    }
+
+    if(unidadOrigen === "kg" && unidadDestino === "libras"){
+        return cantidad * 2.20462;
+    }
+
+    if(unidadOrigen === "libras" && unidadDestino === "kg"){
+        return cantidad / 2.20462;
+    }
+
+    // Volumen
+    if(unidadOrigen === "litros" && unidadDestino === "mililitros"){
+        return cantidad * 1000;
+    }
+
+    if(unidadOrigen === "mililitros" && unidadDestino === "litros"){
+        return cantidad / 1000;
+    }
+
+    // Unidades
+    if(unidadOrigen === "unidades" && unidadDestino === "unidades"){
+        return cantidad;
+    }
+
+    // Si no existe conversión
+    return null;
+}
