@@ -7,7 +7,8 @@
     <title>FastFood Express</title>
 
     <link rel="stylesheet" href="fastfood.css">
-    <script src="fastfood.js"></script>
+    <script src="fastfood.js" defer></script>
+    <script src="recetas.js" defer></script>
 </head>
 
 <body>
@@ -1514,37 +1515,72 @@
 
         <h2>🍔 Registro de Recetas</h2>
 
-        <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
+        <div class="botones-recetas">
 
-        <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
+            <button onclick="mostrarSubReceta('estandarizadas')">
+                📋 Recetas Estandarizadas
+            </button>
 
-        <input type="number" id="porciones" placeholder="Número de porciones">
+            <button onclick="mostrarSubReceta('personalizadas')">
+                ➕ Recetas Personalizadas
+            </button>
 
-        <button type="button" onclick="crearReceta()">
+        </div>
+        <!-- ========================= -->
+        <!-- SUBSECCION DE RECETAS ESTANDARIZADAS Y PERSONALIZADAS -->
+        <!-- ========================= -->
+        <div id="estandarizadas" class="subreceta" style="display: none;">
 
-            Crear Receta
+            <h3>📋 Recetas Estandarizadas</h3>
 
-        </button>
+            <select id="selectorReceta" onchange="mostrarDetalleReceta()">
 
-        <table>
+                <option value="">
+                    Seleccione una receta
+                </option>
 
-            <thead>
+            </select>
 
-                <tr>
+            <div id="detalleReceta">
 
-                    <th>Receta</th>
-                    <th>Tiempo</th>
-                    <th>Porciones</th>
+            </div>
 
-                </tr>
+        </div>
 
-            </thead>
+        <div id="personalizadas" class="subreceta" style="display: none;">
 
-            <tbody id="tablaRecetas">
+            <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
 
-            </tbody>
+            <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
 
-        </table>
+            <input type="number" id="porciones" placeholder="Número de porciones">
+
+            <button type="button" onclick="crearReceta()">
+
+                Crear Receta
+
+            </button>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Receta</th>
+                        <th>Tiempo</th>
+                        <th>Porciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaRecetas">
+
+                </tbody>
+
+            </table>
+        </div>
 
     </section>
 

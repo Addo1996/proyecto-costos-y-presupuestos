@@ -377,3 +377,40 @@ footer{
     color: #666;
     margin: 0;
 }
+
+.imagen-receta{
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #ff9800;
+    display: block;
+    margin: 15px auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   Estilos para la selección de extras
+========================= */
+.extras-receta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.extra-item{
+    background-color: #fff3cd;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid #ffc107;
+    cursor: pointer;
+}
+
+.extra-item:hover{
+    background-color: #ffe082;
+}
+
+.extra-checkbox{
+    margin-right: 8px;
+}
