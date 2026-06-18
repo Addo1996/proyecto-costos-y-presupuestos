@@ -377,6 +377,30 @@ function mostrarPagina(idPagina) {
         });
 
     }
+
+    if (idPagina === "gestionCostos") {
+        mostrarSubSeccionCostos("");
+    }
+}
+
+// AGREGA ESTA NUEVA FUNCIÓN POR COMPLETO:
+function mostrarSubSeccionCostos(idSubSeccion) {
+    // Oculta todas las subsecciones internas de la gestión de costos
+    const subSecciones = document.querySelectorAll('.sub-seccion-costos');
+    subSecciones.forEach(sub => sub.style.display = 'none');
+    
+    // Muestra la subsección que se seleccionó
+    const subActiva = document.getElementById(idSubSeccion);
+    if(subActiva) {
+        subActiva.style.display = 'block';
+    }
+
+    // Opcional: Ejecuta recálculos si se va a las pestañas financieras
+    if (idSubSeccion === 'subResumenFinanciero' || idSubSeccion === 'subGastosOperativos') {
+        if (typeof calcularConsolidadoFinanciero === "function") {
+            calcularConsolidadoFinanciero();
+        }
+    }
 }
 
 
@@ -1905,3 +1929,263 @@ function limpiarReceta() {
     ).value = "";
 
 }
+
+// ============================================================
+// VARIABLES Y CONTROL DE NUEVAS SECCIONES FINANCIERAS
+// ============================================================
+
+// Cargar costos operativos iniciales o del localStorage
+let listaGastosOperativos = JSON.parse(localStorage.getItem("listaGastosOperativos")) || [
+    { id: Date.now(), tipo: "fijo", descripcion: "Arriendo Local", monto: 120.00 },
+    { id: Date.now() + 1, tipo: "variable", descripcion: "Desechables y Empaques", monto: 30.00 },
+    { id: Date.now() + 2, tipo: "manodeobra", descripcion: "Personal de cocina", monto: 200.00 }
+];
+
+// Extensión del ciclo de vida seguro del DOM para arrancar las nuevas vistas
+document.addEventListener("DOMContentLoaded", function () {
+    actualizarVistaGastosOperativos();
+    calcularConsolidadoFinanciero();
+    
+    // Vincular recálculo reactivo a cambios en formularios predispuestos de Materia Prima
+    const btnAgregar = document.getElementById("btnAgregar");
+    if (btnAgregar) {
+        btnAgregar.addEventListener("click", function() {
+            setTimeout(() => { calcularConsolidadoFinanciero(); }, 200);
+        });
+    }
+});
+
+// Guardar nuevo gasto operativo
+function guardarGastoOperativo() {
+    const tipo = document.getElementById("tipoGastoOperativo").value;
+    const desc = document.getElementById("descGastoOperativo").value.trim();
+    const monto = parseFloat(document.getElementById("montoGastoOperativo").value);
+
+    if (desc === "" || isNaN(monto) || monto <= 0) {
+        alert("Por favor, ingrese un concepto válido y un monto mayor a cero.");
+        return;
+    }
+
+    const nuevoGasto = {
+        id: Date.now(),
+        tipo: tipo,
+        descripcion: desc,
+        monto: monto
+    };
+
+    listaGastosOperativos.push(nuevoGasto);
+    localStorage.setItem("listaGastosOperativos", JSON.stringify(listaGastosOperativos));
+    
+    // Limpiar campos
+    document.getElementById("descGastoOperativo").value = "";
+    document.getElementById("montoGastoOperativo").value = "";
+
+    // Actualizar interfaces en cascada
+    actualizarVistaGastosOperativos();
+    calcularConsolidadoFinanciero();
+}
+
+// Eliminar un gasto operativo de la lista
+function eliminarGastoOperativo(id) {
+    listaGastosOperativos = listaGastosOperativos.filter(g => g.id !== id);
+    localStorage.setItem("listaGastosOperativos", JSON.stringify(listaGastosOperativos));
+    actualizarVistaGastosOperativos();
+    calcularConsolidadoFinanciero();
+}
+
+// Renderizar la tabla de la sección de gastos operativos
+function actualizarVistaGastosOperativos() {
+    const tbody = document.getElementById("tablaGastosOperativosBody");
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+    let totalGeneral = 0;
+
+    listaGastosOperativos.forEach(gasto => {
+        totalGeneral += gasto.monto;
+        let tipoTexto = gasto.tipo === "fijo" ? "Costo Fijo" : gasto.tipo === "variable" ? "Costo Variable" : "Mano de Obra";
+        
+        let fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td style="padding:8px; border-bottom:1px solid #ddd;">${gasto.descripcion}</td>
+            <td style="padding:8px; border-bottom:1px solid #ddd;"><i>${tipoTexto}</i></td>
+            <td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">$${gasto.monto.toFixed(2)}</td>
+            <td style="padding:8px; border-bottom:1px solid #ddd;">
+                <button type="button" onclick="eliminarGastoOperativo(${gasto.id})" style="background-color:#c62828; color:white; border:none; border-radius:3px; padding:3px 8px; cursor:pointer;">🗑️</button>
+            </td>
+        `;
+        tbody.appendChild(fila);
+    });
+
+    document.getElementById("totalGastosOperativosGeneral").textContent = totalGeneral.toFixed(2);
+}
+
+// ============================================================
+// NÚCLEO DE CÁLCULO FINANCIERO: MARGEN DEL 30% Y PUNTO DE EQUILIBRIO
+// ============================================================
+function calcularConsolidadoFinanciero() {
+    // 1. Obtener los costos operativos mensuales desde tu lista global de gastos
+    let fijos = 0, variablesMensuales = 0, mo = 0;
+    if (typeof listaGastosOperativos !== 'undefined' && listaGastosOperativos) {
+        listaGastosOperativos.forEach(g => {
+            if (g.tipo === "fijo") fijos += g.monto;
+            if (g.tipo === "variable") variablesMensuales += g.monto;
+            if (g.tipo === "manodeobra") mo += g.monto;
+        });
+    }
+    let costoOperativoMensualTotal = fijos + variablesMensuales + mo;
+
+    // Actualizar tarjetas de cabecera en el HTML si existen
+    if(document.getElementById("resumenFijosTotal")) document.getElementById("resumenFijosTotal").textContent = fijos.toFixed(2);
+    if(document.getElementById("resumenVariablesTotal")) document.getElementById("resumenVariablesTotal").textContent = variablesMensuales.toFixed(2);
+    if(document.getElementById("resumenMOTotal")) document.getElementById("resumenMOTotal").textContent = mo.toFixed(2);
+    if(document.getElementById("resumenCostoFijoIndirecto")) document.getElementById("resumenCostoFijoIndirecto").textContent = costoOperativoMensualTotal.toFixed(2);
+
+    // 2. Distribución exacta de las 1080 ventas unitarias del negocio
+    const proyeccionVentas = {
+        "Hamburguesa Clásica": 300,
+        "Big Burger": 240,
+        "Salchipapa Simple": 240,
+        "Hot Dog": 180,
+        "Nuggets con Papas": 120
+    };
+    const ventasTotalesProyectadas = 1080;
+
+    // 3. Unificar recetas del sistema (Estandarizadas + Personalizadas)
+    let todasLasRecetas = [];
+    if (typeof recetasEstandarizadas !== 'undefined' && recetasEstandarizadas) {
+        todasLasRecetas = [...recetasEstandarizadas];
+    }
+    let personalizadas = JSON.parse(localStorage.getItem("recetas")) || [];
+    personalizadas.forEach(rp => {
+        if (!todasLasRecetas.some(r => r.nombre === rp.nombre)) {
+            todasLasRecetas.push(rp);
+        }
+    });
+
+    // Validar el cuerpo de la tabla de resultados financieros
+    const tbodyFinanciero = document.getElementById("tablaResumenFinancieroBody");
+    if (!tbodyFinanciero) {
+        console.error("No se encontró 'tablaResumenFinancieroBody' en el DOM.");
+        return;
+    }
+    tbodyFinanciero.innerHTML = "";
+
+    // Respaldar inventario real para el costeo proporcional unitario por ingrediente
+    let inventarioInsumos = (typeof materiasPrimas !== 'undefined' && materiasPrimas) ? materiasPrimas : (typeof ingredientesIniciales !== 'undefined' ? ingredientesIniciales : []);
+
+    let margenContribucionPonderadoTotal = 0;
+
+    // 4. Mapear y procesar costos de materia prima basados exactamente en las especificaciones de las recetas
+    let analisisProductos = todasLasRecetas.map(receta => {
+        let costoMateriaPrimaUnitario = 0;
+
+        // Calcular costo exacto de ingredientes usando la misma fórmula que la sección de Recetas
+        if (receta.ingredientes && receta.ingredientes.length > 0 && inventarioInsumos.length > 0) {
+            receta.ingredientes.forEach(ingReceta => {
+                let insumo = inventarioInsumos.find(m => m.nombre.toLowerCase().trim() === ingReceta.nombre.toLowerCase().trim());
+                if (insumo && insumo.cantidad > 0) {
+                    // Costeo real prorrateado considerando el precio del paquete/bulto y su rendimiento
+                    costoMateriaPrimaUnitario += (insumo.precio / insumo.cantidad) * ingReceta.cantidad;
+                }
+            });
+        }
+
+        // VINCULACIÓN CON LA SECCIÓN DE RECETAS: Si el cálculo dinámico falla o difiere,
+        // tomamos el costoBase oficial definido en recetas.js (ej: $3.50 para Hamburguesa Clásica)
+        if (costoMateriaPrimaUnitario === 0 || receta.costoBase) {
+            costoMateriaPrimaUnitario = receta.costoBase || 3.50;
+        }
+
+        // Evaluar e incorporar los Extras configurados en la receta si existieran
+        let costoExtras = 0;
+        if (receta.extras && receta.extras.length > 0) {
+            receta.extras.forEach(ext => {
+                // Si el elemento checkbox del extra está seleccionado actualmente en el DOM de la sección de recetas, sumarlo
+                let extraCheckbox = document.querySelector(`.extra-checkbox[data-nombre="${ext.nombre}"]`);
+                if (extraCheckbox && extraCheckbox.checked) {
+                    costoExtras += ext.precio;
+                }
+            });
+        }
+        
+        // Costo de materia prima final consolidado (Equivalente al costo total real de producción variable)
+        let costoVariableTotalUnitario = costoMateriaPrimaUnitario + costoExtras;
+
+        // Establecer el precio sugerido con la fórmula de margen (30%) sobre los costos directos
+        let precioVenta = costoVariableTotalUnitario / (1 - 0.30);
+        let margenUtilidadUnitaria = precioVenta - costoVariableTotalUnitario;
+
+        // Obtener volumen de venta y peso porcentual asignado para las 1080 unidades globales
+        let unidadesVendidas = proyeccionVentas[receta.nombre] || 0;
+        let porcentajeParticipacion = unidadesVendidas / ventasTotalesProyectadas;
+
+        // El margen de contribución ponderado aporta proporcionalmente al punto de equilibrio global
+        let margenPonderado = margenUtilidadUnitaria * porcentajeParticipacion;
+        margenContribucionPonderadoTotal += margenPonderado;
+
+        return {
+            nombre: receta.nombre,
+            costoMateriaPrima: costoVariableTotalUnitario,
+            precioVenta: precioVenta,
+            utilidad: margenUtilidadUnitaria,
+            unidadesVendidas: unidadesVendidas,
+            participacion: porcentajeParticipacion
+        };
+    });
+
+    // 5. CÁLCULO DEL PUNTO DE EQUILIBRIO ENTRE VENTAS Y GASTOS (Meta global del restaurante)
+    let puntoEquilibrioGlobalUnidades = margenContribucionPonderadoTotal > 0 
+        ? Math.ceil(costoOperativoMensualTotal / margenContribucionPonderadoTotal) 
+        : 0;
+
+    // 6. Inyección y renderizado físico garantizado de los 5 productos principales
+    analisisProductos.forEach(prod => {
+        // Forzar asignación de participación si el producto no tiene una cuota explícita para evitar divisiones para cero
+        let participacionReal = prod.participacion > 0 ? prod.participacion : (1 / analisisProductos.length);
+        let unidadesProyectadas = prod.unidadesVendidas > 0 ? prod.unidadesVendidas : Math.ceil(ventasTotalesProyectadas / analisisProductos.length);
+
+        // Distribución del punto de equilibrio por cada ítem individual
+        let unidadesEquilibrioEspecificas = Math.ceil(puntoEquilibrioGlobalUnidades * participacionReal);
+        
+        // ADICIÓN DE GASTOS OPERATIVOS: Prorrateo exacto del gasto mensual según el peso real en el volumen de 1080 ventas
+        let costoAgregadoReal = prod.costoMateriaPrima + ((costoOperativoMensualTotal * participacionReal) / ventasTotalesProyectadas);
+
+        tbodyFinanciero.innerHTML += `
+            <tr style="border-bottom: 1px solid #eee; background: #fff;">
+                <td style="padding:12px; font-weight:bold; color:#222; text-align: left;">
+                    🍔 ${prod.nombre}
+                    <span style="display:block; font-size:0.8rem; color:#666; font-weight:normal;">
+                        Participación: ${(participacionReal * 100).toFixed(1)}% (${unidadesProyectadas} u. estimadas)
+                    </span>
+                </td>
+                <td style="padding:12px; color:#c62828; font-weight:bold; text-align: left;">
+                    $${prod.costoMateriaPrima.toFixed(2)}
+                </td>
+                <td style="padding:12px; color:#2e7d32; font-weight:bold; font-size:1.05rem; text-align: left;">
+                    $${prod.precioVenta.toFixed(2)}
+                </td>
+                <td style="padding:12px; color:#1e88e5; font-size:0.95rem; font-weight:bold; text-align: left;">
+                    $${costoAgregadoReal.toFixed(2)}
+                    <small style="display:block; color:#888; font-weight:normal;">(Insumos + Gasto Operativo)</small>
+                </td>
+                <td style="padding:12px; text-align: left;">
+                    <div style="background:#fff3e0; color:#e65100; padding:6px 10px; border-radius:6px; font-weight:bold; font-size:0.9rem; display:inline-block;">
+                        🎯 Vender Mínimo: ${unidadesEquilibrioEspecificas} unidades
+                    </div>
+                    <small style="display:block; color:#777; margin-top:4px;">
+                        Para absorber los gastos dentro de la meta global de <strong>${puntoEquilibrioGlobalUnidades}</strong> ventas del restaurante.
+                    </small>
+                </td>
+            </tr>`;
+    });
+}
+
+// Sobrecargar la función existente de cambio de página para asegurar cálculos dinámicos al clickear el menú
+const funcionMostrarPaginaOriginal = mostrarPagina;
+mostrarPagina = function(idPagina) {
+    funcionMostrarPaginaOriginal(idPagina);
+    if (idPagina === "resumenFinanciero" || idPagina === "gastosOperativos") {
+        calcularConsolidadoFinanciero();
+    }
+};

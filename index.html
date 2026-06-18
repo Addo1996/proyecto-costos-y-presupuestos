@@ -34,24 +34,22 @@
     <nav>
 
         <a href="#" onclick="mostrarPagina('inicio')">
-            Inicio
+            📄Inicio
         </a>
 
         <a href="#" onclick="mostrarPagina('teoria')">
-            Teoría
+            📒Teoría
         </a>
         <a href="#" onclick="mostrarPagina('resultados')">
-            Resultados
+            📠Resultados
         </a>
-        <a href="#" onclick="mostrarPagina('materiaPrima')">
-            📦 Materia Prima
-        </a>
-        <a href="#" onclick="mostrarPagina('recetas')">
-            🍔 Recetas
+        <a href="#" onclick="mostrarPagina('gestionCostos')">
+            📊 Gestión y Costos
         </a>
         <a href="#" onclick="mostrarPagina('valoracion')">
-            Valoración
+            💯Valoración
         </a>
+        
 
     </nav>
 
@@ -1408,156 +1406,56 @@
         </h3>
 
     </section>
-    <!-- ========================= -->
-    <!-- MATERIA PRIMA -->
-    <!-- ========================= -->
+    
 
-    <section id="materiaPrima" class="pagina">
 
-        <h2>📦 Registro de Materia Prima</h2>
-
-        <input type="text" id="nombreMP" placeholder="Nombre del ingrediente">
-
-        <select id="unidadMP">
-
-            <option value="kg">Kilogramos</option>
-
-            <option value="gramos">Gramos</option>
-
-            <option value="Lb">Libras</option>
-
-            <option value="unidades">Unidades</option>
-
-            <option value="litros">Litros</option>
-
-            <option value="Ml">Mililitros</option>
-
-        </select>
-
-        <input type="number" id="cantidadCompraMP" placeholder="Cantidad comprada">
-
-        <input type="number" id="precioCompraMP" placeholder="Precio de compra">
-
-        <input type="number" id="mermaMP" placeholder="% de merma">
-
-        <button type="button" onclick="agregarMateriaPrima()">
-
-            Agregar Materia Prima
-
-        </button>
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Ingrediente</th>
-                    <th>Unidad</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Merma</th>
-                    <th>Acciones</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaMateriaPrima">
-
-            </tbody>
-
-        </table>
-        <h2>🥤 Bebidas y Productos de Venta Directa</h2>
-        <input type="text" id="nombreBebida" placeholder="Nombre de la bebida">
-
-        <select id="unidadBebida">
-
-            <option value="unidades">Unidades</option>
-
-        </select>
-
-        <input type="number" id="cantidadBebida" placeholder="Cantidad">
-
-        <input type="number" id="precioBebida" placeholder="Precio">
-
-        <button id="btnAgregarBebida">
-
-            Agregar Bebida
-
-        </button>
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Producto</th>
-                    <th>Unidad</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaBebidas">
-
-            </tbody>
-
-        </table>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- RECETAS -->
-    <!-- ========================= -->
-
-    <section id="recetas" class="pagina">
-
-        <h2>🍔 Registro de Recetas</h2>
-
-        <div class="botones-recetas">
-
-            <button onclick="mostrarSubReceta('estandarizadas')">
-                📋 Recetas Estandarizadas
-            </button>
-
-            <button onclick="mostrarSubReceta('personalizadas')">
-                ➕ Recetas Personalizadas
-            </button>
-
+   <section id="gestionCostos" class="pagina" style="display: none;">
+        <h2>📊 Módulo de Gestión, Costeo y Finanzas</h2>
+        <p>Administra los insumos, diseña recetas, controla gastos operativos y analiza el punto de equilibrio.</p>
+        
+        <div class="botones-subtemas"
+                    style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
+            <button type="button" onclick="mostrarSubSeccionCostos('subMateriaPrima')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📦 Materia Prima</button>
+            <button type="button" onclick="mostrarSubSeccionCostos('subRecetas')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">🍔 Recetas</button>
+            <button type="button" onclick="mostrarSubSeccionCostos('subGastosOperativos')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">💼 Gastos Operativos</button>
+            <button type="button" onclick="mostrarSubSeccionCostos('subResumenFinanciero')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📈 Resumen Financiero</button>
         </div>
+
         <!-- ========================= -->
-        <!-- SUBSECCION DE RECETAS ESTANDARIZADAS Y PERSONALIZADAS -->
+        <!-- MATERIA PRIMA -->
         <!-- ========================= -->
-        <div id="estandarizadas" class="subreceta" style="display: none;">
 
-            <h3>📋 Recetas Estandarizadas</h3>
+        <div id="subMateriaPrima" class="sub-seccion-costos">
 
-            <select id="selectorReceta" onchange="mostrarDetalleReceta()">
+            <h2>📦 Registro de Materia Prima</h2>
 
-                <option value="">
-                    Seleccione una receta
-                </option>
+            <input type="text" id="nombreMP" placeholder="Nombre del ingrediente">
+
+            <select id="unidadMP">
+
+                <option value="kg">Kilogramos</option>
+
+                <option value="gramos">Gramos</option>
+
+                <option value="Lb">Libras</option>
+
+                <option value="unidades">Unidades</option>
+
+                <option value="litros">Litros</option>
+
+                <option value="Ml">Mililitros</option>
 
             </select>
 
-            <div id="detalleReceta">
+            <input type="number" id="cantidadCompraMP" placeholder="Cantidad comprada">
 
-            </div>
+            <input type="number" id="precioCompraMP" placeholder="Precio de compra">
 
-        </div>
+            <input type="number" id="mermaMP" placeholder="% de merma">
 
-        <div id="personalizadas" class="subreceta" style="display: none;">
+            <button type="button" onclick="agregarMateriaPrima()">
 
-            <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
-
-            <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
-
-            <input type="number" id="porciones" placeholder="Número de porciones">
-
-            <button type="button" onclick="crearReceta()">
-
-                Crear Receta
+                Agregar Materia Prima
 
             </button>
 
@@ -1566,22 +1464,226 @@
                 <thead>
 
                     <tr>
-
-                        <th>Receta</th>
-                        <th>Tiempo</th>
-                        <th>Porciones</th>
-
+                        <th>Ingrediente</th>
+                        <th>Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Merma</th>
+                        <th>Acciones</th>
                     </tr>
 
                 </thead>
 
-                <tbody id="tablaRecetas">
+                <tbody id="tablaMateriaPrima">
 
                 </tbody>
 
             </table>
+            <h2>🥤 Bebidas y Productos de Venta Directa</h2>
+            <input type="text" id="nombreBebida" placeholder="Nombre de la bebida">
+
+            <select id="unidadBebida">
+
+                <option value="unidades">Unidades</option>
+
+            </select>
+
+            <input type="number" id="cantidadBebida" placeholder="Cantidad">
+
+            <input type="number" id="precioBebida" placeholder="Precio">
+
+            <button id="btnAgregarBebida">
+
+                Agregar Bebida
+
+            </button>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Producto</th>
+                        <th>Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaBebidas">
+
+                </tbody>
+
+            </table>
+
         </div>
 
+        <!-- ========================= -->
+        <!-- RECETAS -->
+        <!-- ========================= -->
+
+        <div id="subRecetas" class="sub-seccion-costos">
+
+            <h2>🍔 Registro de Recetas</h2>
+
+            <div class="botones-recetas">
+
+                <button onclick="mostrarSubReceta('estandarizadas')">
+                    📋 Recetas Estandarizadas
+                </button>
+
+                <button onclick="mostrarSubReceta('personalizadas')">
+                    ➕ Recetas Personalizadas
+                </button>
+
+            </div>
+            <!-- ========================= -->
+            <!-- SUBSECCION DE RECETAS ESTANDARIZADAS Y PERSONALIZADAS -->
+            <!-- ========================= -->
+            <div id="estandarizadas" class="subreceta" style="display: none;">
+
+                <h3>📋 Recetas Estandarizadas</h3>
+
+                <select id="selectorReceta" onchange="mostrarDetalleReceta()">
+
+                    <option value="">
+                        Seleccione una receta
+                    </option>
+
+                </select>
+
+                <div id="detalleReceta">
+
+                </div>
+
+            </div>
+
+            <div id="personalizadas" class="subreceta" style="display: none;">
+
+                <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
+
+                <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
+
+                <input type="number" id="porciones" placeholder="Número de porciones">
+
+                <button type="button" onclick="crearReceta()">
+
+                    Crear Receta
+
+                </button>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Receta</th>
+                            <th>Tiempo</th>
+                            <th>Porciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaRecetas">
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+
+        <div id="subGastosOperativos" class="sub-seccion-costos" style="display: none;">
+            <h3>💼 Administración de Gastos Operativos</h3>
+            <p>Ingresa los costos operacionales mensuales fijos, variables y el valor estimado de mano de obra.</p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h3>➕ Registrar Costo Mensual</h3>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display:block; font-weight:bold;">Tipo de Costo:</label>
+                        <select id="tipoGastoOperativo" onchange="cambiarPlaceholderGasto()" style="width:100%; padding:8px; margin-top:5px;">
+                            <option value="fijo">Costo Fijo (Arriendo, Internet, etc.)</option>
+                            <option value="variable">Costo Variable Operativo (Servilletas, etc.)</option>
+                            <option value="manodeobra">Mano de Obra (Sueldos, Cocineros)</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display:block; font-weight:bold;">Descripción / Concepto:</label>
+                        <input type="text" id="descGastoOperativo" placeholder="Ej. Alquiler del Local comercial" style="width:100%; padding:8px; margin-top:5px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-weight:bold;">Monto Mensual ($):</label>
+                        <input type="number" id="montoGastoOperativo" step="0.01" placeholder="Ej. 250.00" style="width:100%; padding:8px; margin-top:5px;">
+                    </div>
+                    <button type="button" onclick="guardarGastoOperativo()" style="background-color: #ff3131; width:100%; padding: 10px; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        💾 Guardar Gasto
+                    </button>
+                </div>
+
+                <div style="flex: 2; min-width: 300px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <h3>Gastos Mensuales Registrados</h3>
+                    <table style="width:100%; margin-top:10px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background:#f5f5f5; text-align:left;">
+                                <th style="padding:8px;">Concepto</th>
+                                <th style="padding:8px;">Tipo</th>
+                                <th style="padding:8px;">Monto</th>
+                                <th style="padding:8px;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaGastosOperativosBody"></tbody>
+                    </table>
+                    <div style="margin-top: 15px; font-size: 1.1rem; text-align: right; font-weight: bold; color: #ff914d;">
+                        Gastos Operativos Totales: $<span id="totalGastosOperativosGeneral">0.00</span>/mes
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="subResumenFinanciero" class="sub-seccion-costos" style="display: none;">
+            <h3>📈 Resumen Financiero Dinámico</h3>
+            <p>Análisis en tiempo real cruzando el costo de materia prima calculado por plato y los costos operativos del establecimiento.</p>
+            
+            <div style="background: #222; color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 10px;">
+                <div style="text-align: center;">
+                    <span style="display: block; font-size: 0.85rem; color: #aaa;">Costos Fijos:</span>
+                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span id="resumenFijosTotal">0.00</span></strong>
+                </div>
+                <div style="text-align: center;">
+                    <span style="display: block; font-size: 0.85rem; color: #aaa;">Costos Variables:</span>
+                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span id="resumenVariablesTotal">0.00</span></strong>
+                </div>
+                <div style="text-align: center;">
+                    <span style="display: block; font-size: 0.85rem; color: #aaa;">Mano de Obra:</span>
+                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span id="resumenMOTotal">0.00</span></strong>
+                </div>
+                <div style="text-align: center; border-left: 1px solid #444; padding-left: 15px;">
+                    <span style="display: block; font-size: 0.85rem; color: #ccc;">Carga Operativa Global:</span>
+                    <strong style="font-size: 1.2rem; color: #ff3131;">$<span id="resumenCostoFijoIndirecto">0.00</span></strong>
+                </div>
+            </div>
+
+            <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f8f9fa; border-bottom: 2px solid #ddd;">
+                            <th style="padding:12px;">Receta / Producto</th>
+                            <th style="padding:12px;">Costo Materia Prima</th>
+                            <th style="padding:12px;">Precio Sugerido (30% Margen)</th>
+                            <th style="padding:12px;">Utilidad Neta ($)</th>
+                            <th style="padding:12px;">Análisis de Punto de Equilibrio Obligatorio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaResumenFinancieroBody"></tbody>
+                </table>
+            </div>
+        </div>
     </section>
 
     <!-- ========================= -->
