@@ -9,13 +9,13 @@ const recetasEstandarizadas = [
         nombre: "Hamburguesa Clásica",
         imagen: "img/hamburguesaClasica.png",
 
-            ingredientes: [
-                { nombre: "Pan hamburguesa", cantidad: 1, unidad: "u" },
-                { nombre: "Carne molida", cantidad: 250, unidad: "g" },
-                { nombre: "Queso cheddar", cantidad: 1, unidad: "u" },
-                { nombre: "Lechuga", cantidad: 20, unidad: "g" },
-                { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
-            ],
+        ingredientes: [
+            { nombre: "Pan hamburguesa", cantidad: 1, unidad: "u" },
+            { nombre: "Carne molida", cantidad: 250, unidad: "gr" },
+            { nombre: "Queso cheddar", cantidad: 1, unidad: "u" },
+            { nombre: "Lechuga", cantidad: 20, unidad: "gr" },
+            { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
+        ],
         extras: [
             { nombre: "Carne extra", precio: 1.50, imagen: "img/extras/carne.png" },
             { nombre: "Queso extra", precio: 0.50, imagen: "img/extras/queso.png" },
@@ -32,10 +32,10 @@ const recetasEstandarizadas = [
         imagen: "img/bigBurger.png",
         ingredientes: [
             { nombre: "Pan hamburguesa", cantidad: 1, unidad: "u" },
-            { nombre: "Carne molida", cantidad: 500, unidad: "g" },
+            { nombre: "Carne molida", cantidad: 500, unidad: "gr" },
             { nombre: "Queso cheddar", cantidad: 2, unidad: "u" },
-            { nombre: "Lechuga", cantidad: 20, unidad: "g" },
-            { nombre: "Tomate", cantidad: 30, unidad: "g" }
+            { nombre: "Lechuga", cantidad: 20, unidad: "gr" },
+            { nombre: "Tomate", cantidad: 30, unidad: "gr" }
         ],
         extras: [
             { nombre: "Carne extra", precio: 1.50, imagen: "img/extras/carne.png" },
@@ -52,7 +52,7 @@ const recetasEstandarizadas = [
         nombre: "Salchipapa Especial",
         imagen: "img/salchipapaEspecial.png",
         ingredientes: [
-            { nombre: "Papa", cantidad: 250, unidad: "g" },
+            { nombre: "Papa", cantidad: 250, unidad: "gr" },
             { nombre: "Salchicha", cantidad: 2, unidad: "u" },
             { nombre: "Mayonesa", cantidad: 15, unidad: "ml" },
             { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
@@ -74,8 +74,8 @@ const recetasEstandarizadas = [
         ingredientes: [
             { nombre: "Pan hot dog", cantidad: 1, unidad: "u" },
             { nombre: "Salchicha", cantidad: 1, unidad: "u" },
-            { nombre: "Cebolla", cantidad: 15, unidad: "g" },
-            { nombre: "Repollo", cantidad: 20, unidad: "g" },
+            { nombre: "Cebolla", cantidad: 15, unidad: "gr" },
+            { nombre: "Repollo", cantidad: 20, unidad: "gr" },
             { nombre: "Mayonesa", cantidad: 10, unidad: "ml" },
             { nombre: "Mostaza", cantidad: 10, unidad: "ml" }
         ],
@@ -95,7 +95,7 @@ const recetasEstandarizadas = [
         imagen: "img/nuggetsPapas.png",
         ingredientes: [
             { nombre: "Nuggets", cantidad: 6, unidad: "u" },
-            { nombre: "Papa", cantidad: 200, unidad: "g" },
+            { nombre: "Papa", cantidad: 200, unidad: "gr" },
             { nombre: "Aceite", cantidad: 30, unidad: "ml" },
             { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
         ],
@@ -211,50 +211,68 @@ function mostrarDetalleReceta() {
         <p><strong>Costo Base:</strong>
 $${receta.costoBase.toFixed(2)}</p>
 
-        <h4>Ingredientes:</h4>
+    <h4 class="titulo-ficha">
+    📋 Ficha Técnica de Ingredientes
+    </h4>
 
-        <ul>
+<table class="tabla-ingredientes-receta">
+
+    <thead>
+        <tr>
+            <th>Ingrediente</th>
+            <th>Cantidad</th>
+            <th>Unidad</th>
+        </tr>
+    </thead>
+
+    <tbody>
     `;
 
     receta.ingredientes.forEach(function (ingrediente) {
 
         html += `
-            <li>
-                ${ingrediente.nombre}
-                :
-                ${ingrediente.cantidad} ${ingrediente.unidad}
-            </li>
+            <tr>
+                <td>${ingrediente.nombre}</td>
+                <td>${ingrediente.cantidad}</td>
+                <td>${ingrediente.unidad}</td>
+            </tr>
         `;
 
     });
 
     html += `
-        </ul>
+        </tbody>
+    </table>
 
-        <h4>➕ Extras Disponibles:</h4>
+    <h4>➕ Extras Disponibles:</h4>
 
-        <div class="extras-receta">
-    `;
+    <div class="extras-receta">
+`;
     receta.extras.forEach(function (extra) {
 
         html += `
         <label class="extra-item">
 
-            <input
-                type="checkbox"
-                class="extra-checkbox"
-                data-nombre="${extra.nombre}"
-                data-precio="${extra.precio}"
-            >
+    <img src="${extra.imagen}"
+         alt="${extra.nombre}"
+         class="imagen-extra">
 
-            <img src="${extra.imagen}" alt="${extra.nombre}" class="imagen-extra">
+    <div class="extra-info">
 
-            <div class="extra-info">
-                <span>${extra.nombre}</span>
-                <small>$${extra.precio.toFixed(2)}</small>
-            </div>
+        <span>${extra.nombre}</span>
 
-        </label>
+        <small>$${extra.precio.toFixed(2)}</small>
+
+    </div>
+
+    <input
+        type="checkbox"
+        class="extra-checkbox"
+        data-nombre="${extra.nombre}"
+        data-precio="${extra.precio}"
+    >
+
+</label>
     `;
 
     });
