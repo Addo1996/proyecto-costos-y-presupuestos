@@ -414,3 +414,25 @@ footer{
 .extra-checkbox{
     margin-right: 8px;
 }
+
+.imagen-extra {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.extra-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.extra-info {
+    display: flex;
+    flex-direction: column;
+}

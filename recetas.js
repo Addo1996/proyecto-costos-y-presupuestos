@@ -3,106 +3,111 @@
 // ============================================
 
 const recetasEstandarizadas = [
-    
-    
+
+
     {
         nombre: "Hamburguesa Clásica",
         imagen: "img/hamburguesaClasica.png",
 
-        ingredientes: [
-            { nombre: "Pan hamburguesa", cantidad: 1 },
-            { nombre: "Carne molida", cantidad: 0.25 },
-            { nombre: "Queso cheddar", cantidad: 1 },
-            { nombre: "Lechuga", cantidad: 20 },
-            { nombre: "Salsa de tomate", cantidad: 15 }
-        ],
+            ingredientes: [
+                { nombre: "Pan hamburguesa", cantidad: 1, unidad: "u" },
+                { nombre: "Carne molida", cantidad: 250, unidad: "g" },
+                { nombre: "Queso cheddar", cantidad: 1, unidad: "u" },
+                { nombre: "Lechuga", cantidad: 20, unidad: "g" },
+                { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
+            ],
         extras: [
-            "Carne extra",
-            "Queso extra",
-            "Tocino"
+            { nombre: "Carne extra", precio: 1.50, imagen: "img/extras/carne.png" },
+            { nombre: "Queso extra", precio: 0.50, imagen: "img/extras/queso.png" },
+            { nombre: "Tocino", precio: 1.00, imagen: "img/extras/tocino.png" }
         ],
 
         tiempoPreparacion: 10,
-        porciones: 1
+        porciones: 1,
+        costoBase: 3.50
     },
 
     {
         nombre: "Big Burger",
         imagen: "img/bigBurger.png",
         ingredientes: [
-            { nombre: "Pan hamburguesa", cantidad: 1 },
-            { nombre: "Carne molida", cantidad: 0.50 },
-            { nombre: "Queso cheddar", cantidad: 2 },
-            { nombre: "Lechuga", cantidad: 20 },
-            { nombre: "Tomate", cantidad: 30 }
+            { nombre: "Pan hamburguesa", cantidad: 1, unidad: "u" },
+            { nombre: "Carne molida", cantidad: 500, unidad: "g" },
+            { nombre: "Queso cheddar", cantidad: 2, unidad: "u" },
+            { nombre: "Lechuga", cantidad: 20, unidad: "g" },
+            { nombre: "Tomate", cantidad: 30, unidad: "g" }
         ],
         extras: [
-            "Carne extra",
-            "Queso extra",
-            "Tocino"
+            { nombre: "Carne extra", precio: 1.50, imagen: "img/extras/carne.png" },
+            { nombre: "Queso extra", precio: 0.50, imagen: "img/extras/queso.png" },
+            { nombre: "Tocino", precio: 1.00, imagen: "img/extras/tocino.png" }
         ],
 
         tiempoPreparacion: 15,
-        porciones: 1
+        porciones: 1,
+        costoBase: 5.00
     },
 
     {
         nombre: "Salchipapa Especial",
         imagen: "img/salchipapaEspecial.png",
         ingredientes: [
-            { nombre: "Papa", cantidad: 250 },
-            { nombre: "Salchicha", cantidad: 2 },
-            { nombre: "Mayonesa", cantidad: 15 },
-            { nombre: "Salsa de tomate", cantidad: 15 }
+            { nombre: "Papa", cantidad: 250, unidad: "g" },
+            { nombre: "Salchicha", cantidad: 2, unidad: "u" },
+            { nombre: "Mayonesa", cantidad: 15, unidad: "ml" },
+            { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
         ],
         extras: [
-            "Salchicha extra",
-            "Queso extra",
-            "Salsa extra"
+            { nombre: "Salchicha extra", precio: 1.25, imagen: "img/extras/salchicha.png" },
+            { nombre: "Queso extra", precio: 0.50, imagen: "img/extras/queso.png" },
+            { nombre: "Salsa extra", precio: 0.25, imagen: "img/extras/salsa.png" }
         ],
 
         tiempoPreparacion: 12,
-        porciones: 1
+        porciones: 1,
+        costoBase: 3.75
     },
 
     {
         nombre: "Hot Dog Especial",
         imagen: "img/hotDogEspecial.png",
         ingredientes: [
-            { nombre: "Pan hot dog", cantidad: 1 },
-            { nombre: "Salchicha", cantidad: 1 },
-            { nombre: "Cebolla", cantidad: 15 },
-            { nombre: "Repollo", cantidad: 20 },
-            { nombre: "Mayonesa", cantidad: 10 },
-            { nombre: "Mostaza", cantidad: 10 }
+            { nombre: "Pan hot dog", cantidad: 1, unidad: "u" },
+            { nombre: "Salchicha", cantidad: 1, unidad: "u" },
+            { nombre: "Cebolla", cantidad: 15, unidad: "g" },
+            { nombre: "Repollo", cantidad: 20, unidad: "g" },
+            { nombre: "Mayonesa", cantidad: 10, unidad: "ml" },
+            { nombre: "Mostaza", cantidad: 10, unidad: "ml" }
         ],
         extras: [
-            "Salchicha extra",
-            "Queso extra",
-            "Salsa extra"
+            { nombre: "Salchicha extra", precio: 1.25, imagen: "img/extras/salchicha.png" },
+            { nombre: "Queso extra", precio: 0.50, imagen: "img/extras/queso.png" },
+            { nombre: "Salsa extra", precio: 0.25, imagen: "img/extras/salsa.png" }
         ],
 
         tiempoPreparacion: 8,
-        porciones: 1
+        porciones: 1,
+        costoBase: 4.00
     },
 
     {
         nombre: "Nuggets con Papas",
         imagen: "img/nuggetsPapas.png",
         ingredientes: [
-            { nombre: "Nuggets", cantidad: 6 },
-            { nombre: "Papa", cantidad: 200 },
-            { nombre: "Aceite", cantidad: 30 },
-            { nombre: "Salsa de tomate", cantidad: 15 }
+            { nombre: "Nuggets", cantidad: 6, unidad: "u" },
+            { nombre: "Papa", cantidad: 200, unidad: "g" },
+            { nombre: "Aceite", cantidad: 30, unidad: "ml" },
+            { nombre: "Salsa de tomate", cantidad: 15, unidad: "ml" }
         ],
         extras: [
-            "Salchicha extra",
-            "Queso extra",
-            "Salsa extra"
+            { nombre: "Salchicha extra", precio: 1.25, imagen: "img/extras/salchicha.png" },
+            { nombre: "Queso extra", precio: 0.50, imagen: "img/extras/queso.png" },
+            { nombre: "Salsa extra", precio: 0.25, imagen: "img/extras/salsa.png" }
         ],
 
         tiempoPreparacion: 10,
-        porciones: 1
+        porciones: 1,
+        costoBase: 4.25
     }
 
 ];
@@ -191,6 +196,8 @@ function mostrarDetalleReceta() {
     const receta =
         recetasEstandarizadas[indice];
 
+    const costoBase = receta.costoBase;
+
     let html = `
     
         <h3>🍽️ ${receta.nombre}</h3>
@@ -200,6 +207,9 @@ function mostrarDetalleReceta() {
 
         <p><strong>Porciones:</strong>
         ${receta.porciones}</p>
+
+        <p><strong>Costo Base:</strong>
+$${receta.costoBase.toFixed(2)}</p>
 
         <h4>Ingredientes:</h4>
 
@@ -212,7 +222,7 @@ function mostrarDetalleReceta() {
             <li>
                 ${ingrediente.nombre}
                 :
-                ${ingrediente.cantidad}
+                ${ingrediente.cantidad} ${ingrediente.unidad}
             </li>
         `;
 
@@ -233,10 +243,16 @@ function mostrarDetalleReceta() {
             <input
                 type="checkbox"
                 class="extra-checkbox"
-                value="${extra}"
+                data-nombre="${extra.nombre}"
+                data-precio="${extra.precio}"
             >
 
-            ${extra}
+            <img src="${extra.imagen}" alt="${extra.nombre}" class="imagen-extra">
+
+            <div class="extra-info">
+                <span>${extra.nombre}</span>
+                <small>$${extra.precio.toFixed(2)}</small>
+            </div>
 
         </label>
     `;
@@ -265,37 +281,38 @@ function mostrarDetalleReceta() {
 // CALCULAR COSTO DE EXTRAS
 // ============================================
 
-function actualizarCostoExtras(){
+function actualizarCostoExtras() {
 
-    const checks =
-        document.querySelectorAll(".extra-checkbox");
+    const checks = document.querySelectorAll(".extra-checkbox");
 
-    checks.forEach(function(check){
+    checks.forEach(function (check) {
 
-        check.addEventListener("change", function(){
+        check.onchange = function () {
 
             let totalExtras = 0;
 
-            checks.forEach(function(c){
+            checks.forEach(function (c) {
 
-                if(c.checked){
-
-                    totalExtras +=
-                        costosExtras[c.value] || 0;
-
+                if (c.checked) {
+                    totalExtras += parseFloat(c.dataset.precio);
                 }
 
             });
 
-            document.getElementById("costoExtras")
-                .textContent =
+            const selector = document.getElementById("selectorReceta");
+
+            const receta = recetasEstandarizadas[selector.value];
+
+            let costoBase = receta.costoBase;
+            let total = costoBase + totalExtras;
+
+            document.getElementById("costoExtras").textContent =
                 totalExtras.toFixed(2);
 
-            document.getElementById("costoTotalReceta")
-                .textContent =
-                totalExtras.toFixed(2);
+            document.getElementById("costoTotalReceta").textContent =
+                total.toFixed(2);
 
-        });
+        };
 
     });
 
