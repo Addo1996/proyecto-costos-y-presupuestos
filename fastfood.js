@@ -2045,8 +2045,8 @@ function calcularConsolidadoFinanciero() {
     const proyeccionVentas = {
         "Hamburguesa Clásica": 300,
         "Big Burger": 240,
-        "Salchipapa Simple": 240,
-        "Hot Dog": 180,
+        "Salchipapa Especial": 240,
+        "Hot Dog Especial": 180,
         "Nuggets con Papas": 120
     };
     const ventasTotalesProyectadas = 1080;
@@ -2083,11 +2083,14 @@ function calcularConsolidadoFinanciero() {
         // Calcular costo exacto de ingredientes usando la misma fórmula que la sección de Recetas
         if (receta.ingredientes && receta.ingredientes.length > 0 && inventarioInsumos.length > 0) {
             receta.ingredientes.forEach(ingReceta => {
-                let insumo = inventarioInsumos.find(m => m.nombre.toLowerCase().trim() === ingReceta.nombre.toLowerCase().trim());
-                if (insumo && insumo.cantidad > 0) {
-                    // Costeo real prorrateado considerando el precio del paquete/bulto y su rendimiento
-                    costoMateriaPrimaUnitario += (insumo.precio / insumo.cantidad) * ingReceta.cantidad;
-                }
+
+                costoMateriaPrimaUnitario +=
+                    calcularCostoIngrediente(
+                        ingReceta.nombre,
+                        ingReceta.cantidad,
+                        ingReceta.unidad
+                    );
+
             });
         }
 
