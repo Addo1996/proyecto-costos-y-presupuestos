@@ -388,10 +388,10 @@ function mostrarSubSeccionCostos(idSubSeccion) {
     // Oculta todas las subsecciones internas de la gestión de costos
     const subSecciones = document.querySelectorAll('.sub-seccion-costos');
     subSecciones.forEach(sub => sub.style.display = 'none');
-    
+
     // Muestra la subsección que se seleccionó
     const subActiva = document.getElementById(idSubSeccion);
-    if(subActiva) {
+    if (subActiva) {
         subActiva.style.display = 'block';
     }
 
@@ -1770,7 +1770,7 @@ function editarMateriaPrima(index) {
 }
 
 // ============================================
-// CONVERSIÓN DE UNIDADES
+// AH. CONVERSIÓN DE UNIDADES
 // ============================================
 
 function convertirUnidad(cantidad, unidadOrigen, unidadDestino) {
@@ -1945,11 +1945,11 @@ let listaGastosOperativos = JSON.parse(localStorage.getItem("listaGastosOperativ
 document.addEventListener("DOMContentLoaded", function () {
     actualizarVistaGastosOperativos();
     calcularConsolidadoFinanciero();
-    
+
     // Vincular recálculo reactivo a cambios en formularios predispuestos de Materia Prima
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
-        btnAgregar.addEventListener("click", function() {
+        btnAgregar.addEventListener("click", function () {
             setTimeout(() => { calcularConsolidadoFinanciero(); }, 200);
         });
     }
@@ -1975,7 +1975,7 @@ function guardarGastoOperativo() {
 
     listaGastosOperativos.push(nuevoGasto);
     localStorage.setItem("listaGastosOperativos", JSON.stringify(listaGastosOperativos));
-    
+
     // Limpiar campos
     document.getElementById("descGastoOperativo").value = "";
     document.getElementById("montoGastoOperativo").value = "";
@@ -2004,7 +2004,7 @@ function actualizarVistaGastosOperativos() {
     listaGastosOperativos.forEach(gasto => {
         totalGeneral += gasto.monto;
         let tipoTexto = gasto.tipo === "fijo" ? "Costo Fijo" : gasto.tipo === "variable" ? "Costo Variable" : "Mano de Obra";
-        
+
         let fila = document.createElement("tr");
         fila.innerHTML = `
             <td style="padding:8px; border-bottom:1px solid #ddd;">${gasto.descripcion}</td>
@@ -2036,10 +2036,10 @@ function calcularConsolidadoFinanciero() {
     let costoOperativoMensualTotal = fijos + variablesMensuales + mo;
 
     // Actualizar tarjetas de cabecera en el HTML si existen
-    if(document.getElementById("resumenFijosTotal")) document.getElementById("resumenFijosTotal").textContent = fijos.toFixed(2);
-    if(document.getElementById("resumenVariablesTotal")) document.getElementById("resumenVariablesTotal").textContent = variablesMensuales.toFixed(2);
-    if(document.getElementById("resumenMOTotal")) document.getElementById("resumenMOTotal").textContent = mo.toFixed(2);
-    if(document.getElementById("resumenCostoFijoIndirecto")) document.getElementById("resumenCostoFijoIndirecto").textContent = costoOperativoMensualTotal.toFixed(2);
+    if (document.getElementById("resumenFijosTotal")) document.getElementById("resumenFijosTotal").textContent = fijos.toFixed(2);
+    if (document.getElementById("resumenVariablesTotal")) document.getElementById("resumenVariablesTotal").textContent = variablesMensuales.toFixed(2);
+    if (document.getElementById("resumenMOTotal")) document.getElementById("resumenMOTotal").textContent = mo.toFixed(2);
+    if (document.getElementById("resumenCostoFijoIndirecto")) document.getElementById("resumenCostoFijoIndirecto").textContent = costoOperativoMensualTotal.toFixed(2);
 
     // 2. Distribución exacta de las 1080 ventas unitarias del negocio
     const proyeccionVentas = {
@@ -2093,8 +2093,10 @@ function calcularConsolidadoFinanciero() {
 
         // VINCULACIÓN CON LA SECCIÓN DE RECETAS: Si el cálculo dinámico falla o difiere,
         // tomamos el costoBase oficial definido en recetas.js (ej: $3.50 para Hamburguesa Clásica)
-        if (costoMateriaPrimaUnitario === 0 || receta.costoBase) {
-            costoMateriaPrimaUnitario = receta.costoBase || 3.50;
+        if (costoMateriaPrimaUnitario === 0) {
+            console.warn(
+                `No se pudo calcular el costo de ${receta.nombre}`
+            );
         }
 
         // Evaluar e incorporar los Extras configurados en la receta si existieran
@@ -2108,7 +2110,7 @@ function calcularConsolidadoFinanciero() {
                 }
             });
         }
-        
+
         // Costo de materia prima final consolidado (Equivalente al costo total real de producción variable)
         let costoVariableTotalUnitario = costoMateriaPrimaUnitario + costoExtras;
 
@@ -2135,8 +2137,8 @@ function calcularConsolidadoFinanciero() {
     });
 
     // 5. CÁLCULO DEL PUNTO DE EQUILIBRIO ENTRE VENTAS Y GASTOS (Meta global del restaurante)
-    let puntoEquilibrioGlobalUnidades = margenContribucionPonderadoTotal > 0 
-        ? Math.ceil(costoOperativoMensualTotal / margenContribucionPonderadoTotal) 
+    let puntoEquilibrioGlobalUnidades = margenContribucionPonderadoTotal > 0
+        ? Math.ceil(costoOperativoMensualTotal / margenContribucionPonderadoTotal)
         : 0;
 
     // 6. Inyección y renderizado físico garantizado de los 5 productos principales
@@ -2147,7 +2149,7 @@ function calcularConsolidadoFinanciero() {
 
         // Distribución del punto de equilibrio por cada ítem individual
         let unidadesEquilibrioEspecificas = Math.ceil(puntoEquilibrioGlobalUnidades * participacionReal);
-        
+
         // ADICIÓN DE GASTOS OPERATIVOS: Prorrateo exacto del gasto mensual según el peso real en el volumen de 1080 ventas
         let costoAgregadoReal = prod.costoMateriaPrima + ((costoOperativoMensualTotal * participacionReal) / ventasTotalesProyectadas);
 
@@ -2183,7 +2185,7 @@ function calcularConsolidadoFinanciero() {
 
 // Sobrecargar la función existente de cambio de página para asegurar cálculos dinámicos al clickear el menú
 const funcionMostrarPaginaOriginal = mostrarPagina;
-mostrarPagina = function(idPagina) {
+mostrarPagina = function (idPagina) {
     funcionMostrarPaginaOriginal(idPagina);
     if (idPagina === "resumenFinanciero" || idPagina === "gastosOperativos") {
         calcularConsolidadoFinanciero();
