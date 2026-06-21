@@ -24,7 +24,6 @@ const recetasEstandarizadas = [
 
         tiempoPreparacion: 10,
         porciones: 1,
-        costoBase: 3.50
     },
 
     {
@@ -45,7 +44,6 @@ const recetasEstandarizadas = [
 
         tiempoPreparacion: 15,
         porciones: 1,
-        costoBase: 5.00
     },
 
     {
@@ -65,7 +63,6 @@ const recetasEstandarizadas = [
 
         tiempoPreparacion: 12,
         porciones: 1,
-        costoBase: 3.75
     },
 
     {
@@ -87,7 +84,6 @@ const recetasEstandarizadas = [
 
         tiempoPreparacion: 8,
         porciones: 1,
-        costoBase: 4.00
     },
 
     {
@@ -107,7 +103,6 @@ const recetasEstandarizadas = [
 
         tiempoPreparacion: 10,
         porciones: 1,
-        costoBase: 4.25
     }
 
 ];
@@ -196,21 +191,34 @@ function mostrarDetalleReceta() {
     const receta =
         recetasEstandarizadas[indice];
 
-    const costoBase = receta.costoBase;
+    let costoBase = 0;
+
+    receta.ingredientes.forEach(function (ingrediente) {
+
+        costoBase += calcularCostoIngrediente(
+
+            ingrediente.nombre,
+
+            ingrediente.cantidad,
+
+            ingrediente.unidad
+
+        );
+
+    });
 
     let html = `
     
-        <h3>🍽️ ${receta.nombre}</h3>
-        <img src="${receta.imagen}"alt="${receta.nombre}"class="imagen-receta">
-        <p><strong>Tiempo de preparación:</strong>
-        ${receta.tiempoPreparacion} minutos</p>
+    <h3>🍽️ ${receta.nombre}</h3>
+    <img src="${receta.imagen}"alt="${receta.nombre}"class="imagen-receta">
+    <p><strong>Tiempo de preparación:</strong>
+    ${receta.tiempoPreparacion} minutos</p>
 
-        <p><strong>Porciones:</strong>
-        ${receta.porciones}</p>
+    <p><strong>Porciones:</strong>
+    ${receta.porciones}</p>
 
-        <p><strong>Costo Base:</strong>
-$${receta.costoBase.toFixed(2)}</p>
-
+    <p><strong>Costo Base:</strong>
+    $${costoBase.toFixed(2)}</p>
     <h4 class="titulo-ficha">
     📋 Ficha Técnica de Ingredientes
     </h4>
@@ -288,7 +296,7 @@ $${receta.costoBase.toFixed(2)}</p>
 
         <h4>
             💵 Costo Total:
-            $<span id="costoTotalReceta">0.00</span>
+           $<span id="costoTotalReceta"> ${costoBase.toFixed(2)}</span>
         </h4>
 `;
     detalle.innerHTML = html;
@@ -321,7 +329,21 @@ function actualizarCostoExtras() {
 
             const receta = recetasEstandarizadas[selector.value];
 
-            let costoBase = receta.costoBase;
+            let costoBase = 0;
+
+            receta.ingredientes.forEach(function (ingrediente) {
+
+                costoBase += calcularCostoIngrediente(
+
+                    ingrediente.nombre,
+
+                    ingrediente.cantidad,
+
+                    ingrediente.unidad
+
+                );
+
+            });
             let total = costoBase + totalExtras;
 
             document.getElementById("costoExtras").textContent =
@@ -334,6 +356,147 @@ function actualizarCostoExtras() {
 
     });
 
+}
+
+// ============================================
+// OBTENER COSTO DE UN INGREDIENTE
+// ============================================
+
+function calcularCostoIngrediente(nombreIngrediente,
+    cantidadUsada,
+    unidadReceta) {
+
+    const ingrediente =
+        materiasPrimas.find(mp =>
+            mp.nombre.toLowerCase() ===
+            nombreIngrediente.toLowerCase()
+        );
+
+    if (!ingrediente) {
+
+        console.warn(
+            "No se encontró:",
+            nombreIngrediente
+        );
+
+        return 0;
+    }
+
+    let cantidadCompra =
+        ingrediente.cantidad;
+
+    let precioCompra =
+        ingrediente.precio;
+
+    let merma =
+        ingrediente.merma;
+
+    let unidadCompra =
+        ingrediente.unidad;
+
+    // Aplicar merma
+    let cantidadUtil =
+        cantidadCompra *
+        (1 - merma / 100);
+
+    // Convertir unidades
+    let cantidadUsadaConvertida =
+        convertirUnidad(
+            cantidadUsada,
+            unidadReceta,
+            unidadCompra
+        );
+
+    // Costo unitario
+    let costoUnitario =
+        precioCompra /
+        cantidadUtil;
+
+    const costo =
+        costoUnitario *
+        cantidadUsadaConvertida;
+
+    console.log(
+        "Ingrediente:",
+        nombreIngrediente,
+        "| Compra:",
+        cantidadCompra,
+        unidadCompra,
+        "| Precio:", precioCompra,
+        "| Merma:", merma,
+        "| Usa:", cantidadUsada,
+        unidadReceta,
+        "| Convertido:", cantidadUsadaConvertida,
+        "| Costo:", costo.toFixed(2)
+    );
+
+    return costo;
+}
+
+// ============================================
+// CONVERTIR UNIDADES
+// ============================================
+
+function convertirUnidad(cantidad, unidadReceta, unidadCompra){
+
+    // Convertimos a minúsculas
+    unidadReceta = unidadReceta.toLowerCase();
+    unidadCompra = unidadCompra.toLowerCase();
+
+    // Igualdad exacta
+    if(unidadReceta === unidadCompra){
+        return cantidad;
+    }
+
+    // UNIDADES
+    if(unidadReceta === "u" &&
+       unidadCompra === "unidades"){
+        return cantidad;
+    }
+
+    if(unidadReceta === "unidades" &&
+       unidadCompra === "u"){
+        return cantidad;
+    }
+
+    // GRAMOS ↔ KILOGRAMOS
+    if((unidadReceta === "gr" || unidadReceta === "g") &&
+       unidadCompra === "kilogramos"){
+        return cantidad / 1000;
+    }
+
+    if(unidadReceta === "kilogramos" &&
+       (unidadCompra === "gr" || unidadCompra === "g")){
+        return cantidad * 1000;
+    }
+
+    // GRAMOS ↔ LIBRAS
+    if((unidadReceta === "gr" || unidadReceta === "g") &&
+       unidadCompra === "libras"){
+        return cantidad / 453.592;
+    }
+
+    if(unidadReceta === "libras" &&
+       (unidadCompra === "gr" || unidadCompra === "g")){
+        return cantidad * 453.592;
+    }
+
+    // ML ↔ LITROS
+    if(unidadReceta === "ml" &&
+       unidadCompra === "litros"){
+        return cantidad / 1000;
+    }
+
+    if(unidadReceta === "litros" &&
+       unidadCompra === "ml"){
+        return cantidad * 1000;
+    }
+
+    console.warn(
+        `No existe conversión entre ${unidadReceta} y ${unidadCompra}`
+    );
+
+    return cantidad;
 }
 
 // ============================================
