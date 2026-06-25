@@ -1532,7 +1532,7 @@
         <!-- RECETAS -->
         <!-- ========================= -->
 
-        <div id="subRecetas" class="sub-seccion-costos">
+        <div id="subRecetas" class="sub-seccion-costos" style="display: none;">
 
             <h2>🍔 Registro de Recetas</h2>
 
@@ -1547,19 +1547,13 @@
                 </button>
 
             </div>
-            <!-- ========================= -->
-            <!-- SUBSECCION DE RECETAS ESTANDARIZADAS Y PERSONALIZADAS -->
-            <!-- ========================= -->
+
             <div id="estandarizadas" class="subreceta" style="display: none;">
 
                 <h3>📋 Recetas Estandarizadas</h3>
 
                 <select id="selectorReceta" onchange="mostrarDetalleReceta()">
-
-                    <option value="">
-                        Seleccione una receta
-                    </option>
-
+                    <option value="">Seleccione una receta</option>
                 </select>
 
                 <div id="detalleReceta"></div>
@@ -1570,42 +1564,54 @@
 
             </div>
 
-        </div>
+            <div id="personalizadas" class="subreceta" style="display: none;">
 
-        <div id="personalizadas" class="subreceta" style="display: none;">
+                <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
 
-            <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
+                <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
 
-            <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
+                <input type="number" id="porciones" placeholder="Número de porciones">
 
-            <input type="number" id="porciones" placeholder="Número de porciones">
+                <input type="text" id="imagenReceta" placeholder="Nombre de imagen. Ej: miHamburguesa.png">
 
-            <button type="button" onclick="crearReceta()">
+                <h3>Ingredientes de la receta</h3>
 
-                Crear Receta
+                <select id="ingredienteReceta"></select>
 
-            </button>
+                <input type="number" id="cantidadIngredienteReceta" placeholder="Cantidad utilizada">
 
-            <table>
+                <select id="unidadIngredienteReceta">
+                    <option value="u">Unidades</option>
+                    <option value="gr">Gramos</option>
+                    <option value="kilogramos">Kilogramos</option>
+                    <option value="libras">Libras</option>
+                    <option value="ml">Mililitros</option>
+                    <option value="litros">Litros</option>
+                </select>
+                <button type="button" onclick="agregarIngredienteReceta()">
+                    Agregar Ingrediente
+                </button>
 
-                <thead>
+                <div id="listaIngredientesReceta"></div>
 
-                    <tr>
+                <button type="button" onclick="crearReceta()">
+                    Crear Receta
+                </button>
 
-                        <th>Receta</th>
-                        <th>Tiempo</th>
-                        <th>Porciones</th>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Receta</th>
+                            <th>Tiempo</th>
+                            <th>Porciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-                    </tr>
+                    <tbody id="tablaRecetas"></tbody>
+                </table>
 
-                </thead>
-
-                <tbody id="tablaRecetas">
-
-                </tbody>
-
-            </table>
-        </div>
+            </div>
 
         </div>
 

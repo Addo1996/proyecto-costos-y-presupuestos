@@ -1,3 +1,4 @@
+let ingredientesRecetaActual = [];
 // ============================================
 // RECETAS ESTANDARIZADAS
 // ============================================
@@ -119,7 +120,32 @@ function agregarRecetaAlCarrito() {
         return;
     }
 
-    const receta = recetasEstandarizadas[selector.value];
+    let receta;
+
+    if (selector.value.startsWith("P-")) {
+
+        const nombre =
+            selector.value.replace("P-", "");
+
+        const recetasPersonalizadas =
+            JSON.parse(
+                localStorage.getItem("recetasPersonalizadas")
+            ) || [];
+
+        receta =
+            recetasPersonalizadas.find(r => r.nombre === nombre);
+
+    } else {
+
+        receta =
+            recetasEstandarizadas[selector.value];
+
+    }
+
+    if (!receta) {
+        alert("No se encontró la receta seleccionada.");
+        return;
+    }
 
     // 1. Recalcular el costo total de producción exacto como en el detalle
     let costoBase = 0;
@@ -174,8 +200,8 @@ function agregarRecetaAlCarrito() {
 
     // Desmarcar los checkboxes para una nueva compra
     checks.forEach(c => c.checked = false);
-    if(document.getElementById("costoExtras")) document.getElementById("costoExtras").textContent = "0.00";
-    if(document.getElementById("costoTotalReceta")) document.getElementById("costoTotalReceta").textContent = costoBase.toFixed(2);
+    if (document.getElementById("costoExtras")) document.getElementById("costoExtras").textContent = "0.00";
+    if (document.getElementById("costoTotalReceta")) document.getElementById("costoTotalReceta").textContent = costoBase.toFixed(2);
 
     mostrarCarrito();
 }
@@ -209,7 +235,7 @@ function mostrarCarrito() {
         `;
     });
 
-   contenedor.innerHTML += `
+    contenedor.innerHTML += `
         <hr>
         <h4 class="carrito-total">Total a Pagar: $${total.toFixed(2)}</h4>
         <button onclick="finalizarCompra()" class="btn-finalizar">
@@ -224,7 +250,7 @@ function mostrarCarrito() {
 function eliminarDelCarrito(indice) {
     // Eliminamos 1 elemento en la posición 'indice' del array
     carrito.splice(indice, 1);
-    
+
     // Volvemos a renderizar el carrito actualizado en pantalla
     mostrarCarrito();
 }
@@ -266,22 +292,36 @@ function cargarRecetasEstandarizadas() {
     let selector =
         document.getElementById("selectorReceta");
 
-    // Si el selector no existe, salimos
     if (!selector) return;
 
-    // Limpiar opciones
     selector.innerHTML = `
         <option value="">
             Seleccione una receta
         </option>
     `;
 
-    // Agregar cada receta
+    // Recetas originales
     recetasEstandarizadas.forEach(function (receta, indice) {
 
         selector.innerHTML += `
             <option value="${indice}">
                 ${receta.nombre}
+            </option>
+        `;
+
+    });
+
+    // Recetas creadas por el usuario
+    let recetasPersonalizadas =
+        JSON.parse(
+            localStorage.getItem("recetasPersonalizadas")
+        ) || [];
+
+    recetasPersonalizadas.forEach(function (receta) {
+
+        selector.innerHTML += `
+            <option value="P-${receta.nombre}">
+                ⭐ ${receta.nombre}
             </option>
         `;
 
@@ -310,8 +350,27 @@ function mostrarDetalleReceta() {
         return;
     }
 
-    const receta =
-        recetasEstandarizadas[indice];
+    let receta;
+
+    if (indice.startsWith("P-")) {
+
+        const nombre =
+            indice.replace("P-", "");
+
+        const recetasPersonalizadas =
+            JSON.parse(
+                localStorage.getItem("recetasPersonalizadas")
+            ) || [];
+
+        receta =
+            recetasPersonalizadas.find(r => r.nombre === nombre);
+
+    } else {
+
+        receta =
+            recetasEstandarizadas[indice];
+
+    }
 
     let costoBase = 0;
 
@@ -663,27 +722,21 @@ function calcularCostoIngrediente(nombreIngrediente,
 
 function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
 
-    // Convertimos a minúsculas
     unidadReceta = unidadReceta.toLowerCase();
     unidadCompra = unidadCompra.toLowerCase();
 
-    // Igualdad exacta
     if (unidadReceta === unidadCompra) {
         return cantidad;
     }
 
-    // UNIDADES
-    if (unidadReceta === "u" &&
-        unidadCompra === "unidades") {
+    if (unidadReceta === "u" && unidadCompra === "unidades") {
         return cantidad;
     }
 
-    if (unidadReceta === "unidades" &&
-        unidadCompra === "u") {
+    if (unidadReceta === "unidades" && unidadCompra === "u") {
         return cantidad;
     }
 
-    // GRAMOS ↔ KILOGRAMOS
     if ((unidadReceta === "gr" || unidadReceta === "g") &&
         unidadCompra === "kilogramos") {
         return cantidad / 1000;
@@ -694,7 +747,6 @@ function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
         return cantidad * 1000;
     }
 
-    // GRAMOS ↔ LIBRAS
     if ((unidadReceta === "gr" || unidadReceta === "g") &&
         unidadCompra === "libras") {
         return cantidad / 453.592;
@@ -705,14 +757,21 @@ function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
         return cantidad * 453.592;
     }
 
-    // ML ↔ LITROS
-    if (unidadReceta === "ml" &&
-        unidadCompra === "litros") {
+    if (unidadReceta === "kilogramos" &&
+        unidadCompra === "libras") {
+        return cantidad * 2.20462;
+    }
+
+    if (unidadReceta === "libras" &&
+        unidadCompra === "kilogramos") {
+        return cantidad / 2.20462;
+    }
+
+    if (unidadReceta === "ml" && unidadCompra === "litros") {
         return cantidad / 1000;
     }
 
-    if (unidadReceta === "litros" &&
-        unidadCompra === "ml") {
+    if (unidadReceta === "litros" && unidadCompra === "ml") {
         return cantidad * 1000;
     }
 
@@ -747,13 +806,308 @@ function finalizarCompra() {
     // Actualizamos la interfaz para que vuelva a mostrar el carrito limpio
     mostrarCarrito();
 }
+//=========================================================================================
+// Funcion para cargar los ingredientes de la receta a un slect en el HTML, si es necesario
+//=========================================================================================
+function cargarIngredientesReceta() {
 
+    const selector =
+        document.getElementById(
+            "ingredienteReceta"
+        );
+
+    if (!selector) return;
+
+    selector.innerHTML = "";
+
+    materiasPrimas.forEach(function (mp) {
+
+        selector.innerHTML += `
+            <option value="${mp.nombre}">
+                ${mp.nombre}
+            </option>
+        `;
+
+    });
+
+}
+// Funcion para agregar un ingrediente a la receta actual
+function agregarIngredienteReceta() {
+
+    const nombre =
+        document.getElementById("ingredienteReceta").value;
+
+    const cantidad =
+        parseFloat(
+            document.getElementById("cantidadIngredienteReceta").value
+        );
+
+    const unidad =
+        document.getElementById("unidadIngredienteReceta").value;
+
+    if (nombre === "" || isNaN(cantidad)) {
+        alert("Seleccione un ingrediente e ingrese cantidad.");
+        return;
+    }
+
+    ingredientesRecetaActual.push({
+        nombre: nombre,
+        cantidad: cantidad,
+        unidad: unidad
+    });
+
+    document.getElementById("cantidadIngredienteReceta").value = "";
+
+    actualizarListaIngredientesReceta();
+}
+
+function actualizarListaIngredientesReceta() {
+
+    const contenedor =
+        document.getElementById("listaIngredientesReceta");
+
+    if (!contenedor) return;
+
+    contenedor.innerHTML = "";
+
+    ingredientesRecetaActual.forEach(function (ing, index) {
+
+        contenedor.innerHTML += `
+            <p>
+                ${ing.nombre} - ${ing.cantidad} ${ing.unidad}
+                <button type="button" onclick="eliminarIngredienteReceta(${index})">
+                    ❌
+                </button>
+            </p>
+        `;
+
+    });
+
+}
+function eliminarIngredienteReceta(index) {
+
+    ingredientesRecetaActual.splice(index, 1);
+
+    actualizarListaIngredientesReceta();
+}
+
+// ======================================
+// CREAR RECETA PERSONALIZADA
+// ======================================
+
+function crearReceta() {
+
+    const nombre =
+        document.getElementById(
+            "nombreReceta"
+        ).value.trim();
+
+    const tiempo =
+        parseInt(
+            document.getElementById(
+                "tiempoPreparacion"
+            ).value
+        );
+
+    const porciones =
+        parseInt(
+            document.getElementById(
+                "porciones"
+            ).value
+        );
+    const imagenIngresada =
+        document.getElementById("imagenReceta").value.trim();
+
+    if (
+        nombre === "" ||
+        isNaN(tiempo) ||
+        isNaN(porciones)
+    ) {
+
+        alert("Complete todos los campos");
+
+        return;
+    }
+
+    if (
+        ingredientesRecetaActual.length === 0
+    ) {
+
+        alert(
+            "Agregue ingredientes a la receta"
+        );
+
+        return;
+    }
+
+    let recetasPersonalizadas =
+        JSON.parse(
+            localStorage.getItem(
+                "recetasPersonalizadas"
+            )
+        ) || [];
+
+    recetasPersonalizadas.push({
+
+        nombre: nombre,
+
+        tiempoPreparacion: tiempo,
+
+        porciones: porciones,
+
+        ingredientes:
+            structuredClone(ingredientesRecetaActual),
+
+        extras: [],
+
+        imagen: imagenIngresada === ""
+            ? "img/recetaPersonalizada.png"
+            : "img/" + imagenIngresada
+
+    });
+
+    localStorage.setItem(
+
+        "recetasPersonalizadas",
+
+        JSON.stringify(
+            recetasPersonalizadas
+        )
+
+    );
+    cargarRecetasEstandarizadas();
+    actualizarTablaRecetas();
+
+    alert(
+        "Receta creada correctamente"
+    );
+
+    ingredientesRecetaActual = [];
+
+    actualizarListaIngredientesReceta();
+
+    document.getElementById(
+        "nombreReceta"
+    ).value = "";
+
+    document.getElementById(
+        "tiempoPreparacion"
+    ).value = "";
+
+    document.getElementById(
+        "porciones"
+    ).value = "";
+    document.getElementById(
+        "imagenReceta"
+    ).value = "";
+
+}
+
+function actualizarTablaRecetas() {
+
+    const tabla =
+        document.getElementById("tablaRecetas");
+
+    if (!tabla) return;
+
+    tabla.innerHTML = "";
+
+    const recetasPersonalizadas =
+        JSON.parse(
+            localStorage.getItem("recetasPersonalizadas")
+        ) || [];
+
+    recetasPersonalizadas.forEach(function (receta, index) {
+
+        tabla.innerHTML += `
+            <tr>
+                <td>${receta.nombre}</td>
+                <td>${receta.tiempoPreparacion} min</td>
+                <td>${receta.porciones}</td>
+                <td>
+                    <button type="button" onclick="editarRecetaPersonalizada(${index})">
+                        ✏️ Editar
+                    </button>
+
+                    <button type="button" onclick="eliminarRecetaPersonalizada(${index})">
+                        🗑️ Borrar
+                    </button>
+                </td>
+            </tr>
+        `;
+
+    });
+
+}
+function eliminarRecetaPersonalizada(index) {
+
+    let recetasPersonalizadas =
+        JSON.parse(
+            localStorage.getItem("recetasPersonalizadas")
+        ) || [];
+
+    if (!confirm("¿Desea borrar esta receta?")) {
+        return;
+    }
+
+    recetasPersonalizadas.splice(index, 1);
+
+    localStorage.setItem(
+        "recetasPersonalizadas",
+        JSON.stringify(recetasPersonalizadas)
+    );
+
+    actualizarTablaRecetas();
+    cargarRecetasEstandarizadas();
+
+    alert("Receta eliminada correctamente.");
+}
+function editarRecetaPersonalizada(index) {
+
+    let recetasPersonalizadas =
+        JSON.parse(
+            localStorage.getItem("recetasPersonalizadas")
+        ) || [];
+
+    const receta =
+        recetasPersonalizadas[index];
+
+    document.getElementById("nombreReceta").value =
+        receta.nombre;
+
+    document.getElementById("tiempoPreparacion").value =
+        receta.tiempoPreparacion;
+
+    document.getElementById("porciones").value =
+        receta.porciones;
+    document.getElementById("imagenReceta").value =
+        receta.imagen.replace("img/", "");
+
+    ingredientesRecetaActual =
+        receta.ingredientes;
+
+    actualizarListaIngredientesReceta();
+
+    recetasPersonalizadas.splice(index, 1);
+
+    localStorage.setItem(
+        "recetasPersonalizadas",
+        JSON.stringify(recetasPersonalizadas)
+    );
+
+    actualizarTablaRecetas();
+    cargarRecetasEstandarizadas();
+
+    alert("Modifique la receta y presione Crear Receta para guardar los cambios.");
+}
 // ============================================
 // DOM CONTENT LOADED - CARGAR RECETAS EN EL SELECT
 // ============================================
 document.addEventListener("DOMContentLoaded", function () {
 
     cargarRecetasEstandarizadas();
+    cargarIngredientesReceta();
+    actualizarTablaRecetas();
 
 });
 
