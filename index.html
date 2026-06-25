@@ -49,7 +49,7 @@
         <a href="#" onclick="mostrarPagina('valoracion')">
             💯Valoración
         </a>
-        
+
 
     </nav>
 
@@ -1406,19 +1406,27 @@
         </h3>
 
     </section>
-    
 
 
-   <section id="gestionCostos" class="pagina" style="display: none;">
+
+    <section id="gestionCostos" class="pagina" style="display: none;">
         <h2>📊 Módulo de Gestión, Costeo y Finanzas</h2>
         <p>Administra los insumos, diseña recetas, controla gastos operativos y analiza el punto de equilibrio.</p>
-        
+
         <div class="botones-subtemas"
-                    style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
-            <button type="button" onclick="mostrarSubSeccionCostos('subMateriaPrima')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📦 Materia Prima</button>
-            <button type="button" onclick="mostrarSubSeccionCostos('subRecetas')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">🍔 Recetas</button>
-            <button type="button" onclick="mostrarSubSeccionCostos('subGastosOperativos')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">💼 Gastos Operativos</button>
-            <button type="button" onclick="mostrarSubSeccionCostos('subResumenFinanciero')" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📈 Resumen Financiero</button>
+            style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
+            <button type="button" onclick="mostrarSubSeccionCostos('subMateriaPrima')"
+                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📦
+                Materia Prima</button>
+            <button type="button" onclick="mostrarSubSeccionCostos('subRecetas')"
+                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">🍔
+                Recetas</button>
+            <button type="button" onclick="mostrarSubSeccionCostos('subGastosOperativos')"
+                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">💼
+                Gastos Operativos</button>
+            <button type="button" onclick="mostrarSubSeccionCostos('subResumenFinanciero')"
+                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📈
+                Resumen Financiero</button>
         </div>
 
         <!-- ========================= -->
@@ -1554,46 +1562,50 @@
 
                 </select>
 
-                <div id="detalleReceta">
+                <div id="detalleReceta"></div>
 
+                <div id="carrito">
+                    <h3>🛒 Carrito de pedidos</h3>
                 </div>
 
             </div>
 
-            <div id="personalizadas" class="subreceta" style="display: none;">
+        </div>
 
-                <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
+        <div id="personalizadas" class="subreceta" style="display: none;">
 
-                <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
+            <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
 
-                <input type="number" id="porciones" placeholder="Número de porciones">
+            <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
 
-                <button type="button" onclick="crearReceta()">
+            <input type="number" id="porciones" placeholder="Número de porciones">
 
-                    Crear Receta
+            <button type="button" onclick="crearReceta()">
 
-                </button>
+                Crear Receta
 
-                <table>
+            </button>
 
-                    <thead>
+            <table>
 
-                        <tr>
+                <thead>
 
-                            <th>Receta</th>
-                            <th>Tiempo</th>
-                            <th>Porciones</th>
+                    <tr>
 
-                        </tr>
+                        <th>Receta</th>
+                        <th>Tiempo</th>
+                        <th>Porciones</th>
 
-                    </thead>
+                    </tr>
 
-                    <tbody id="tablaRecetas">
+                </thead>
 
-                    </tbody>
+                <tbody id="tablaRecetas">
 
-                </table>
-            </div>
+                </tbody>
+
+            </table>
+        </div>
 
         </div>
 
@@ -1601,13 +1613,15 @@
         <div id="subGastosOperativos" class="sub-seccion-costos" style="display: none;">
             <h3>💼 Administración de Gastos Operativos</h3>
             <p>Ingresa los costos operacionales mensuales fijos, variables y el valor estimado de mano de obra.</p>
-            
+
             <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
-                <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div
+                    style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                     <h3>➕ Registrar Costo Mensual</h3>
                     <div style="margin-bottom: 12px;">
                         <label style="display:block; font-weight:bold;">Tipo de Costo:</label>
-                        <select id="tipoGastoOperativo" onchange="cambiarPlaceholderGasto()" style="width:100%; padding:8px; margin-top:5px;">
+                        <select id="tipoGastoOperativo" onchange="cambiarPlaceholderGasto()"
+                            style="width:100%; padding:8px; margin-top:5px;">
                             <option value="fijo">Costo Fijo (Arriendo, Internet, etc.)</option>
                             <option value="variable">Costo Variable Operativo (Servilletas, etc.)</option>
                             <option value="manodeobra">Mano de Obra (Sueldos, Cocineros)</option>
@@ -1615,18 +1629,22 @@
                     </div>
                     <div style="margin-bottom: 12px;">
                         <label style="display:block; font-weight:bold;">Descripción / Concepto:</label>
-                        <input type="text" id="descGastoOperativo" placeholder="Ej. Alquiler del Local comercial" style="width:100%; padding:8px; margin-top:5px;">
+                        <input type="text" id="descGastoOperativo" placeholder="Ej. Alquiler del Local comercial"
+                            style="width:100%; padding:8px; margin-top:5px;">
                     </div>
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; font-weight:bold;">Monto Mensual ($):</label>
-                        <input type="number" id="montoGastoOperativo" step="0.01" placeholder="Ej. 250.00" style="width:100%; padding:8px; margin-top:5px;">
+                        <input type="number" id="montoGastoOperativo" step="0.01" placeholder="Ej. 250.00"
+                            style="width:100%; padding:8px; margin-top:5px;">
                     </div>
-                    <button type="button" onclick="guardarGastoOperativo()" style="background-color: #ff3131; width:100%; padding: 10px; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    <button type="button" onclick="guardarGastoOperativo()"
+                        style="background-color: #ff3131; width:100%; padding: 10px; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
                         💾 Guardar Gasto
                     </button>
                 </div>
 
-                <div style="flex: 2; min-width: 300px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div
+                    style="flex: 2; min-width: 300px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
                     <h3>Gastos Mensuales Registrados</h3>
                     <table style="width:100%; margin-top:10px; border-collapse: collapse;">
                         <thead>
@@ -1639,7 +1657,8 @@
                         </thead>
                         <tbody id="tablaGastosOperativosBody"></tbody>
                     </table>
-                    <div style="margin-top: 15px; font-size: 1.1rem; text-align: right; font-weight: bold; color: #ff914d;">
+                    <div
+                        style="margin-top: 15px; font-size: 1.1rem; text-align: right; font-weight: bold; color: #ff914d;">
                         Gastos Operativos Totales: $<span id="totalGastosOperativosGeneral">0.00</span>/mes
                     </div>
                 </div>
@@ -1648,16 +1667,20 @@
 
         <div id="subResumenFinanciero" class="sub-seccion-costos" style="display: none;">
             <h3>📈 Resumen Financiero Dinámico</h3>
-            <p>Análisis en tiempo real cruzando el costo de materia prima calculado por plato y los costos operativos del establecimiento.</p>
-            
-            <div style="background: #222; color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 10px;">
+            <p>Análisis en tiempo real cruzando el costo de materia prima calculado por plato y los costos operativos
+                del establecimiento.</p>
+
+            <div
+                style="background: #222; color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 10px;">
                 <div style="text-align: center;">
                     <span style="display: block; font-size: 0.85rem; color: #aaa;">Costos Fijos:</span>
-                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span id="resumenFijosTotal">0.00</span></strong>
+                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span
+                            id="resumenFijosTotal">0.00</span></strong>
                 </div>
                 <div style="text-align: center;">
                     <span style="display: block; font-size: 0.85rem; color: #aaa;">Costos Variables:</span>
-                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span id="resumenVariablesTotal">0.00</span></strong>
+                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span
+                            id="resumenVariablesTotal">0.00</span></strong>
                 </div>
                 <div style="text-align: center;">
                     <span style="display: block; font-size: 0.85rem; color: #aaa;">Mano de Obra:</span>
@@ -1665,11 +1688,13 @@
                 </div>
                 <div style="text-align: center; border-left: 1px solid #444; padding-left: 15px;">
                     <span style="display: block; font-size: 0.85rem; color: #ccc;">Carga Operativa Global:</span>
-                    <strong style="font-size: 1.2rem; color: #ff3131;">$<span id="resumenCostoFijoIndirecto">0.00</span></strong>
+                    <strong style="font-size: 1.2rem; color: #ff3131;">$<span
+                            id="resumenCostoFijoIndirecto">0.00</span></strong>
                 </div>
             </div>
 
-            <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow-x: auto;">
+            <div
+                style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow-x: auto;">
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
                         <tr style="background-color: #f8f9fa; border-bottom: 2px solid #ddd;">

@@ -106,6 +106,128 @@ const recetasEstandarizadas = [
     }
 
 ];
+//======================
+// COMPRAS Y CARRITO
+//======================
+let carrito = [];
+
+function agregarRecetaAlCarrito() {
+    const selector = document.getElementById("selectorReceta");
+
+    if (selector.value === "") {
+        alert("Seleccione una receta");
+        return;
+    }
+
+    const receta = recetasEstandarizadas[selector.value];
+
+    // 1. Recalcular el costo total de producción exacto como en el detalle
+    let costoBase = 0;
+    receta.ingredientes.forEach(function (ingrediente) {
+        costoBase += calcularCostoIngrediente(ingrediente.nombre, ingrediente.cantidad, ingrediente.unidad);
+    });
+
+    let totalManoObra = 0;
+    if (typeof listaGastosOperativos !== "undefined") {
+        listaGastosOperativos.forEach(function (gasto) {
+            if (gasto.tipo === "manodeobra") totalManoObra += gasto.monto;
+        });
+    }
+    const costoManoObraReceta = totalManoObra / 1080;
+
+    let totalCostosIndirectos = 0;
+    if (typeof listaGastosOperativos !== "undefined") {
+        listaGastosOperativos.forEach(function (gasto) {
+            if (gasto.tipo === "fijo") totalCostosIndirectos += gasto.monto;
+        });
+    }
+    const costoIndirectoReceta = totalCostosIndirectos / 1080;
+
+    const costoProduccionTotal = costoBase + costoManoObraReceta + costoIndirectoReceta;
+    const margenGanancia = 30;
+    let precioSugerido = costoProduccionTotal / (1 - margenGanancia / 100);
+
+    // 2. Sumar los extras que estén seleccionados en el HTML actual
+    let totalExtras = 0;
+    const checks = document.querySelectorAll(".extra-checkbox");
+    checks.forEach(function (c) {
+        if (c.checked) {
+            totalExtras += parseFloat(c.dataset.precio);
+        }
+    });
+
+    // El precio final de venta de este artículo
+    let precioFinalVenta = precioSugerido + totalExtras;
+
+    // buscar si ya existe con el mismo precio (por si se añade con/sin extras diferentes)
+    let existente = carrito.find(item => item.nombre === receta.nombre && item.precio.toFixed(2) === precioFinalVenta.toFixed(2));
+
+    if (existente) {
+        existente.cantidad++;
+    } else {
+        carrito.push({
+            nombre: receta.nombre,
+            precio: precioFinalVenta, // ¡Ahora sí guarda el precio de venta sugerido + extras!
+            cantidad: 1
+        });
+    }
+
+    // Desmarcar los checkboxes para una nueva compra
+    checks.forEach(c => c.checked = false);
+    if(document.getElementById("costoExtras")) document.getElementById("costoExtras").textContent = "0.00";
+    if(document.getElementById("costoTotalReceta")) document.getElementById("costoTotalReceta").textContent = costoBase.toFixed(2);
+
+    mostrarCarrito();
+}
+
+//===================================
+// MOSTRAR CARRITO DE PEDIDOS
+//===================================
+function mostrarCarrito() {
+    const contenedor = document.getElementById("carrito");
+
+    if (!contenedor) return;
+
+    contenedor.innerHTML = "<h3>🛒 Carrito de pedidos</h3>";
+
+    let total = 0;
+
+    carrito.forEach((item, indice) => {
+        let subtotal = item.precio * item.cantidad;
+        total += subtotal;
+
+        contenedor.innerHTML += `
+            <div class="carrito-item">
+                <span class="carrito-info">
+                    <strong>${item.nombre}</strong> x${item.cantidad} - $${subtotal.toFixed(2)} 
+                    <small>($${item.precio.toFixed(2)} c/u)</small>
+                </span>
+                <button onclick="eliminarDelCarrito(${indice})" class="btn-borrar">
+                    ❌
+                </button>
+            </div>
+        `;
+    });
+
+   contenedor.innerHTML += `
+        <hr>
+        <h4 class="carrito-total">Total a Pagar: $${total.toFixed(2)}</h4>
+        <button onclick="finalizarCompra()" class="btn-finalizar">
+            ✅ Finalizar Compra
+        </button>
+    `;
+}
+
+//===================================
+// FUNCIÓN PARA ELIMINAR UN ITEM DEL CARRITO
+//===================================
+function eliminarDelCarrito(indice) {
+    // Eliminamos 1 elemento en la posición 'indice' del array
+    carrito.splice(indice, 1);
+    
+    // Volvemos a renderizar el carrito actualizado en pantalla
+    mostrarCarrito();
+}
 const costosExtras = {
     "Carne extra": 1.50,
     "Queso extra": 0.50,
@@ -396,6 +518,11 @@ function mostrarDetalleReceta() {
 
         </div>
 `;
+    html += `
+    <button onclick="agregarRecetaAlCarrito()">
+        🛒 Comprar
+    </button>
+`;
     detalle.innerHTML = html;
     actualizarCostoExtras();
 }
@@ -594,6 +721,31 @@ function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
     );
 
     return cantidad;
+}
+
+//===================================
+// FUNCIÓN PARA FINALIZAR LA COMPRA
+//===================================
+function finalizarCompra() {
+    // Si el carrito está vacío, no permitimos finalizar
+    if (carrito.length === 0) {
+        alert("El carrito está vacío. Agrega una receta antes de finalizar.");
+        return;
+    }
+
+    let total = 0;
+    carrito.forEach(item => {
+        total += item.precio * item.cantidad;
+    });
+
+    // Mensaje de éxito para el usuario
+    alert(`¡Pedido procesado con éxito!\nTotal de la venta: $${total.toFixed(2)}\n¡Gracias por tu compra en FastFood Express!`);
+
+    // Limpiamos el array del carrito para dejarlo vacío
+    carrito = [];
+
+    // Actualizamos la interfaz para que vuelva a mostrar el carrito limpio
+    mostrarCarrito();
 }
 
 // ============================================
