@@ -2114,24 +2114,38 @@ function calcularConsolidadoFinanciero() {
             });
         }
 
-        // Costo de materia prima final consolidado (Equivalente al costo total real de producción variable)
-        let costoVariableTotalUnitario = costoMateriaPrimaUnitario + costoExtras;
+// =====================================
+// COSTOS COMPLETOS DE PRODUCCIÓN
+// =====================================
 
-        // Establecer el precio sugerido con la fórmula de margen (30%) sobre los costos directos
-        let precioVenta = costoVariableTotalUnitario / (1 - 0.30);
-        let margenUtilidadUnitaria = precioVenta - costoVariableTotalUnitario;
+let costoManoObraUnitario = mo / 1080;
 
-        // Obtener volumen de venta y peso porcentual asignado para las 1080 unidades globales
-        let unidadesVendidas = proyeccionVentas[receta.nombre] || 0;
-        let porcentajeParticipacion = unidadesVendidas / ventasTotalesProyectadas;
+let costoIndirectoUnitario = fijos / 1080;
 
-        // El margen de contribución ponderado aporta proporcionalmente al punto de equilibrio global
-        let margenPonderado = margenUtilidadUnitaria * porcentajeParticipacion;
-        margenContribucionPonderadoTotal += margenPonderado;
+let costoProduccionTotal =
+    costoMateriaPrimaUnitario +
+    costoExtras +
+    costoManoObraUnitario +
+    costoIndirectoUnitario;
+
+// Precio sugerido con margen del 30%
+let precioVenta =
+    costoProduccionTotal / 0.70;
+
+let margenUtilidadUnitaria =
+    precioVenta - costoProduccionTotal;
+
+// Obtener volumen de venta y peso porcentual asignado para las 1080 unidades globales
+let unidadesVendidas = proyeccionVentas[receta.nombre] || 0;
+let porcentajeParticipacion = unidadesVendidas / ventasTotalesProyectadas;
+
+// El margen de contribución ponderado aporta proporcionalmente al punto de equilibrio global
+let margenPonderado = margenUtilidadUnitaria * porcentajeParticipacion;
+margenContribucionPonderadoTotal += margenPonderado;
 
         return {
             nombre: receta.nombre,
-            costoMateriaPrima: costoVariableTotalUnitario,
+            costoMateriaPrima: costoProduccionTotal,
             precioVenta: precioVenta,
             utilidad: margenUtilidadUnitaria,
             unidadesVendidas: unidadesVendidas,

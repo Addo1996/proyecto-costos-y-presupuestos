@@ -204,8 +204,64 @@ function mostrarDetalleReceta() {
             ingrediente.unidad
 
         );
-
     });
+    const costoPorPorcion =
+        costoBase / receta.porciones;
+
+    // =====================================
+    // MANO DE OBRA POR RECETA
+    // =====================================
+
+    let totalManoObra = 0;
+
+    if (typeof listaGastosOperativos !== "undefined") {
+
+        listaGastosOperativos.forEach(function (gasto) {
+
+            if (gasto.tipo === "manodeobra") {
+
+                totalManoObra += gasto.monto;
+
+            }
+
+        });
+
+    }
+
+    // 1080 ventas proyectadas mensuales
+    const costoManoObraReceta =
+        totalManoObra / 1080;
+    // =====================================
+    // COSTOS INDIRECTOS
+    // =====================================
+
+    let totalCostosIndirectos = 0;
+
+    if (typeof listaGastosOperativos !== "undefined") {
+
+        listaGastosOperativos.forEach(function (gasto) {
+
+            if (gasto.tipo === "fijo") {
+
+                totalCostosIndirectos += gasto.monto;
+
+            }
+
+        });
+
+    }
+
+    const costoIndirectoReceta =
+        totalCostosIndirectos / 1080;
+
+    const costoProduccionTotal = costoBase + costoManoObraReceta + costoIndirectoReceta;
+    // =====================================
+    // PRECIO SUGERIDO Y MARGEN
+    // =====================================
+
+    const margenGanancia = 30;
+
+    const precioSugerido = costoProduccionTotal / (1 - margenGanancia / 100);
 
     let html = `
     
@@ -217,8 +273,35 @@ function mostrarDetalleReceta() {
     <p><strong>Porciones:</strong>
     ${receta.porciones}</p>
 
-    <p><strong>Costo Base:</strong>
-    $${costoBase.toFixed(2)}</p>
+   <p>
+    <strong>Costo Materia Prima:</strong>
+    $${costoBase.toFixed(2)}
+</p>
+
+<p>
+    <strong>Costo por Porción:</strong>
+    $${costoPorPorcion.toFixed(2)}
+</p>
+<p>
+    <strong>Costo Mano de Obra:</strong>
+    $${costoManoObraReceta.toFixed(2)}
+</p>
+<p>
+    <strong>Costos Indirectos:</strong>
+    $${costoIndirectoReceta.toFixed(2)}
+</p>
+<p>
+    <strong>Costo Total Producción:</strong>
+    $${costoProduccionTotal.toFixed(2)}
+</p>
+<p>
+    <strong>Precio Sugerido de Venta:</strong>
+    $${precioSugerido.toFixed(2)}
+</p>
+<p>
+    <strong>Margen de Ganancia:</strong>
+    ${margenGanancia}%
+</p>
     <h4 class="titulo-ficha">
     📋 Ficha Técnica de Ingredientes
     </h4>
@@ -296,8 +379,22 @@ function mostrarDetalleReceta() {
 
         <h4>
             💵 Costo Total:
-           $<span id="costoTotalReceta"> ${costoBase.toFixed(2)}</span>
+           $<span id="costoTotalReceta">${costoBase.toFixed(2)}</span>
         </h4>
+
+        <div class="resumen-financiero-receta">
+
+            <p>
+                💵 <strong>Precio Sugerido:</strong>
+                $${precioSugerido.toFixed(2)}
+            </p>
+
+            <p>
+                📈 <strong>Margen de Ganancia:</strong>
+                ${margenGanancia}%
+            </p>
+
+        </div>
 `;
     detalle.innerHTML = html;
     actualizarCostoExtras();
@@ -437,58 +534,58 @@ function calcularCostoIngrediente(nombreIngrediente,
 // CONVERTIR UNIDADES
 // ============================================
 
-function convertirUnidad(cantidad, unidadReceta, unidadCompra){
+function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
 
     // Convertimos a minúsculas
     unidadReceta = unidadReceta.toLowerCase();
     unidadCompra = unidadCompra.toLowerCase();
 
     // Igualdad exacta
-    if(unidadReceta === unidadCompra){
+    if (unidadReceta === unidadCompra) {
         return cantidad;
     }
 
     // UNIDADES
-    if(unidadReceta === "u" &&
-       unidadCompra === "unidades"){
+    if (unidadReceta === "u" &&
+        unidadCompra === "unidades") {
         return cantidad;
     }
 
-    if(unidadReceta === "unidades" &&
-       unidadCompra === "u"){
+    if (unidadReceta === "unidades" &&
+        unidadCompra === "u") {
         return cantidad;
     }
 
     // GRAMOS ↔ KILOGRAMOS
-    if((unidadReceta === "gr" || unidadReceta === "g") &&
-       unidadCompra === "kilogramos"){
+    if ((unidadReceta === "gr" || unidadReceta === "g") &&
+        unidadCompra === "kilogramos") {
         return cantidad / 1000;
     }
 
-    if(unidadReceta === "kilogramos" &&
-       (unidadCompra === "gr" || unidadCompra === "g")){
+    if (unidadReceta === "kilogramos" &&
+        (unidadCompra === "gr" || unidadCompra === "g")) {
         return cantidad * 1000;
     }
 
     // GRAMOS ↔ LIBRAS
-    if((unidadReceta === "gr" || unidadReceta === "g") &&
-       unidadCompra === "libras"){
+    if ((unidadReceta === "gr" || unidadReceta === "g") &&
+        unidadCompra === "libras") {
         return cantidad / 453.592;
     }
 
-    if(unidadReceta === "libras" &&
-       (unidadCompra === "gr" || unidadCompra === "g")){
+    if (unidadReceta === "libras" &&
+        (unidadCompra === "gr" || unidadCompra === "g")) {
         return cantidad * 453.592;
     }
 
     // ML ↔ LITROS
-    if(unidadReceta === "ml" &&
-       unidadCompra === "litros"){
+    if (unidadReceta === "ml" &&
+        unidadCompra === "litros") {
         return cantidad / 1000;
     }
 
-    if(unidadReceta === "litros" &&
-       unidadCompra === "ml"){
+    if (unidadReceta === "litros" &&
+        unidadCompra === "ml") {
         return cantidad * 1000;
     }
 
