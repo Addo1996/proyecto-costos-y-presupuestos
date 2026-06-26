@@ -977,7 +977,9 @@ function crearReceta() {
     );
     cargarRecetasEstandarizadas();
     actualizarTablaRecetas();
-
+    if (typeof calcularConsolidadoFinanciero === "function") {
+        calcularConsolidadoFinanciero();
+    }
     alert(
         "Receta creada correctamente"
     );
@@ -1097,6 +1099,9 @@ function editarRecetaPersonalizada(index) {
 
     actualizarTablaRecetas();
     cargarRecetasEstandarizadas();
+    if (typeof calcularConsolidadoFinanciero === "function") {
+    calcularConsolidadoFinanciero();
+}
 
     alert("Modifique la receta y presione Crear Receta para guardar los cambios.");
 }

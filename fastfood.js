@@ -2053,14 +2053,22 @@ function calcularConsolidadoFinanciero() {
 
     // 3. Unificar recetas del sistema (Estandarizadas + Personalizadas)
     let todasLasRecetas = [];
-    if (typeof recetasEstandarizadas !== 'undefined' && recetasEstandarizadas) {
+
+    if (typeof recetasEstandarizadas !== "undefined" && recetasEstandarizadas) {
         todasLasRecetas = [...recetasEstandarizadas];
     }
-    let personalizadas = JSON.parse(localStorage.getItem("recetas")) || [];
-    personalizadas.forEach(rp => {
-        if (!todasLasRecetas.some(r => r.nombre === rp.nombre)) {
+
+    let personalizadas =
+        JSON.parse(localStorage.getItem("recetasPersonalizadas")) || [];
+
+    personalizadas.forEach(function (rp) {
+
+        if (!todasLasRecetas.some(function (r) {
+            return r.nombre === rp.nombre;
+        })) {
             todasLasRecetas.push(rp);
         }
+
     });
 
     // Validar el cuerpo de la tabla de resultados financieros
@@ -2114,34 +2122,34 @@ function calcularConsolidadoFinanciero() {
             });
         }
 
-// =====================================
-// COSTOS COMPLETOS DE PRODUCCIÓN
-// =====================================
+        // =====================================
+        // COSTOS COMPLETOS DE PRODUCCIÓN
+        // =====================================
 
-let costoManoObraUnitario = mo / 1080;
+        let costoManoObraUnitario = mo / 1080;
 
-let costoIndirectoUnitario = fijos / 1080;
+        let costoIndirectoUnitario = fijos / 1080;
 
-let costoProduccionTotal =
-    costoMateriaPrimaUnitario +
-    costoExtras +
-    costoManoObraUnitario +
-    costoIndirectoUnitario;
+        let costoProduccionTotal =
+            costoMateriaPrimaUnitario +
+            costoExtras +
+            costoManoObraUnitario +
+            costoIndirectoUnitario;
 
-// Precio sugerido con margen del 30%
-let precioVenta =
-    costoProduccionTotal / 0.70;
+        // Precio sugerido con margen del 30%
+        let precioVenta =
+            costoProduccionTotal / 0.70;
 
-let margenUtilidadUnitaria =
-    precioVenta - costoProduccionTotal;
+        let margenUtilidadUnitaria =
+            precioVenta - costoProduccionTotal;
 
-// Obtener volumen de venta y peso porcentual asignado para las 1080 unidades globales
-let unidadesVendidas = proyeccionVentas[receta.nombre] || 0;
-let porcentajeParticipacion = unidadesVendidas / ventasTotalesProyectadas;
+        // Obtener volumen de venta y peso porcentual asignado para las 1080 unidades globales
+        let unidadesVendidas = proyeccionVentas[receta.nombre] || 0;
+        let porcentajeParticipacion = unidadesVendidas / ventasTotalesProyectadas;
 
-// El margen de contribución ponderado aporta proporcionalmente al punto de equilibrio global
-let margenPonderado = margenUtilidadUnitaria * porcentajeParticipacion;
-margenContribucionPonderadoTotal += margenPonderado;
+        // El margen de contribución ponderado aporta proporcionalmente al punto de equilibrio global
+        let margenPonderado = margenUtilidadUnitaria * porcentajeParticipacion;
+        margenContribucionPonderadoTotal += margenPonderado;
 
         return {
             nombre: receta.nombre,
