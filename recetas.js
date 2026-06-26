@@ -148,9 +148,33 @@ function agregarRecetaAlCarrito() {
     }
 
     // 1. Recalcular el costo total de producción exacto como en el detalle
+    let ingredientesQuitados = [];
+
+    const checksQuitar =
+        document.querySelectorAll(".quitar-checkbox");
+
+    checksQuitar.forEach(function (q) {
+
+        if (q.checked) {
+            ingredientesQuitados.push(q.dataset.nombre);
+        }
+
+    });
+
     let costoBase = 0;
+
     receta.ingredientes.forEach(function (ingrediente) {
-        costoBase += calcularCostoIngrediente(ingrediente.nombre, ingrediente.cantidad, ingrediente.unidad);
+
+        if (!ingredientesQuitados.includes(ingrediente.nombre)) {
+
+            costoBase += calcularCostoIngrediente(
+                ingrediente.nombre,
+                ingrediente.cantidad,
+                ingrediente.unidad
+            );
+
+        }
+
     });
 
     let totalManoObra = 0;
@@ -192,7 +216,10 @@ function agregarRecetaAlCarrito() {
         existente.cantidad++;
     } else {
         carrito.push({
-            nombre: receta.nombre,
+            nombre: receta.nombre +
+                (ingredientesQuitados.length > 0
+                    ? " sin " + ingredientesQuitados.join(", ")
+                    : ""),
             precio: precioFinalVenta, // ¡Ahora sí guarda el precio de venta sugerido + extras!
             cantidad: 1
         });
@@ -511,10 +538,34 @@ function mostrarDetalleReceta() {
         `;
 
     });
-
     html += `
         </tbody>
     </table>
+
+    <h4>🚫 Quitar Ingredientes:</h4>
+
+    <div class="quitar-ingredientes">
+`;
+
+    receta.ingredientes.forEach(function (ingrediente) {
+
+        html += `
+        <label class="quitar-item">
+            <input
+                type="checkbox"
+                class="quitar-checkbox"
+                data-nombre="${ingrediente.nombre}"
+                data-cantidad="${ingrediente.cantidad}"
+                data-unidad="${ingrediente.unidad}"
+            >
+            Sin ${ingrediente.nombre}
+        </label>
+    `;
+
+    });
+
+    html += `
+    </div>
 
     <h4>➕ Extras Disponibles:</h4>
 
@@ -592,51 +643,79 @@ function mostrarDetalleReceta() {
 
 function actualizarCostoExtras() {
 
-    const checks = document.querySelectorAll(".extra-checkbox");
+    const checksExtras =
+        document.querySelectorAll(".extra-checkbox");
 
-    checks.forEach(function (check) {
+    const checksQuitar =
+        document.querySelectorAll(".quitar-checkbox");
 
-        check.onchange = function () {
+    function recalcularTotal() {
 
-            let totalExtras = 0;
+        let totalExtras = 0;
 
-            checks.forEach(function (c) {
+        checksExtras.forEach(function(c){
 
-                if (c.checked) {
-                    totalExtras += parseFloat(c.dataset.precio);
-                }
+            if (c.checked) {
+                totalExtras += parseFloat(c.dataset.precio);
+            }
 
-            });
+        });
 
-            const selector = document.getElementById("selectorReceta");
+        // Importante:
+        // El precio base se mantiene igual aunque se quite un ingrediente.
+        // Solo aumentan los extras.
+        const selector =
+            document.getElementById("selectorReceta");
 
-            const receta = recetasEstandarizadas[selector.value];
+        let receta;
 
-            let costoBase = 0;
+        if (selector.value.startsWith("P-")) {
 
-            receta.ingredientes.forEach(function (ingrediente) {
+            const nombre =
+                selector.value.replace("P-", "");
 
-                costoBase += calcularCostoIngrediente(
+            const recetasPersonalizadas =
+                JSON.parse(
+                    localStorage.getItem("recetasPersonalizadas")
+                ) || [];
 
-                    ingrediente.nombre,
+            receta =
+                recetasPersonalizadas.find(r => r.nombre === nombre);
 
-                    ingrediente.cantidad,
+        } else {
 
-                    ingrediente.unidad
+            receta =
+                recetasEstandarizadas[selector.value];
 
-                );
+        }
 
-            });
-            let total = costoBase + totalExtras;
+        let costoBase = 0;
 
-            document.getElementById("costoExtras").textContent =
-                totalExtras.toFixed(2);
+        receta.ingredientes.forEach(function(ingrediente){
 
-            document.getElementById("costoTotalReceta").textContent =
-                total.toFixed(2);
+            costoBase += calcularCostoIngrediente(
+                ingrediente.nombre,
+                ingrediente.cantidad,
+                ingrediente.unidad
+            );
 
-        };
+        });
 
+        let total = costoBase + totalExtras;
+
+        document.getElementById("costoExtras").textContent =
+            totalExtras.toFixed(2);
+
+        document.getElementById("costoTotalReceta").textContent =
+            total.toFixed(2);
+    }
+
+    checksExtras.forEach(function(check){
+        check.onchange = recalcularTotal;
+    });
+
+    checksQuitar.forEach(function(check){
+        check.onchange = recalcularTotal;
     });
 
 }
@@ -1100,8 +1179,8 @@ function editarRecetaPersonalizada(index) {
     actualizarTablaRecetas();
     cargarRecetasEstandarizadas();
     if (typeof calcularConsolidadoFinanciero === "function") {
-    calcularConsolidadoFinanciero();
-}
+        calcularConsolidadoFinanciero();
+    }
 
     alert("Modifique la receta y presione Crear Receta para guardar los cambios.");
 }
