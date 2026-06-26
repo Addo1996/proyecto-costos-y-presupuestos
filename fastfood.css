@@ -558,3 +558,494 @@ footer{
 .btn-finalizar:active {
     transform: translateY(0);
 }
+/* =====================================================
+   REDISEÑO MODERNO FASTFOOD EXPRESS - OVERRIDES FINALES
+   Agregado para dar estilo tipo sistema profesional/POS
+===================================================== */
+
+:root{
+    --rojo-principal:#ff3131;
+    --naranja-principal:#ff914d;
+    --amarillo-acento:#ffd000;
+    --verde-exito:#21a65b;
+    --azul-info:#1e88e5;
+    --rojo-peligro:#dc3545;
+    --fondo-app:#fff7ef;
+    --fondo-card:#ffffff;
+    --texto-principal:#222;
+    --texto-secundario:#666;
+    --borde-suave:#ffe0cc;
+    --sombra-suave:0 8px 20px rgba(0,0,0,0.08);
+    --sombra-media:0 14px 35px rgba(0,0,0,0.14);
+    --radio-card:18px;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at top left, rgba(255,145,77,0.28), transparent 35%),
+        radial-gradient(circle at top right, rgba(255,49,49,0.18), transparent 30%),
+        linear-gradient(180deg,#fff7ef,#f5f5f5 45%,#fff);
+    color:var(--texto-principal);
+}
+
+header{
+    background:
+        linear-gradient(135deg,rgba(255,49,49,0.95),rgba(255,145,77,0.95)),
+        url("img/hamburguesa.png");
+    background-size:cover;
+    background-position:center;
+    padding:55px 25px;
+    border-bottom-left-radius:35px;
+    border-bottom-right-radius:35px;
+    box-shadow:var(--sombra-media);
+}
+
+header h1{
+    font-size:clamp(2.1rem,5vw,4rem);
+    letter-spacing:1px;
+    text-shadow:0 4px 12px rgba(0,0,0,0.25);
+}
+
+header p{
+    font-size:1.25rem;
+    font-weight:bold;
+    opacity:0.95;
+}
+
+nav{
+    width:min(1100px,92%);
+    margin:-22px auto 25px auto;
+    border-radius:999px;
+    background:rgba(34,34,34,0.96);
+    box-shadow:var(--sombra-media);
+    backdrop-filter:blur(8px);
+    padding:12px 16px;
+    gap:10px;
+}
+
+nav a{
+    padding:10px 14px;
+    border-radius:999px;
+    color:#fff;
+    transition:all .25s ease;
+}
+
+nav a:hover{
+    background:linear-gradient(135deg,var(--rojo-principal),var(--naranja-principal));
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+section{
+    border:1px solid rgba(255,145,77,0.22);
+    border-radius:var(--radio-card);
+    box-shadow:var(--sombra-suave);
+    animation:aparecerSuave .35s ease;
+}
+
+section h2{
+    font-size:1.8rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border-bottom:3px solid rgba(255,145,77,0.25);
+    padding-bottom:10px;
+}
+
+@keyframes aparecerSuave{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+button{
+    border-radius:999px;
+    box-shadow:0 5px 12px rgba(255,49,49,0.22);
+    letter-spacing:0.2px;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(255,49,49,0.28);
+}
+
+button:active{
+    transform:scale(0.98);
+}
+
+input, select{
+    background:#fffdfb;
+    border:2px solid #f1d5c6;
+    transition:all .2s ease;
+}
+
+input:focus, select:focus{
+    border-color:var(--naranja-principal);
+    box-shadow:0 0 0 4px rgba(255,145,77,0.16);
+}
+
+/* Tarjetas de inicio */
+.card-imagen{
+    border:1px solid var(--borde-suave);
+    box-shadow:var(--sombra-suave);
+    transition:all .25s ease;
+    overflow:hidden;
+}
+
+.card-imagen:hover{
+    transform:translateY(-8px) scale(1.01);
+    box-shadow:var(--sombra-media);
+}
+
+.card-imagen img{
+    transition:transform .35s ease;
+}
+
+.card-imagen:hover img{
+    transform:scale(1.06);
+}
+
+.card-imagen h3{
+    background:linear-gradient(135deg,var(--rojo-principal),var(--naranja-principal));
+    color:#fff;
+    margin:12px -15px -15px -15px;
+    padding:12px;
+}
+
+/* Bloques de estudio */
+article,
+.canvas-resumen,
+.canvas-simulador{
+    border-radius:var(--radio-card) !important;
+    box-shadow:var(--sombra-suave) !important;
+}
+
+.pilar{
+    border:1px solid var(--borde-suave);
+    transition:all .25s ease;
+}
+
+.pilar:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--sombra-suave);
+}
+
+/* Botones por tipo */
+.btn-finalizar,
+button[onclick*="crearReceta"],
+button[onclick*="agregarIngredienteReceta"]{
+    background:linear-gradient(135deg,#22c55e,#15803d);
+}
+
+button[onclick*="editar"],
+button[onclick*="Editar"]{
+    background:linear-gradient(135deg,#1e88e5,#0d47a1);
+}
+
+.btn-borrar,
+button[onclick*="eliminar"],
+button[onclick*="Borrar"]{
+    background:linear-gradient(135deg,#ef4444,#991b1b);
+}
+
+button[onclick*="agregarRecetaAlCarrito"],
+button[onclick*="Comprar"]{
+    background:linear-gradient(135deg,#ff914d,#ff3131);
+    font-size:1.05rem;
+    padding:14px 28px;
+    display:block;
+    margin:20px auto;
+}
+
+/* Tablas modernas */
+table{
+    overflow:hidden;
+    border-radius:14px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.06);
+    background:#fff;
+}
+
+table th{
+    background:linear-gradient(135deg,var(--rojo-principal),var(--naranja-principal));
+    letter-spacing:0.3px;
+}
+
+table td{
+    border-color:#f0e0d6;
+}
+
+table tr{
+    transition:background .2s ease, transform .2s ease;
+}
+
+table tbody tr:hover{
+    background:#fff4ec;
+}
+
+/* Imagen y ficha de recetas */
+#detalleReceta{
+    background:linear-gradient(180deg,#fff,#fff8f1);
+    border:1px solid var(--borde-suave);
+    border-radius:22px;
+    padding:25px;
+    margin-top:20px;
+    box-shadow:var(--sombra-suave);
+}
+
+#detalleReceta h3{
+    text-align:center;
+    color:var(--rojo-principal);
+    font-size:2rem;
+}
+
+.imagen-receta{
+    width:min(360px,100%);
+    height:230px;
+    border:5px solid #fff;
+    box-shadow:0 12px 28px rgba(0,0,0,0.18);
+}
+
+#detalleReceta > p{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:180px;
+    margin:8px;
+    padding:14px 16px;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0 5px 12px rgba(0,0,0,0.06);
+    border:1px solid #ffe2cf;
+    font-weight:bold;
+}
+
+.titulo-ficha{
+    background:linear-gradient(135deg,#fff2df,#fff);
+    border-left:6px solid var(--naranja-principal);
+    padding:12px 16px;
+    border-radius:12px;
+}
+
+.tabla-ingredientes-receta td:first-child{
+    font-weight:bold;
+    color:#333;
+}
+
+/* Quitar ingredientes estilo chips */
+.quitar-ingredientes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    margin:15px 0 25px 0;
+}
+
+.quitar-item{
+    background:#fff0f0;
+    border:2px solid #ff6b6b;
+    color:#9f1239;
+    padding:10px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:all .2s ease;
+}
+
+.quitar-item:hover{
+    transform:translateY(-3px);
+    background:#ffe1e1;
+}
+
+.quitar-item input{
+    width:auto;
+    margin:0 8px 0 0;
+}
+
+/* Extras estilo tarjetas */
+.extras-receta{
+    gap:18px;
+}
+
+.extra-item{
+    width:170px;
+    min-height:205px;
+    border:2px solid #ffd27a;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+    position:relative;
+}
+
+.extra-item:hover{
+    border-color:var(--naranja-principal);
+    box-shadow:var(--sombra-media);
+}
+
+.extra-checkbox{
+    width:auto;
+    accent-color:var(--verde-exito);
+}
+
+.extra-item:has(.extra-checkbox:checked){
+    border-color:var(--verde-exito);
+    background:#f0fff5;
+}
+
+.extra-info span{
+    color:#222;
+}
+
+.extra-info small{
+    color:var(--verde-exito);
+    font-weight:bold;
+}
+
+/* Resumen financiero de receta */
+.resumen-financiero-receta{
+    background:linear-gradient(135deg,#fff7e6,#ffffff);
+    border-left:7px solid var(--naranja-principal);
+    box-shadow:var(--sombra-suave);
+}
+
+/* Carrito tipo ticket */
+#carrito{
+    max-width:760px;
+    margin:25px auto 0 auto;
+    background:#fffef8;
+    border:2px dashed #ffb347;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:var(--sombra-suave);
+    position:relative;
+}
+
+#carrito::before{
+    content:"";
+    position:absolute;
+    left:20px;
+    right:20px;
+    top:-2px;
+    border-top:6px dotted #fff7ef;
+}
+
+#carrito h3{
+    text-align:center;
+    border-bottom:2px dashed #ffb347;
+}
+
+.carrito-item{
+    background:#fff;
+    border-left:5px solid var(--naranja-principal);
+    border-radius:12px;
+    padding:12px 14px;
+}
+
+.carrito-total{
+    background:#222;
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+    text-align:center;
+}
+
+/* Gestión de costos: paneles más llamativos */
+.sub-seccion-costos,
+.subreceta{
+    animation:aparecerSuave .35s ease;
+}
+
+.botones-recetas,
+.botones-teoria,
+.botones-subtemas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+}
+
+.botones-recetas button,
+.botones-teoria button,
+.botones-subtemas button{
+    min-width:190px;
+}
+
+/* Formularios de recetas personalizadas */
+#personalizadas{
+    background:linear-gradient(180deg,#ffffff,#fff7ef);
+    border:1px solid var(--borde-suave);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:var(--sombra-suave);
+}
+
+#listaIngredientesReceta p{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    border-left:5px solid var(--naranja-principal);
+    padding:10px 12px;
+    margin:8px 0;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Tarjetas financieras si usan spans/ids */
+#resumenFijosTotal,
+#resumenVariablesTotal,
+#resumenMOTotal,
+#resumenCostoFijoIndirecto,
+#totalGastosOperativosGeneral{
+    font-size:1.2rem;
+    font-weight:bold;
+    color:var(--rojo-principal);
+}
+
+/* Evaluación */
+.pregunta-bloque{
+    border:1px solid var(--borde-suave);
+}
+
+.pregunta-bloque:hover{
+    box-shadow:var(--sombra-suave);
+}
+
+/* Responsive final */
+@media(max-width:768px){
+    nav{
+        border-radius:22px;
+        margin:-15px auto 20px auto;
+    }
+
+    nav a{
+        width:100%;
+        text-align:center;
+    }
+
+    #detalleReceta > p{
+        width:100%;
+        margin:7px 0;
+    }
+
+    .extra-item{
+        width:45%;
+        min-width:145px;
+    }
+
+    .carrito-item{
+        flex-direction:column;
+        gap:10px;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:480px){
+    .extra-item{
+        width:100%;
+    }
+
+    header{
+        padding:40px 15px;
+    }
+}
