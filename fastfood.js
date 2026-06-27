@@ -2138,7 +2138,7 @@ function calcularConsolidadoFinanciero() {
 
         // Precio sugerido con margen del 30%
         let precioVenta =
-            costoProduccionTotal / 0.70;
+            costoProduccionTotal * 1.30;
 
         let margenUtilidadUnitaria =
             precioVenta - costoProduccionTotal;
@@ -2176,7 +2176,7 @@ function calcularConsolidadoFinanciero() {
         let unidadesEquilibrioEspecificas = Math.ceil(puntoEquilibrioGlobalUnidades * participacionReal);
 
         // ADICIÓN DE GASTOS OPERATIVOS: Prorrateo exacto del gasto mensual según el peso real en el volumen de 1080 ventas
-        let costoAgregadoReal = prod.costoMateriaPrima + ((costoOperativoMensualTotal * participacionReal) / ventasTotalesProyectadas);
+        let costoAgregadoReal = prod.precioVenta - prod.costoMateriaPrima;
 
         tbodyFinanciero.innerHTML += `
             <tr style="border-bottom: 1px solid #eee; background: #fff;">
