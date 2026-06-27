@@ -818,12 +818,17 @@ function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
 
     if ((unidadReceta === "gr" || unidadReceta === "g") &&
         unidadCompra === "kilogramos") {
-        return cantidad / 1000;
+        return (cantidad / 1000);
+    }
+
+    if ((unidadReceta === "gr" || unidadReceta === "g") &&
+        unidadCompra === "kg") {
+        return (cantidad / 1000);
     }
 
     if (unidadReceta === "kilogramos" &&
         (unidadCompra === "gr" || unidadCompra === "g")) {
-        return cantidad * 1000;
+        return (cantidad * 1000);
     }
 
     if ((unidadReceta === "gr" || unidadReceta === "g") &&

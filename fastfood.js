@@ -331,6 +331,125 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
+
+    if (btnAgregarAReceta) {
+        btnAgregarAReceta.addEventListener("click", function () {
+            // 1. Capturar los valores usando los IDs exactos de tu HTML original
+            const nombreInsumo = document.getElementById("nombreMP")?.value.trim();
+            const unidadCompra = document.getElementById("unidadMP")?.value || "unidades";
+            const cantidadCompra = parseFloat(document.getElementById("cantidadCompraMP")?.value) || 0;
+            const precioCompra = parseFloat(document.getElementById("precioCompraMP")?.value) || 0;
+            const mermaCompra = parseFloat(document.getElementById("mermaMP")?.value) || 0;
+
+            if (!nombreInsumo || cantidadCompra <= 0 || precioCompra <= 0) {
+                alert("Por favor, llena los datos de la Materia Prima (Nombre, Cantidad y Precio) en el formulario antes de continuar.");
+                return;
+            }
+
+            // 2. Obtener lista de recetas disponibles
+            let opcionesRecetas = "";
+            if (typeof recetasEstandarizadas !== 'undefined' && recetasEstandarizadas.length > 0) {
+                recetasEstandarizadas.forEach((receta, index) => {
+                    opcionesRecetas += `${index + 1}. ${receta.nombre}\n`;
+                });
+            } else {
+                alert("No se encontraron recetas estandarizadas.");
+                return;
+            }
+
+            // 3. PASO 1: Elegir receta
+            const seleccion = prompt(`¿A qué receta deseas integrar "${nombreInsumo}"?\n\nDigita el NÚMERO:\n\n${opcionesRecetas}`);
+            if (seleccion === null) return;
+
+            const indexReceta = parseInt(seleccion) - 1;
+
+            if (!isNaN(indexReceta) && indexReceta >= 0 && indexReceta < recetasEstandarizadas.length) {
+                const recetaDestino = recetasEstandarizadas[indexReceta];
+
+                // 4. PASO 2: Cantidad para la receta
+                const cantidadTxt = prompt(`¿Qué CANTIDAD de "${nombreInsumo}" se utiliza para preparar "${recetaDestino.nombre}"?`);
+                if (cantidadTxt === null) return;
+                const cantidadUsar = parseFloat(cantidadTxt);
+
+                if (isNaN(cantidadUsar) || cantidadUsar <= 0) {
+                    alert("Cantidad no válida. Proceso cancelado.");
+                    return;
+                }
+
+                // 5. PASO 3: Unidad en la receta
+                let sugerenciaUnidad = "u";
+                if (unidadCompra.toLowerCase().includes("kg") || unidadCompra.toLowerCase().includes("kilo")) sugerenciaUnidad = "gr";
+                else if (unidadCompra.toLowerCase().includes("litro") || unidadCompra.toLowerCase().includes("lt")) sugerenciaUnidad = "ml";
+                else sugerenciaUnidad = unidadCompra;
+
+                const unidadDestino = prompt(`¿En qué UNIDAD de medida se guardará en la receta? (gr, ml, u):`, sugerenciaUnidad);
+                if (unidadDestino === null) return;
+                const unidadFinal = unidadDestino.trim();
+
+                // =========================================================================
+                // INYECCIÓN EN EL INVENTARIO REAL (materiasPrimas)
+                // =========================================================================
+                const existeEnInventario = materiasPrimas.some(mp => mp.nombre.toLowerCase() === nombreInsumo.toLowerCase());
+                
+                if (!existeEnInventario) {
+                    materiasPrimas.push({
+                        nombre: nombreInsumo,
+                        unidad: unidadCompra,
+                        cantidad: cantidadCompra,
+                        precio: precioCompra,
+                        merma: mermaCompra
+                    });
+                    // Guardamos usando la clave correcta de tu aplicación
+                    localStorage.setItem("materiasPrimas", JSON.stringify(materiasPrimas));
+                }
+
+                // =========================================================================
+                // INYECCIÓN EN LA RECETA SELECCIONADA EN MEMORIA
+                // =========================================================================
+                const yaExisteEnReceta = recetaDestino.ingredientes.some(ing => ing.nombre.toLowerCase() === nombreInsumo.toLowerCase());
+
+                if (!yaExisteEnReceta) {
+                    recetaDestino.ingredientes.push({
+                        nombre: nombreInsumo,
+                        cantidad: cantidadUsar,
+                        unidad: unidadFinal
+                    });
+
+                    alert(`¡Éxito! Se añadieron ${cantidadUsar} ${unidadFinal} de "${nombreInsumo}" a la receta de "${recetaDestino.nombre}". El costo ha sido integrado.`);
+
+                    // =========================================================================
+                    // ACTUALIZACIÓN EN VIVO DE LA INTERFAZ (SIN RECARGAR PÁGINA)
+                    // =========================================================================
+                    
+                    // 1. Actualizar tabla de Materia Prima en pantalla
+                    if (typeof actualizarTablaMateriaPrima === "function") {
+                        actualizarTablaMateriaPrima();
+                    }
+                    
+                    // 2. Limpiar el formulario superior
+                    if (typeof limpiarMateriaPrima === "function") {
+                        limpiarMateriaPrima();
+                    }
+                    
+                    // 3. Recalcular TODO el resumen financiero
+                    if (typeof calcularConsolidadoFinanciero === "function") {
+                        calcularConsolidadoFinanciero();
+                    }
+
+                    // 4. Si el detalle de la receta está abierto, refrescarlo
+                    const selectorReceta = document.getElementById("selectorReceta");
+                    if (typeof mostrarDetalleReceta === "function" && selectorReceta && selectorReceta.value !== "") {
+                        mostrarDetalleReceta();
+                    }
+
+                } else {
+                    alert(`El ingrediente "${nombreInsumo}" ya existe en la receta de "${recetaDestino.nombre}".`);
+                }
+            } else {
+                alert("Selección de receta inválida.");
+            }
+        });
+    }
 });
 
 
@@ -2138,7 +2257,7 @@ function calcularConsolidadoFinanciero() {
 
         // Precio sugerido con margen del 30%
         let precioVenta =
-            costoProduccionTotal * 1.30;
+            costoProduccionTotal / 0.70;
 
         let margenUtilidadUnitaria =
             precioVenta - costoProduccionTotal;
