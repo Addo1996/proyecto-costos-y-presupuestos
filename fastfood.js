@@ -111,8 +111,8 @@ const ingredientesIniciales = [
 
     {
         nombre: "Nuggets",
-        unidad: "kilogramos",
-        cantidad: 5,
+        unidad: "unidades",
+        cantidad: 280,
         precio: 35,
         merma: 0
     },
