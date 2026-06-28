@@ -3,6 +3,163 @@
 // ============================================
 let totalIngredientes = 0;
 let preguntasSeleccionadas = [];
+const ingredientesIniciales = [
+
+    {
+        nombre: "Carne molida",
+        unidad: "libras",
+        cantidad: 10,
+        precio: 45,
+        merma: 5
+    },
+
+    {
+        nombre: "Pan hamburguesa",
+        unidad: "unidades",
+        cantidad: 50,
+        precio: 20,
+        merma: 0
+    },
+
+    {
+        nombre: "Queso cheddar",
+        unidad: "unidades",
+        cantidad: 30,
+        precio: 15,
+        merma: 2
+    },
+
+    {
+        nombre: "Lechuga",
+        unidad: "kilogramos",
+        cantidad: 2,
+        precio: 6,
+        merma: 10
+    },
+
+    {
+        nombre: "Tomate",
+        unidad: "kilogramos",
+        cantidad: 3,
+        precio: 9,
+        merma: 8
+    },
+
+    {
+        nombre: "Papa",
+        unidad: "kilogramos",
+        cantidad: 10,
+        precio: 18,
+        merma: 15
+    },
+
+    {
+        nombre: "Salchicha",
+        unidad: "unidades",
+        cantidad: 40,
+        precio: 24,
+        merma: 0
+    },
+
+    {
+        nombre: "Mayonesa",
+        unidad: "litros",
+        cantidad: 2,
+        precio: 8,
+        merma: 2
+    },
+
+    {
+        nombre: "Salsa de tomate",
+        unidad: "litros",
+        cantidad: 2,
+        precio: 7,
+        merma: 2
+    },
+
+    {
+        nombre: "Mostaza",
+        unidad: "litros",
+        cantidad: 1,
+        precio: 4,
+        merma: 2
+    },
+
+    {
+        nombre: "Pan hot dog",
+        unidad: "unidades",
+        cantidad: 40,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Cebolla",
+        unidad: "kilogramos",
+        cantidad: 2,
+        precio: 4,
+        merma: 10
+    },
+
+    {
+        nombre: "Repollo",
+        unidad: "kilogramos",
+        cantidad: 2,
+        precio: 5,
+        merma: 12
+    },
+
+    {
+        nombre: "Nuggets",
+        unidad: "unidades",
+        cantidad: 280,
+        precio: 35,
+        merma: 0
+    },
+
+    {
+        nombre: "Aceite",
+        unidad: "litros",
+        cantidad: 5,
+        precio: 20,
+        merma: 5
+    }
+];
+const bebidasIniciales = [
+
+    {
+        nombre: "Coca-Cola 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Sprite 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Fanta 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 18,
+        merma: 0
+    },
+
+    {
+        nombre: "Agua 500 ml",
+        unidad: "unidades",
+        cantidad: 24,
+        precio: 12,
+        merma: 0
+    }
+
+];
 let nombreActual = "";
 let apellidoActual = "";
 let historialNotas =
@@ -12,13 +169,53 @@ let historialNotas =
         )
     ) || [];
 let valoraciones =
-JSON.parse(
-localStorage.getItem("valoraciones")
-) || [];
+    JSON.parse(
+        localStorage.getItem("valoraciones")
+    ) || [];
+// ============================
+// AH. MATERIA PRIMA este arreglo guarda los ingredientes registrados.
+// ============================
+
+let materiasPrimas =
+    JSON.parse(
+        localStorage.getItem("materiasPrimas")
+    );
+
+let bebidas =
+    JSON.parse(
+        localStorage.getItem("bebidas")
+    );
+
+if (materiasPrimas === null) {
+
+    materiasPrimas = ingredientesIniciales;
+
+    localStorage.setItem(
+        "materiasPrimas",
+        JSON.stringify(materiasPrimas)
+    );
+
+}
+
+if (bebidas === null) {
+
+    bebidas = bebidasIniciales;
+
+    localStorage.setItem(
+        "bebidas",
+        JSON.stringify(bebidas)
+    );
+
+}
+
+let recetas =
+    JSON.parse(
+        localStorage.getItem("recetas")
+    ) || [];
 // ============================================
 // INICIAR EVALUACION - VALIDACION DE NOMBRE Y APELLIDO
 // ============================================
-function iniciarEvaluacion(){
+function iniciarEvaluacion() {
     let nombre =
         document.getElementById(
             "nombreEvaluacion"
@@ -29,7 +226,7 @@ function iniciarEvaluacion(){
             "apellidoEvaluacion"
         ).value.trim();
 
-    if(nombre === "" || apellido === ""){
+    if (nombre === "" || apellido === "") {
 
         alert(
             "Debe ingresar nombre y apellido."
@@ -111,14 +308,147 @@ const bancoPreguntas = [
 // ============================================
 // INICIALIZACIÓN SEGURA DEL DOM
 // ============================================
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Escuchador original para agregar ingredientes (protegido aquí dentro)
     actualizarResultados();// Actualizamos el historial de notas al cargar la pagina
     actualizarValoraciones();// Actualizamos el historial de valoraciones al cargar la pagina
+    actualizarTablaMateriaPrima();// Actualizamos la tabla de materia prima al cargar la pagina
+    actualizarTablaBebidas();// Actualizamos la tabla de bebidas al cargar la pagina
+    actualizarTablaRecetas(); // Acrualizamos la tabla de recetas al cargar la pagina
     actualizarSlider();// Actualizamos el valor del slider al cargar la pagina
     const btnAgregar = document.getElementById("btnAgregar");
     if (btnAgregar) {
         btnAgregar.addEventListener("click", agregarIngrediente);
+    }
+    const btnAgregarBebida =
+        document.getElementById("btnAgregarBebida");
+
+    if (btnAgregarBebida) {
+
+        btnAgregarBebida.addEventListener(
+            "click",
+            agregarBebida
+        );
+
+    }
+
+    if (btnAgregarAReceta) {
+        btnAgregarAReceta.addEventListener("click", function () {
+            // 1. Capturar los valores usando los IDs exactos de tu HTML original
+            const nombreInsumo = document.getElementById("nombreMP")?.value.trim();
+            const unidadCompra = document.getElementById("unidadMP")?.value || "unidades";
+            const cantidadCompra = parseFloat(document.getElementById("cantidadCompraMP")?.value) || 0;
+            const precioCompra = parseFloat(document.getElementById("precioCompraMP")?.value) || 0;
+            const mermaCompra = parseFloat(document.getElementById("mermaMP")?.value) || 0;
+
+            if (!nombreInsumo || cantidadCompra <= 0 || precioCompra <= 0) {
+                alert("Por favor, llena los datos de la Materia Prima (Nombre, Cantidad y Precio) en el formulario antes de continuar.");
+                return;
+            }
+
+            // 2. Obtener lista de recetas disponibles
+            let opcionesRecetas = "";
+            if (typeof recetasEstandarizadas !== 'undefined' && recetasEstandarizadas.length > 0) {
+                recetasEstandarizadas.forEach((receta, index) => {
+                    opcionesRecetas += `${index + 1}. ${receta.nombre}\n`;
+                });
+            } else {
+                alert("No se encontraron recetas estandarizadas.");
+                return;
+            }
+
+            // 3. PASO 1: Elegir receta
+            const seleccion = prompt(`¿A qué receta deseas integrar "${nombreInsumo}"?\n\nDigita el NÚMERO:\n\n${opcionesRecetas}`);
+            if (seleccion === null) return;
+
+            const indexReceta = parseInt(seleccion) - 1;
+
+            if (!isNaN(indexReceta) && indexReceta >= 0 && indexReceta < recetasEstandarizadas.length) {
+                const recetaDestino = recetasEstandarizadas[indexReceta];
+
+                // 4. PASO 2: Cantidad para la receta
+                const cantidadTxt = prompt(`¿Qué CANTIDAD de "${nombreInsumo}" se utiliza para preparar "${recetaDestino.nombre}"?`);
+                if (cantidadTxt === null) return;
+                const cantidadUsar = parseFloat(cantidadTxt);
+
+                if (isNaN(cantidadUsar) || cantidadUsar <= 0) {
+                    alert("Cantidad no válida. Proceso cancelado.");
+                    return;
+                }
+
+                // 5. PASO 3: Unidad en la receta
+                let sugerenciaUnidad = "u";
+                if (unidadCompra.toLowerCase().includes("kg") || unidadCompra.toLowerCase().includes("kilo")) sugerenciaUnidad = "gr";
+                else if (unidadCompra.toLowerCase().includes("litro") || unidadCompra.toLowerCase().includes("lt")) sugerenciaUnidad = "ml";
+                else sugerenciaUnidad = unidadCompra;
+
+                const unidadDestino = prompt(`¿En qué UNIDAD de medida se guardará en la receta? (gr, ml, u):`, sugerenciaUnidad);
+                if (unidadDestino === null) return;
+                const unidadFinal = unidadDestino.trim();
+
+                // =========================================================================
+                // INYECCIÓN EN EL INVENTARIO REAL (materiasPrimas)
+                // =========================================================================
+                const existeEnInventario = materiasPrimas.some(mp => mp.nombre.toLowerCase() === nombreInsumo.toLowerCase());
+                
+                if (!existeEnInventario) {
+                    materiasPrimas.push({
+                        nombre: nombreInsumo,
+                        unidad: unidadCompra,
+                        cantidad: cantidadCompra,
+                        precio: precioCompra,
+                        merma: mermaCompra
+                    });
+                    // Guardamos usando la clave correcta de tu aplicación
+                    localStorage.setItem("materiasPrimas", JSON.stringify(materiasPrimas));
+                }
+
+                // =========================================================================
+                // INYECCIÓN EN LA RECETA SELECCIONADA EN MEMORIA
+                // =========================================================================
+                const yaExisteEnReceta = recetaDestino.ingredientes.some(ing => ing.nombre.toLowerCase() === nombreInsumo.toLowerCase());
+
+                if (!yaExisteEnReceta) {
+                    recetaDestino.ingredientes.push({
+                        nombre: nombreInsumo,
+                        cantidad: cantidadUsar,
+                        unidad: unidadFinal
+                    });
+
+                    alert(`¡Éxito! Se añadieron ${cantidadUsar} ${unidadFinal} de "${nombreInsumo}" a la receta de "${recetaDestino.nombre}". El costo ha sido integrado.`);
+
+                    // =========================================================================
+                    // ACTUALIZACIÓN EN VIVO DE LA INTERFAZ (SIN RECARGAR PÁGINA)
+                    // =========================================================================
+                    
+                    // 1. Actualizar tabla de Materia Prima en pantalla
+                    if (typeof actualizarTablaMateriaPrima === "function") {
+                        actualizarTablaMateriaPrima();
+                    }
+                    
+                    // 2. Limpiar el formulario superior
+                    if (typeof limpiarMateriaPrima === "function") {
+                        limpiarMateriaPrima();
+                    }
+                    
+                    // 3. Recalcular TODO el resumen financiero
+                    if (typeof calcularConsolidadoFinanciero === "function") {
+                        calcularConsolidadoFinanciero();
+                    }
+
+                    // 4. Si el detalle de la receta está abierto, refrescarlo
+                    const selectorReceta = document.getElementById("selectorReceta");
+                    if (typeof mostrarDetalleReceta === "function" && selectorReceta && selectorReceta.value !== "") {
+                        mostrarDetalleReceta();
+                    }
+
+                } else {
+                    alert(`El ingrediente "${nombreInsumo}" ya existe en la receta de "${recetaDestino.nombre}".`);
+                }
+            } else {
+                alert("Selección de receta inválida.");
+            }
+        });
     }
 });
 
@@ -138,12 +468,12 @@ function limpiarFormulario() {
 
 }
 
-function mostrarPagina(idPagina){
+function mostrarPagina(idPagina) {
 
     let paginas =
         document.querySelectorAll(".pagina");
 
-    paginas.forEach(function(pagina){
+    paginas.forEach(function (pagina) {
 
         pagina.style.display = "none";
 
@@ -154,17 +484,41 @@ function mostrarPagina(idPagina){
 
     // Si entra a Teoría ocultar todas las subsecciones
 
-    if(idPagina === "teoria"){
+    if (idPagina === "teoria") {
 
         let subsecciones =
             document.querySelectorAll(".subseccion");
 
-        subsecciones.forEach(function(sub){
+        subsecciones.forEach(function (sub) {
 
             sub.style.display = "none";
 
         });
 
+    }
+
+    if (idPagina === "gestionCostos") {
+        mostrarSubSeccionCostos("");
+    }
+}
+
+// AGREGA ESTA NUEVA FUNCIÓN POR COMPLETO:
+function mostrarSubSeccionCostos(idSubSeccion) {
+    // Oculta todas las subsecciones internas de la gestión de costos
+    const subSecciones = document.querySelectorAll('.sub-seccion-costos');
+    subSecciones.forEach(sub => sub.style.display = 'none');
+
+    // Muestra la subsección que se seleccionó
+    const subActiva = document.getElementById(idSubSeccion);
+    if (subActiva) {
+        subActiva.style.display = 'block';
+    }
+
+    // Opcional: Ejecuta recálculos si se va a las pestañas financieras
+    if (idSubSeccion === 'subResumenFinanciero' || idSubSeccion === 'subGastosOperativos') {
+        if (typeof calcularConsolidadoFinanciero === "function") {
+            calcularConsolidadoFinanciero();
+        }
     }
 }
 
@@ -175,7 +529,7 @@ function mostrarPagina(idPagina){
 function mostrarSubTemas(idSubTema) {
     // Ocultamos todos los contenidos de los subtemas
     let subtemas = document.querySelectorAll(".subtema-contenido");
-    subtemas.forEach(function(tema) {
+    subtemas.forEach(function (tema) {
         tema.style.display = "none";
     });
 
@@ -186,12 +540,12 @@ function mostrarSubTemas(idSubTema) {
 // ============================================
 // Sub Secciones en Teoria (Addonys) - Actualizada
 // ============================================
-function mostrarSubSeccion(idSubSeccion){
+function mostrarSubSeccion(idSubSeccion) {
 
     let subsecciones =
         document.querySelectorAll(".subseccion");
 
-    subsecciones.forEach(function(sub){
+    subsecciones.forEach(function (sub) {
 
         sub.style.display = "none";
 
@@ -212,24 +566,24 @@ function mostrarSubSeccion(idSubSeccion){
 function generarEvaluacionAleatoria() {
     document.getElementById("resultado-evaluacion").style.display = "none";
     document.getElementById("retroalimentacion-detalles").innerHTML = "";
-    
+
     let preguntasClonadas = [...bancoPreguntas];
     for (let i = preguntasClonadas.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [preguntasClonadas[i], preguntasClonadas[j]] = [preguntasClonadas[j], preguntasClonadas[i]];
     }
-    
+
     preguntasSeleccionadas = preguntasClonadas.slice(0, 5);
-    
+
     const contenedor = document.getElementById("contenedor-preguntas");
     contenedor.innerHTML = "";
-    
+
     preguntasSeleccionadas.forEach((item, index) => {
         let preguntaHTML = `
             <div class="pregunta-bloque" style="margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
                 <p style="font-weight: bold; margin-bottom: 10px;">${index + 1}. ${item.pregunta}</p>
         `;
-        
+
         item.opciones.forEach((opcion, opcIndex) => {
             preguntaHTML += `
                 <label style="display: block; margin-bottom: 5px; cursor: pointer;">
@@ -238,7 +592,7 @@ function generarEvaluacionAleatoria() {
                 </label>
             `;
         });
-        
+
         preguntaHTML += `</div>`;
         contenedor.innerHTML += preguntaHTML;
     });
@@ -249,7 +603,7 @@ function generarEvaluacionAleatoria() {
 function calificarEvaluacion() {
     let aciertos = 0;
     let retroalimentacionHTML = "";
-    
+
     for (let i = 0; i < preguntasSeleccionadas.length; i++) {
         const opciones = document.getElementsByName(`pregunta_${i}`);
         let respondida = false;
@@ -264,17 +618,17 @@ function calificarEvaluacion() {
             return;
         }
     }
-    
+
     preguntasSeleccionadas.forEach((item, index) => {
         const opciones = document.getElementsByName(`pregunta_${index}`);
         let respuestaUsuario = -1;
-        
+
         opciones.forEach((opcion) => {
             if (opcion.checked) {
                 respuestaUsuario = parseInt(opcion.value);
             }
         });
-        
+
         if (respuestaUsuario === item.correcta) {
             aciertos++;
             retroalimentacionHTML += `
@@ -290,33 +644,33 @@ function calificarEvaluacion() {
             `;
         }
     });
-    
-    let notaFinal = aciertos; 
+
+    let notaFinal = aciertos;
     historialNotas.push({
 
-    nombre: nombreActual,
+        nombre: nombreActual,
 
-    apellido: apellidoActual,
+        apellido: apellidoActual,
 
-    nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
-});
-localStorage.setItem(
-    "historialNotas",
-    JSON.stringify(
-        historialNotas
-    )
-);
-actualizarResultados();
+        nota: notaFinal * 2 // Escalamos a 10 puntos para el registro historico
+    });
+    localStorage.setItem(
+        "historialNotas",
+        JSON.stringify(
+            historialNotas
+        )
+    );
+    actualizarResultados();
     const contenedorResultados = document.getElementById("resultado-evaluacion");
     const textoPuntaje = document.getElementById("puntaje-texto");
     const detallesRetro = document.getElementById("retroalimentacion-detalles");
-    
-    textoPuntaje.textContent = `🎯`+nombreActual+` `+apellidoActual+` Tu puntaje es: ${notaFinal} / 5 (${(notaFinal * 2).toFixed(0)} / 10)`;
+
+    textoPuntaje.textContent = `🎯` + nombreActual + ` ` + apellidoActual + ` Tu puntaje es: ${notaFinal} / 5 (${(notaFinal * 2).toFixed(0)} / 10)`;
     textoPuntaje.style.color = notaFinal >= 3 ? "#2e7d32" : "#c62828";
-    
+
     detallesRetro.innerHTML = retroalimentacionHTML;
     contenedorResultados.style.display = "block";
-    
+
     contenedorResultados.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -357,7 +711,7 @@ function calcularSimuladorFijos() {
     let costoFijoTotal = 0;
 
     // Sumamos dinámicamente cada uno de ellos
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoFijoTotal += parseFloat(input.value) || 0;
     });
 
@@ -370,14 +724,14 @@ function calcularSimuladorFijos() {
     // Muestra el panel de resultados
     let pizarra = document.getElementById("pizarraFijos");
     pizarra.style.display = "block";
-    
+
     pizarra.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function limpiarSimuladorFijos() {
 
     let lista = document.getElementById("listaParametrosFijos");
-    
+
     while (lista.children.length > 3) {
         lista.removeChild(lista.lastChild);
     }
@@ -448,7 +802,7 @@ function calcularSimuladorVariables() {
     let costoVariableUnitario = 0;
 
     // Sumamos el valor individual de cada ingrediente del plato
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoVariableUnitario += parseFloat(input.value) || 0;
     });
 
@@ -472,9 +826,9 @@ function calcularSimuladorVariables() {
 function limpiarSimuladorVariables() {
     // Reestablecer valores por defecto de la receta base
     let inputsBase = document.querySelectorAll(".input-costo-variable");
-    if(inputsBase[0]) inputsBase[0].value = "1.50";
-    if(inputsBase[1]) inputsBase[1].value = "0.30";
-    if(inputsBase[2]) inputsBase[2].value = "0.20";
+    if (inputsBase[0]) inputsBase[0].value = "1.50";
+    if (inputsBase[1]) inputsBase[1].value = "0.30";
+    if (inputsBase[2]) inputsBase[2].value = "0.20";
 
     // Eliminar insumos extras agregados por el estudiante
     let lista = document.getElementById("listaParametrosVariables");
@@ -532,12 +886,12 @@ function agregarParametroMixto() {
 
 function calcularSimuladorMixto() {
     let inputs = document.querySelectorAll(".input-costo-mixto");
-    
+
     let totalDirectos = 0;
     let totalIndirectos = 0;
 
     // Clasificar y sumar usando el atributo personalizado data-tipo
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         let valor = parseFloat(input.value) || 0;
         let tipo = input.getAttribute("data-tipo");
 
@@ -564,9 +918,9 @@ function calcularSimuladorMixto() {
 function limpiarSimuladorMixto() {
     // Reestablecer valores iniciales de los tres inputs base
     let inputsBase = document.querySelectorAll(".input-costo-mixto");
-    if(inputsBase[0]) inputsBase[0].value = "600";
-    if(inputsBase[1]) inputsBase[1].value = "80";
-    if(inputsBase[2]) inputsBase[2].value = "40";
+    if (inputsBase[0]) inputsBase[0].value = "600";
+    if (inputsBase[1]) inputsBase[1].value = "80";
+    if (inputsBase[2]) inputsBase[2].value = "40";
 
     // Eliminar los parámetros extras creados dinámicamente (manteniendo los 3 iniciales)
     let lista = document.getElementById("listaParametrosDirectosIndirectos");
@@ -624,7 +978,7 @@ function calcularSimuladorMateria() {
     let costoMateriaUnitario = 0;
 
     // Sumatoria de cada ingrediente del plato individual
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoMateriaUnitario += parseFloat(input.value) || 0;
     });
 
@@ -648,9 +1002,9 @@ function limpiarSimuladorMateria() {
 
     // Reestablecer valores iniciales de la receta base
     let inputsBase = document.querySelectorAll(".input-costo-materia");
-    if(inputsBase[0]) inputsBase[0].value = "0.60";
-    if(inputsBase[1]) inputsBase[1].value = "0.40";
-    if(inputsBase[2]) inputsBase[2].value = "0.15";
+    if (inputsBase[0]) inputsBase[0].value = "0.60";
+    if (inputsBase[1]) inputsBase[1].value = "0.40";
+    if (inputsBase[2]) inputsBase[2].value = "0.15";
 
     // Eliminar ingredientes dinámicos extras creados por el alumno (manteniendo los 3 base)
     let lista = document.getElementById("listaParametrosMateria");
@@ -707,7 +1061,7 @@ function calcularSimuladorMano() {
     let sueldoTotalMensual = 0;
 
     // Sumar todos los sueldos de la lista actual
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         sueldoTotalMensual += parseFloat(input.value) || 0;
     });
 
@@ -732,8 +1086,8 @@ function limpiarSimuladorMano() {
 
     // Reestablecer valores por defecto del equipo inicial
     let inputsBase = document.querySelectorAll(".input-costo-mano");
-    if(inputsBase[0]) inputsBase[0].value = "450";
-    if(inputsBase[1]) inputsBase[1].value = "400";
+    if (inputsBase[0]) inputsBase[0].value = "450";
+    if (inputsBase[1]) inputsBase[1].value = "400";
 
     // Eliminar personal extra creado dinámicamente por el estudiante (manteniendo los 2 base)
     let lista = document.getElementById("listaParametrosMano");
@@ -790,7 +1144,7 @@ function calcularSimuladorReceta() {
     let costoProduccionTotal = 0;
 
     // Calcular la suma absoluta de todos los costos de la receta por porción
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
         costoProduccionTotal += parseFloat(input.value) || 0;
     });
 
@@ -815,9 +1169,9 @@ function limpiarSimuladorReceta() {
 
     // Restaurar los 3 costos predeterminados del ejemplo base
     let inputsBase = document.querySelectorAll(".input-costo-receta");
-    if(inputsBase[0]) inputsBase[0].value = "2.00";
-    if(inputsBase[1]) inputsBase[1].value = "0.50";
-    if(inputsBase[2]) inputsBase[2].value = "0.30";
+    if (inputsBase[0]) inputsBase[0].value = "2.00";
+    if (inputsBase[1]) inputsBase[1].value = "0.50";
+    if (inputsBase[2]) inputsBase[2].value = "0.30";
 
     // Eliminar componentes de costo extras creados por el alumno (manteniendo los 3 iniciales)
     let lista = document.getElementById("listaComponentesReceta");
@@ -873,7 +1227,7 @@ function calcularSimuladorMargen() {
 
     let costoTotal = 0;
     // Sumamos el costo base más todos los parámetros dinámicos creados
-    inputsCosto.forEach(function(input) {
+    inputsCosto.forEach(function (input) {
         costoTotal += parseFloat(input.value) || 0;
     });
 
@@ -908,7 +1262,7 @@ function limpiarSimuladorMargen() {
 
     // Restaurar el primer input de costo (Costo base de producción)
     let inputsCosto = document.querySelectorAll(".input-costo-margen");
-    if(inputsCosto[0]) inputsCosto[0].value = "3.00";
+    if (inputsCosto[0]) inputsCosto[0].value = "3.00";
 
     // Eliminar costos extras dinámicos del contenedor (manteniendo el costo base)
     let lista = document.getElementById("listaComponentesMargen");
@@ -971,7 +1325,7 @@ function calcularSimuladorEquilibrio() {
 
     let costosFijosTotales = 0;
     // Sumamos todos los costos fijos de la lista de inputs
-    inputsFijos.forEach(function(input) {
+    inputsFijos.forEach(function (input) {
         costosFijosTotales += parseFloat(input.value) || 0;
     });
 
@@ -999,8 +1353,8 @@ function limpiarSimuladorEquilibrio() {
 
     // Reestablecer los costos fijos por defecto (Alquiler y Servicios)
     let inputsFijos = document.querySelectorAll(".input-costo-fijo");
-    if(inputsFijos[0]) inputsFijos[0].value = "400";
-    if(inputsFijos[1]) inputsFijos[1].value = "200";
+    if (inputsFijos[0]) inputsFijos[0].value = "400";
+    if (inputsFijos[1]) inputsFijos[1].value = "200";
 
     //Remover los nodos hijos extras que superen los 2 iniciales
     let lista = document.getElementById("listaCostosFijosEquilibrio");
@@ -1018,7 +1372,7 @@ function limpiarSimuladorEquilibrio() {
 // ====================================================
 // HISTORIAL DE NOTAS
 //=====================================================
-function actualizarResultados(){
+function actualizarResultados() {
 
     let tabla =
         document.getElementById(
@@ -1027,7 +1381,7 @@ function actualizarResultados(){
 
     tabla.innerHTML = "";
 
-    historialNotas.forEach(function(estudiante){
+    historialNotas.forEach(function (estudiante) {
 
         let fila =
             document.createElement("tr");
@@ -1050,13 +1404,13 @@ function actualizarResultados(){
 // ====================================================
 // BORRAR RESULTADOS
 //=====================================================
-function borrarResultados(){
+function borrarResultados() {
 
-    if(
+    if (
         confirm(
             "¿Desea eliminar todos los resultados?"
         )
-    ){
+    ) {
 
         historialNotas = [];
 
@@ -1074,7 +1428,7 @@ function borrarResultados(){
 //==========================
 document.addEventListener(
     "input",
-    function(){
+    function () {
 
         let slider =
             document.getElementById(
@@ -1086,7 +1440,7 @@ document.addEventListener(
                 "valorActual"
             );
 
-        if(slider && texto){
+        if (slider && texto) {
 
             texto.textContent =
                 slider.value;
@@ -1094,7 +1448,7 @@ document.addEventListener(
 
         }
 
-});
+    });
 function actualizarSlider() {
 
     const slider =
@@ -1104,7 +1458,7 @@ function actualizarSlider() {
 
     const porcentaje =
         ((slider.value - slider.min) /
-        (slider.max - slider.min)) * 100;
+            (slider.max - slider.min)) * 100;
 
     slider.style.background =
         `linear-gradient(
@@ -1118,7 +1472,7 @@ function actualizarSlider() {
 //===============================================
 // GUARDAR VALORACION DEL USUARIO EN LOCAL STORAGE
 //===============================================
-function guardarValoracion(){
+function guardarValoracion() {
 
     let nota =
         parseInt(
@@ -1146,11 +1500,11 @@ function guardarValoracion(){
 //===============================================
 // ACTUALIZAR PROMEDIO DE VALORACIONES EN LA INTERFAZ
 //===============================================
-function actualizarValoraciones(){
+function actualizarValoraciones() {
 
     let suma = 0;
 
-    valoraciones.forEach(function(valor){
+    valoraciones.forEach(function (valor) {
 
         suma += valor;
 
@@ -1158,7 +1512,7 @@ function actualizarValoraciones(){
 
     let promedio = 0;
 
-    if(valoraciones.length > 0){
+    if (valoraciones.length > 0) {
 
         promedio =
             suma /
@@ -1177,3 +1531,835 @@ function actualizarValoraciones(){
         valoraciones.length;
 
 }
+//=========================================
+// AH. Agregar materia prima al simulador.
+//=========================================
+function agregarMateriaPrima() {
+
+    let nombre =
+        document.getElementById(
+            "nombreMP"
+        ).value.trim();
+
+    let unidad =
+        document.getElementById(
+            "unidadMP"
+        ).value;
+
+    let cantidad =
+        parseFloat(
+            document.getElementById(
+                "cantidadCompraMP"
+            ).value
+        );
+
+    let precio =
+        parseFloat(
+            document.getElementById(
+                "precioCompraMP"
+            ).value
+        );
+
+    let merma =
+        parseFloat(
+            document.getElementById(
+                "mermaMP"
+            ).value
+        );
+
+    // Validación
+
+    if (
+        nombre === "" ||
+        isNaN(cantidad) ||
+        isNaN(precio) ||
+        isNaN(merma)
+    ) {
+
+        alert(
+            "Complete todos los campos."
+        );
+
+        return;
+    }
+
+    materiasPrimas.push({
+
+        nombre: nombre,
+
+        unidad: unidad,
+
+        cantidad: cantidad,
+
+        precio: precio,
+
+        merma: merma
+
+    });
+
+    localStorage.setItem(
+
+        "materiasPrimas",
+
+        JSON.stringify(
+            materiasPrimas
+        )
+
+    );
+
+    actualizarTablaMateriaPrima();
+
+    limpiarMateriaPrima();
+}
+
+function actualizarTablaMateriaPrima() {
+
+    let tabla =
+        document.getElementById(
+            "tablaMateriaPrima"
+        );
+
+    tabla.innerHTML = "";
+
+    materiasPrimas.forEach(function (item, index) {
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${item.nombre}</td>
+
+            <td>${item.unidad}</td>
+
+            <td>${item.cantidad}</td>
+
+            <td>$${item.precio.toFixed(2)}</td>
+
+            <td>${item.merma}%</td>
+              <td>
+
+        <button onclick="editarMateriaPrima(${index})">
+            ✏️ Editar
+        </button>
+
+        <button onclick="eliminarMateriaPrima(${index})">
+            🗑️ Eliminar
+        </button>
+
+    </td>
+
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+function actualizarTablaBebidas() {
+
+    let tabla =
+        document.getElementById("tablaBebidas");
+
+    tabla.innerHTML = "";
+
+    bebidas.forEach(function (item, indice) {
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+            <td>${item.nombre}</td>
+            <td>${item.unidad}</td>
+            <td>${item.cantidad}</td>
+            <td>$${item.precio}</td>
+
+            <td>
+                <button onclick="editarBebida(${indice})">
+                    ✏️ Editar
+                </button>
+
+                <button onclick="eliminarBebida(${indice})">
+                    🗑️ Eliminar
+                </button>
+            </td>
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+
+function limpiarMateriaPrima() {
+
+    document.getElementById(
+        "nombreMP"
+    ).value = "";
+
+    document.getElementById(
+        "unidadMP"
+    ).selectedIndex = 0;
+
+    document.getElementById(
+        "cantidadCompraMP"
+    ).value = "";
+
+    document.getElementById(
+        "precioCompraMP"
+    ).value = "";
+
+    document.getElementById(
+        "mermaMP"
+    ).value = "";
+
+}
+
+function eliminarMateriaPrima(index) {
+
+    let confirmar = confirm(
+        "¿Desea eliminar este ingrediente?"
+    );
+
+    if (confirmar) {
+
+        materiasPrimas.splice(index, 1);
+
+        localStorage.setItem(
+            "materiasPrimas",
+            JSON.stringify(materiasPrimas)
+        );
+
+        actualizarTablaMateriaPrima();
+
+    }
+
+}
+function eliminarBebida(indice) {
+
+    if (confirm("¿Desea eliminar esta bebida?")) {
+
+        bebidas.splice(indice, 1);
+
+        localStorage.setItem(
+            "bebidas",
+            JSON.stringify(bebidas)
+        );
+
+        actualizarTablaBebidas();
+
+    }
+
+}
+
+function editarBebida(indice) {
+
+    let bebida = bebidas[indice];
+
+    let nuevoNombre =
+        prompt(
+            "Nombre:",
+            bebida.nombre
+        );
+
+    if (nuevoNombre === null) return;
+
+    let nuevaCantidad =
+        prompt(
+            "Cantidad:",
+            bebida.cantidad
+        );
+
+    if (nuevaCantidad === null) return;
+
+    let nuevoPrecio =
+        prompt(
+            "Precio:",
+            bebida.precio
+        );
+
+    if (nuevoPrecio === null) return;
+
+    bebida.nombre = nuevoNombre;
+
+    bebida.cantidad =
+        parseFloat(nuevaCantidad);
+
+    bebida.precio =
+        parseFloat(nuevoPrecio);
+
+    localStorage.setItem(
+        "bebidas",
+        JSON.stringify(bebidas)
+    );
+
+    actualizarTablaBebidas();
+
+}
+
+function agregarBebida() {
+
+    let nombre =
+        document.getElementById("nombreBebida").value;
+
+    let unidad =
+        document.getElementById("unidadBebida").value;
+
+    let cantidad =
+        parseFloat(
+            document.getElementById("cantidadBebida").value
+        );
+
+    let precio =
+        parseFloat(
+            document.getElementById("precioBebida").value
+        );
+
+    if (
+        nombre === "" ||
+        isNaN(cantidad) ||
+        isNaN(precio)
+    ) {
+
+        alert("Complete todos los campos.");
+
+        return;
+    }
+
+    bebidas.push({
+
+        nombre: nombre,
+        unidad: unidad,
+        cantidad: cantidad,
+        precio: precio,
+        merma: 0
+
+    });
+
+    localStorage.setItem(
+        "bebidas",
+        JSON.stringify(bebidas)
+    );
+
+    actualizarTablaBebidas();
+
+    limpiarFormularioBebidas();
+
+}
+
+function limpiarFormularioBebidas() {
+
+    document.getElementById("nombreBebida").value = "";
+
+    document.getElementById("cantidadBebida").value = "";
+
+    document.getElementById("precioBebida").value = "";
+
+}
+
+function editarMateriaPrima(index) {
+
+    let ingrediente = materiasPrimas[index];
+
+    let nuevoNombre = prompt(
+        "Nombre:",
+        ingrediente.nombre
+    );
+
+    if (nuevoNombre === null) return;
+
+    let nuevaUnidad = prompt(
+        "Unidad (kg, gramos, libras, unidades, litros, ml):",
+        ingrediente.unidad
+    );
+
+    if (nuevaUnidad === null) return;
+
+    let nuevaCantidad = parseFloat(
+        prompt(
+            "Cantidad comprada:",
+            ingrediente.cantidad
+        )
+    );
+
+    if (isNaN(nuevaCantidad)) return;
+
+    let nuevoPrecio = parseFloat(
+        prompt(
+            "Precio de compra:",
+            ingrediente.precio
+        )
+    );
+
+    if (isNaN(nuevoPrecio)) return;
+
+    let nuevaMerma = parseFloat(
+        prompt(
+            "% de merma:",
+            ingrediente.merma
+        )
+    );
+
+    if (isNaN(nuevaMerma)) return;
+
+    ingrediente.nombre = nuevoNombre;
+    ingrediente.unidad = nuevaUnidad;   // ← NUEVO
+    ingrediente.cantidad = nuevaCantidad;
+    ingrediente.precio = nuevoPrecio;
+    ingrediente.merma = nuevaMerma;
+
+    localStorage.setItem(
+        "materiasPrimas",
+        JSON.stringify(materiasPrimas)
+    );
+
+    actualizarTablaMateriaPrima();
+}
+
+// ============================================
+// AH. CONVERSIÓN DE UNIDADES
+// ============================================
+
+function convertirUnidad(cantidad, unidadOrigen, unidadDestino) {
+
+    // Si son iguales, no convertir
+    if (unidadOrigen === unidadDestino) {
+        return cantidad;
+    }
+
+    // Masa
+    if (unidadOrigen === "kg" && unidadDestino === "gramos") {
+        return cantidad * 1000;
+    }
+
+    if (unidadOrigen === "gramos" && unidadDestino === "kg") {
+        return cantidad / 1000;
+    }
+
+    if (unidadOrigen === "libras" && unidadDestino === "gramos") {
+        return cantidad * 453.592;
+    }
+
+    if (unidadOrigen === "gramos" && unidadDestino === "libras") {
+        return cantidad / 453.592;
+    }
+
+    if (unidadOrigen === "kg" && unidadDestino === "libras") {
+        return cantidad * 2.20462;
+    }
+
+    if (unidadOrigen === "libras" && unidadDestino === "kg") {
+        return cantidad / 2.20462;
+    }
+
+    // Volumen
+    if (unidadOrigen === "litros" && unidadDestino === "mililitros") {
+        return cantidad * 1000;
+    }
+
+    if (unidadOrigen === "mililitros" && unidadDestino === "litros") {
+        return cantidad / 1000;
+    }
+
+    // Unidades
+    if (unidadOrigen === "unidades" && unidadDestino === "unidades") {
+        return cantidad;
+    }
+
+    // Si no existe conversión
+    return null;
+}
+
+// ============================================
+// AH. Gestión de recetas y costos.
+// ============================================
+
+function crearReceta() {
+
+    let nombre =
+        document.getElementById(
+            "nombreReceta"
+        ).value.trim();
+
+    let tiempo =
+        parseFloat(
+            document.getElementById(
+                "tiempoPreparacion"
+            ).value
+        );
+
+    let porciones =
+        parseInt(
+            document.getElementById(
+                "porciones"
+            ).value
+        );
+
+    if (
+        nombre === "" ||
+        isNaN(tiempo) ||
+        isNaN(porciones)
+    ) {
+
+        alert(
+            "Complete todos los campos."
+        );
+
+        return;
+    }
+
+    recetas.push({
+
+        nombre: nombre,
+
+        tiempo: tiempo,
+
+        porciones: porciones,
+
+        ingredientes: []
+
+    });
+
+    localStorage.setItem(
+        "recetas",
+        JSON.stringify(recetas)
+    );
+
+    actualizarTablaRecetas();
+
+    limpiarReceta();
+
+}
+
+function actualizarTablaRecetas() {
+
+    let tabla =
+        document.getElementById(
+            "tablaRecetas"
+        );
+
+    tabla.innerHTML = "";
+
+    recetas.forEach(function (receta) {
+
+        let fila =
+            document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${receta.nombre}</td>
+
+            <td>${receta.tiempo} min</td>
+
+            <td>${receta.porciones}</td>
+
+        `;
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+
+function limpiarReceta() {
+
+    document.getElementById(
+        "nombreReceta"
+    ).value = "";
+
+    document.getElementById(
+        "tiempoPreparacion"
+    ).value = "";
+
+    document.getElementById(
+        "porciones"
+    ).value = "";
+
+}
+
+// ============================================================
+// VARIABLES Y CONTROL DE NUEVAS SECCIONES FINANCIERAS
+// ============================================================
+
+// Cargar costos operativos iniciales o del localStorage
+let listaGastosOperativos = JSON.parse(localStorage.getItem("listaGastosOperativos")) || [
+    { id: Date.now(), tipo: "fijo", descripcion: "Arriendo Local", monto: 120.00 },
+    { id: Date.now() + 1, tipo: "variable", descripcion: "Desechables y Empaques", monto: 30.00 },
+    { id: Date.now() + 2, tipo: "manodeobra", descripcion: "Personal de cocina", monto: 200.00 }
+];
+
+// Extensión del ciclo de vida seguro del DOM para arrancar las nuevas vistas
+document.addEventListener("DOMContentLoaded", function () {
+    actualizarVistaGastosOperativos();
+    calcularConsolidadoFinanciero();
+
+    // Vincular recálculo reactivo a cambios en formularios predispuestos de Materia Prima
+    const btnAgregar = document.getElementById("btnAgregar");
+    if (btnAgregar) {
+        btnAgregar.addEventListener("click", function () {
+            setTimeout(() => { calcularConsolidadoFinanciero(); }, 200);
+        });
+    }
+});
+
+// Guardar nuevo gasto operativo
+function guardarGastoOperativo() {
+    const tipo = document.getElementById("tipoGastoOperativo").value;
+    const desc = document.getElementById("descGastoOperativo").value.trim();
+    const monto = parseFloat(document.getElementById("montoGastoOperativo").value);
+
+    if (desc === "" || isNaN(monto) || monto <= 0) {
+        alert("Por favor, ingrese un concepto válido y un monto mayor a cero.");
+        return;
+    }
+
+    const nuevoGasto = {
+        id: Date.now(),
+        tipo: tipo,
+        descripcion: desc,
+        monto: monto
+    };
+
+    listaGastosOperativos.push(nuevoGasto);
+    localStorage.setItem("listaGastosOperativos", JSON.stringify(listaGastosOperativos));
+
+    // Limpiar campos
+    document.getElementById("descGastoOperativo").value = "";
+    document.getElementById("montoGastoOperativo").value = "";
+
+    // Actualizar interfaces en cascada
+    actualizarVistaGastosOperativos();
+    calcularConsolidadoFinanciero();
+}
+
+// Eliminar un gasto operativo de la lista
+function eliminarGastoOperativo(id) {
+    listaGastosOperativos = listaGastosOperativos.filter(g => g.id !== id);
+    localStorage.setItem("listaGastosOperativos", JSON.stringify(listaGastosOperativos));
+    actualizarVistaGastosOperativos();
+    calcularConsolidadoFinanciero();
+}
+
+// Renderizar la tabla de la sección de gastos operativos
+function actualizarVistaGastosOperativos() {
+    const tbody = document.getElementById("tablaGastosOperativosBody");
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+    let totalGeneral = 0;
+
+    listaGastosOperativos.forEach(gasto => {
+        totalGeneral += gasto.monto;
+        let tipoTexto = gasto.tipo === "fijo" ? "Costo Fijo" : gasto.tipo === "variable" ? "Costo Variable" : "Mano de Obra";
+
+        let fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td style="padding:8px; border-bottom:1px solid #ddd;">${gasto.descripcion}</td>
+            <td style="padding:8px; border-bottom:1px solid #ddd;"><i>${tipoTexto}</i></td>
+            <td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">$${gasto.monto.toFixed(2)}</td>
+            <td style="padding:8px; border-bottom:1px solid #ddd;">
+                <button type="button" onclick="eliminarGastoOperativo(${gasto.id})" style="background-color:#c62828; color:white; border:none; border-radius:3px; padding:3px 8px; cursor:pointer;">🗑️</button>
+            </td>
+        `;
+        tbody.appendChild(fila);
+    });
+
+    document.getElementById("totalGastosOperativosGeneral").textContent = totalGeneral.toFixed(2);
+}
+
+// ============================================================
+// NÚCLEO DE CÁLCULO FINANCIERO: MARGEN DEL 30% Y PUNTO DE EQUILIBRIO
+// ============================================================
+function calcularConsolidadoFinanciero() {
+    // 1. Obtener los costos operativos mensuales desde tu lista global de gastos
+    let fijos = 0, variablesMensuales = 0, mo = 0;
+    if (typeof listaGastosOperativos !== 'undefined' && listaGastosOperativos) {
+        listaGastosOperativos.forEach(g => {
+            if (g.tipo === "fijo") fijos += g.monto;
+            if (g.tipo === "variable") variablesMensuales += g.monto;
+            if (g.tipo === "manodeobra") mo += g.monto;
+        });
+    }
+    let costoOperativoMensualTotal = fijos + variablesMensuales + mo;
+
+    // Actualizar tarjetas de cabecera en el HTML si existen
+    if (document.getElementById("resumenFijosTotal")) document.getElementById("resumenFijosTotal").textContent = fijos.toFixed(2);
+    if (document.getElementById("resumenVariablesTotal")) document.getElementById("resumenVariablesTotal").textContent = variablesMensuales.toFixed(2);
+    if (document.getElementById("resumenMOTotal")) document.getElementById("resumenMOTotal").textContent = mo.toFixed(2);
+    if (document.getElementById("resumenCostoFijoIndirecto")) document.getElementById("resumenCostoFijoIndirecto").textContent = costoOperativoMensualTotal.toFixed(2);
+
+    // 2. Distribución exacta de las 1080 ventas unitarias del negocio
+    const proyeccionVentas = {
+        "Hamburguesa Clásica": 300,
+        "Big Burger": 240,
+        "Salchipapa Especial": 240,
+        "Hot Dog Especial": 180,
+        "Nuggets con Papas": 120
+    };
+    const ventasTotalesProyectadas = 1080;
+
+    // 3. Unificar recetas del sistema (Estandarizadas + Personalizadas)
+    let todasLasRecetas = [];
+
+    if (typeof recetasEstandarizadas !== "undefined" && recetasEstandarizadas) {
+        todasLasRecetas = [...recetasEstandarizadas];
+    }
+
+    let personalizadas =
+        JSON.parse(localStorage.getItem("recetasPersonalizadas")) || [];
+
+    personalizadas.forEach(function (rp) {
+
+        if (!todasLasRecetas.some(function (r) {
+            return r.nombre === rp.nombre;
+        })) {
+            todasLasRecetas.push(rp);
+        }
+
+    });
+
+    // Validar el cuerpo de la tabla de resultados financieros
+    const tbodyFinanciero = document.getElementById("tablaResumenFinancieroBody");
+    if (!tbodyFinanciero) {
+        console.error("No se encontró 'tablaResumenFinancieroBody' en el DOM.");
+        return;
+    }
+    tbodyFinanciero.innerHTML = "";
+
+    // Respaldar inventario real para el costeo proporcional unitario por ingrediente
+    let inventarioInsumos = (typeof materiasPrimas !== 'undefined' && materiasPrimas) ? materiasPrimas : (typeof ingredientesIniciales !== 'undefined' ? ingredientesIniciales : []);
+
+    let margenContribucionPonderadoTotal = 0;
+
+    // 4. Mapear y procesar costos de materia prima basados exactamente en las especificaciones de las recetas
+    let analisisProductos = todasLasRecetas.map(receta => {
+        let costoMateriaPrimaUnitario = 0;
+
+        // Calcular costo exacto de ingredientes usando la misma fórmula que la sección de Recetas
+        if (receta.ingredientes && receta.ingredientes.length > 0 && inventarioInsumos.length > 0) {
+            receta.ingredientes.forEach(ingReceta => {
+
+                costoMateriaPrimaUnitario +=
+                    calcularCostoIngrediente(
+                        ingReceta.nombre,
+                        ingReceta.cantidad,
+                        ingReceta.unidad
+                    );
+
+            });
+        }
+
+        // VINCULACIÓN CON LA SECCIÓN DE RECETAS: Si el cálculo dinámico falla o difiere,
+        // tomamos el costoBase oficial definido en recetas.js (ej: $3.50 para Hamburguesa Clásica)
+        if (costoMateriaPrimaUnitario === 0) {
+            console.warn(
+                `No se pudo calcular el costo de ${receta.nombre}`
+            );
+        }
+
+        // Evaluar e incorporar los Extras configurados en la receta si existieran
+        let costoExtras = 0;
+        if (receta.extras && receta.extras.length > 0) {
+            receta.extras.forEach(ext => {
+                // Si el elemento checkbox del extra está seleccionado actualmente en el DOM de la sección de recetas, sumarlo
+                let extraCheckbox = document.querySelector(`.extra-checkbox[data-nombre="${ext.nombre}"]`);
+                if (extraCheckbox && extraCheckbox.checked) {
+                    costoExtras += ext.precio;
+                }
+            });
+        }
+
+        // =====================================
+        // COSTOS COMPLETOS DE PRODUCCIÓN
+        // =====================================
+
+        let costoManoObraUnitario = mo / 1080;
+
+        let costoIndirectoUnitario = fijos / 1080;
+
+        let costoProduccionTotal =
+            costoMateriaPrimaUnitario +
+            costoExtras +
+            costoManoObraUnitario +
+            costoIndirectoUnitario;
+
+        // Precio sugerido con margen del 30%
+        let precioVenta =
+            costoProduccionTotal / 0.70;
+
+        let margenUtilidadUnitaria =
+            precioVenta - costoProduccionTotal;
+
+        // Obtener volumen de venta y peso porcentual asignado para las 1080 unidades globales
+        let unidadesVendidas = proyeccionVentas[receta.nombre] || 0;
+        let porcentajeParticipacion = unidadesVendidas / ventasTotalesProyectadas;
+
+        // El margen de contribución ponderado aporta proporcionalmente al punto de equilibrio global
+        let margenPonderado = margenUtilidadUnitaria * porcentajeParticipacion;
+        margenContribucionPonderadoTotal += margenPonderado;
+
+        return {
+            nombre: receta.nombre,
+            costoMateriaPrima: costoProduccionTotal,
+            precioVenta: precioVenta,
+            utilidad: margenUtilidadUnitaria,
+            unidadesVendidas: unidadesVendidas,
+            participacion: porcentajeParticipacion
+        };
+    });
+
+    // 5. CÁLCULO DEL PUNTO DE EQUILIBRIO ENTRE VENTAS Y GASTOS (Meta global del restaurante)
+    let puntoEquilibrioGlobalUnidades = margenContribucionPonderadoTotal > 0
+        ? Math.ceil(costoOperativoMensualTotal / margenContribucionPonderadoTotal)
+        : 0;
+
+    // 6. Inyección y renderizado físico garantizado de los 5 productos principales
+    analisisProductos.forEach(prod => {
+        // Forzar asignación de participación si el producto no tiene una cuota explícita para evitar divisiones para cero
+        let participacionReal = prod.participacion > 0 ? prod.participacion : (1 / analisisProductos.length);
+        let unidadesProyectadas = prod.unidadesVendidas > 0 ? prod.unidadesVendidas : Math.ceil(ventasTotalesProyectadas / analisisProductos.length);
+
+        // Distribución del punto de equilibrio por cada ítem individual
+        let unidadesEquilibrioEspecificas = Math.ceil(puntoEquilibrioGlobalUnidades * participacionReal);
+
+        // ADICIÓN DE GASTOS OPERATIVOS: Prorrateo exacto del gasto mensual según el peso real en el volumen de 1080 ventas
+        let costoAgregadoReal = prod.precioVenta - prod.costoMateriaPrima;
+
+        tbodyFinanciero.innerHTML += `
+            <tr style="border-bottom: 1px solid #eee; background: #fff;">
+                <td style="padding:12px; font-weight:bold; color:#222; text-align: left;">
+                    🍔 ${prod.nombre}
+                    <span style="display:block; font-size:0.8rem; color:#666; font-weight:normal;">
+                        Participación: ${(participacionReal * 100).toFixed(1)}% (${unidadesProyectadas} u. estimadas)
+                    </span>
+                </td>
+                <td style="padding:12px; color:#c62828; font-weight:bold; text-align: left;">
+                    $${prod.costoMateriaPrima.toFixed(2)}
+                </td>
+                <td style="padding:12px; color:#2e7d32; font-weight:bold; font-size:1.05rem; text-align: left;">
+                    $${prod.precioVenta.toFixed(2)}
+                </td>
+                <td style="padding:12px; color:#1e88e5; font-size:0.95rem; font-weight:bold; text-align: left;">
+                    $${costoAgregadoReal.toFixed(2)}
+                    <small style="display:block; color:#888; font-weight:normal;">(Insumos + Gasto Operativo)</small>
+                </td>
+                <td style="padding:12px; text-align: left;">
+                    <div style="background:#fff3e0; color:#e65100; padding:6px 10px; border-radius:6px; font-weight:bold; font-size:0.9rem; display:inline-block;">
+                        🎯 Vender Mínimo: ${unidadesEquilibrioEspecificas} unidades
+                    </div>
+                    <small style="display:block; color:#777; margin-top:4px;">
+                        Para absorber los gastos dentro de la meta global de <strong>${puntoEquilibrioGlobalUnidades}</strong> ventas del restaurante.
+                    </small>
+                </td>
+            </tr>`;
+    });
+}
+
+// Sobrecargar la función existente de cambio de página para asegurar cálculos dinámicos al clickear el menú
+const funcionMostrarPaginaOriginal = mostrarPagina;
+mostrarPagina = function (idPagina) {
+    funcionMostrarPaginaOriginal(idPagina);
+    if (idPagina === "resumenFinanciero" || idPagina === "gastosOperativos") {
+        calcularConsolidadoFinanciero();
+    }
+};
