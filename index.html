@@ -7,8 +7,7 @@
     <title>FastFood Express</title>
 
     <link rel="stylesheet" href="fastfood.css">
-    <script src="fastfood.js" defer></script>
-    <script src="recetas.js" defer></script>
+    <script src="fastfood.js"></script>
 </head>
 
 <body>
@@ -34,1303 +33,1064 @@
     <nav>
 
         <a href="#" onclick="mostrarPagina('inicio')">
-            📄Inicio
+            Inicio
         </a>
 
         <a href="#" onclick="mostrarPagina('teoria')">
-            📒Teoría
+            Teoría
         </a>
         <a href="#" onclick="mostrarPagina('resultados')">
-            📠Resultados
-        </a>
-        <a href="#" onclick="mostrarPagina('gestionCostos')">
-            📊 Gestión y Costos
+            Resultados
         </a>
         <a href="#" onclick="mostrarPagina('valoracion')">
-            💯Valoración
+            Valoración
         </a>
-
-
     </nav>
 
     <!-- ========================= -->
     <!-- INICIO -->
     <!-- ========================= -->
 
-    <section id="inicio" class="pagina">
+   <section id="inicio" class="pagina">
 
-        <h2>🍔 Bienvenido a FastFood Express</h2>
+    <h2>🍔 Bienvenido a FastFood Express</h2>
 
-        <p>
-            Sistema de costeo para hamburguesas y salchipapas.
-        </p>
+    <p>
+        Sistema de costeo para hamburguesas y salchipapas.
+    </p>
 
-        <div class="contenedor-imagenes">
+    <div class="contenedor-imagenes">
 
-            <div class="card-imagen">
-                <img src="img/hamburguesa.png" alt="Hamburguesa">
-                <h3>Hamburguesa</h3>
-            </div>
-
-            <div class="card-imagen">
-                <img src="img/salchipapas.png" alt="Salchipapa">
-                <h3>Salchipapa</h3>
-            </div>
-
+        <div class="card-imagen">
+            <img src="img/hamburguesa.png" alt="Hamburguesa">
+            <h3>Hamburguesa</h3>
         </div>
 
-    </section>
+        <div class="card-imagen">
+            <img src="img/salchipapas.png" alt="Salchipapa">
+            <h3>Salchipapa</h3>
+        </div>
+
+    </div>
+
+</section>
     <!-- ========================= -->
     <!-- TEORIA -->
     <!-- ========================= -->
 
     <section id="teoria" class="pagina">
 
-        <div class="botones-teoria">
+    <div class="botones-teoria">
 
-            <button onclick="mostrarSubSeccion('material')">
-                📖 Material de Estudio
-            </button>
+        <button onclick="mostrarSubSeccion('material')">
+            📖 Material de Estudio
+        </button>
 
-            <button onclick="mostrarSubSeccion('evaluacion')">
-                📝 Evaluación
-            </button>
+        <button onclick="mostrarSubSeccion('evaluacion')">
+            📝 Evaluación
+        </button>
 
-        </div>
+    </div>
 
-        <!-- MATERIAL -->
-        <div id="material" class="subseccion">
-            <div class="canvas-resumen">
-                <h3>📊 Costos y Producción</h3>
-                <p>
-                    El tema de Costos y Presupuestos se enfoca en identificar, clasificar y controlar los gastos de una
-                    empresa para planificar adecuadamente sus recursos y garantizar la rentabilidad del negocio. Esta
-                    unidad estudia los diferentes tipos de costos involucrados en la producción de bienes o servicios y
-                    cómo utilizarlos para tomar decisiones financieras acertadas.
-                </p>
-                <div class="canvas-pilares">
-                    <div class="pilar">
-                        <strong>1. Controlar</strong>
-                        <p>Supervisar y verificar que las actividades se realicen según lo planificado, corrigiendo
-                            errores y asegurando el cumplimiento de los objetivos.</p>
-                    </div>
-                    <div class="pilar">
-                        <strong>2. Calcular</strong>
-                        <p>Es el proceso de realizar operaciones matemáticas para obtener un resultado, como costos,
-                            ganancias, porcentajes o presupuestos.</p>
-                    </div>
-                    <div class="pilar">
-                        <strong>3. Ganar</strong>
-                        <p>Se refiere a obtener un beneficio o utilidad después de cubrir todos los costos y gastos de
-                            una actividad o negocio.</p>
-                    </div>
+    <!-- MATERIAL -->
+    <div id="material" class="subseccion">
+        <div class="canvas-resumen">
+            <h3>📊 Costos y Producción</h3>
+            <p>
+                El tema de Costos y Presupuestos se enfoca en identificar, clasificar y controlar los gastos de una empresa para planificar adecuadamente sus recursos y garantizar la rentabilidad del negocio. Esta unidad estudia los diferentes tipos de costos involucrados en la producción de bienes o servicios y cómo utilizarlos para tomar decisiones financieras acertadas.
+            </p>
+            <div class="canvas-pilares">
+                <div class="pilar">
+                    <strong>1. Controlar</strong>
+                    <p>Supervisar y verificar que las actividades se realicen según lo planificado, corrigiendo errores y asegurando el cumplimiento de los objetivos.</p>
                 </div>
-                <p style="margin-top: 15px; font-weight: bold; font-size: 0.95rem; color: #ff3131;">
-                    💡 Selecciona uno de los siguientes subtemas para empezar a estudiar:
-                </p>
+                <div class="pilar">
+                    <strong>2. Calcular</strong>
+                    <p>Es el proceso de realizar operaciones matemáticas para obtener un resultado, como costos, ganancias, porcentajes o presupuestos.</p>
+                </div>
+                <div class="pilar">
+                    <strong>3. Ganar</strong>
+                    <p>Se refiere a obtener un beneficio o utilidad después de cubrir todos los costos y gastos de una actividad o negocio.</p>
+                </div>
             </div>
-            <div class="botones-subtemas"
-                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
-                <button type="button" onclick="mostrarSubTemas('sub1')">💵 Costos Fijos</button>
-                <button type="button" onclick="mostrarSubTemas('sub2')">📋 Costos Variables</button>
-                <button type="button" onclick="mostrarSubTemas('sub3')">💡 Costos Directos e Indirectos</button>
-                <button type="button" onclick="mostrarSubTemas('sub4')">🍔 Costos Materia Prima</button>
-                <button type="button" onclick="mostrarSubTemas('sub5')">👨‍🍳 Mano de Obra</button>
-                <button type="button" onclick="mostrarSubTemas('sub6')">🍟 Costeo de Recetas</button>
-                <button type="button" onclick="mostrarSubTemas('sub7')">💰 Margen de Ganancia</button>
-                <button type="button" onclick="mostrarSubTemas('sub8')">📈 Punto de Equilibrio</button>
-            </div>
-            <!-- ========================= -->
-            <!-- COSTOS FIJOS -->
-            <!-- ========================= -->
-            <div id="sub1" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Costos Fijos</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/costosFijos.png">
-                        </div>
-                    </div>
-
-                    <p></p>
-                    <p>Los costos fijos son aquellos gastos que permanecen constantes independientemente del nivel de
-                        producción o ventas de una empresa. Estos costos deben pagarse, aunque la empresa no produzca o
-                        venda productos. Los costos fijos son importantes porque permiten mantener el funcionamiento
-                        básico del negocio y ayudan a planificar presupuestos y ganancias.</p>
-                    <h3>Características</h3>
-                    <p>• No cambian a corto plazo. </p>
-                    <p>• Se mantienen estables, aunque aumente o disminuya la producción. </p>
-                    <p>• Son permanentes durante un período determinado. </p>
-                    <h3>Ejemplos</h3>
-                    <p>Una empresa paga:</p>
-                    <p>• Alquiler: $800 </p>
-                    <p>• Internet: $50 </p>
-                    <p>• Seguro: $100 </p>
-                    <p>Aunque no produzca nada, deberá pagar $950 mensuales.</p>
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: ¡Crea tus propios Costos Fijos!</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Modifica los valores base o agrega nuevos conceptos de gasto fijo para ver cómo se congelan
-                            en cada escenario de venta:
-                        </p>
-
-                        <div id="listaParametrosFijos" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="parametro-fijo-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🏠
-                                    Alquiler / Arriendo ($):</label>
-                                <input type="number" class="input-costo-fijo" value="100"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-fijo-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🌐
-                                    Internet del Local ($):</label>
-                                <input type="number" class="input-costo-fijo" value="25"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-fijo-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💧
-                                    Servicio Agua Potable ($):</label>
-                                <input type="number" class="input-costo-fijo" value="20"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-fijo-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">⚡
-                                    Servicio Electrico ($):</label>
-                                <input type="number" class="input-costo-fijo" value="20"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo
-                                parámetro de costo:</h5>
-                            <input type="text" id="nuevoNombreFijo" placeholder="Ej. Sueldo de Supervisor"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorFijo" placeholder="Ej. 400"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarParametroFijo()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Añadir Parámetro al Local
-                            </button>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 15px;">
-                            <button type="button" onclick="calcularSimuladorFijos()" style="background-color: #ff914d;">
-                                🔄 Calcular Escenarios de Producción
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorFijos()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar
-                            </button>
-                        </div>
-
-                        <div id="pizarraFijos"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Impacto según el
-                                Volumen de Ventas</h4>
-                            <p style="text-align: center; font-size: 1.05rem; margin-bottom: 10px;">
-                                Tu Costo Fijo Total Acumulado es: <strong style="color: #ff3131;"
-                                    id="txtCostoFijoTotal">$0.00</strong>
-                            </p>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Si vendes...</th>
-                                            <th>Tu Costo Fijo Total será:</th>
-                                            <th>Explicación Teórica</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>0 platos</strong> (Cerrado)</td>
-                                            <td id="tdFijoCero" style="color: #ff3131; font-weight: bold;">$0.00</td>
-                                            <td>Debes pagarlo obligatoriamente aunque no abras el local.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>250 salchipapas</strong></td>
-                                            <td id="tdFijoDoscientos" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>No cambia, el arriendo no aumenta por tener más clientes.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1,000 hamburguesas</strong></td>
-                                            <td id="tdFijoMil" style="color: #ff3131; font-weight: bold;">$0.00</td>
-                                            <td>¡Se mantiene congelado! El costo es independiente de la producción.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- COSTOS VARIABLES -->
-            <!-- ========================= -->
-            <div id="sub2" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Costos Variables</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/costosVariables.png">
-                        </div>
-                    </div>
-
-                    <p>Los costos variables son aquellos que cambian de acuerdo con la cantidad de productos elaborados
-                        o servicios ofrecidos. Mientras mayor sea la producción, mayores serán los costos variables.
-                        Estos costos están directamente relacionados con la actividad productiva de la empresa.</p>
-                    <h3>Características</h3>
-                    <p>• Cambian según el volumen de producción. </p>
-                    <p>• Aumentan o disminuyen dependiendo de las ventas. </p>
-                    <p>• Son proporcionales a la actividad del negocio. </p>
-                    <h3>Ejemplos:</h3>
-                    <p>Si fabricar una pizza cuesta $3 en ingredientes:</p>
-                    <p>• 10 pizzas = $30</p>
-                    <p>• 50 pizzas = $150</p>
-                    <p>El costo aumenta según la cantidad producida.</p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: ¡Simula tus Costos Variables por Plato!</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Ingresa cuánto gastas en insumos <b>por cada unidad producida</b> y mira cómo se multiplica
-                            según las ventas:
-                        </p>
-
-                        <div id="listaParametrosVariables" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="parametro-variable-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩
-                                    Carne / Proteína (por unidad $):</label>
-                                <input type="number" class="input-costo-variable" value="1.50" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-variable-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🍞 Pan
-                                    / Base (por unidad $):</label>
-                                <input type="number" class="input-costo-variable" value="0.30" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-variable-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🛍️
-                                    Empaque / Desechable (por unidad $):</label>
-                                <input type="number" class="input-costo-variable" value="0.20" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-
-
-
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo insumo
-                                unitario:</h5>
-                            <input type="text" id="nuevoNombreVariable" placeholder="Ej. Queso Cheddar o Salsas"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorVariable" placeholder="Ej. 0.15" step="0.01"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarParametroVariable()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Añadir Insumo al Plato
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorVariables()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🔄 Calcular Multiplicación de Costos
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorVariables()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar
-                            </button>
-                        </div>
-
-                        <div id="pizarraVariables"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Comportamiento del
-                                Costo Variable Total</h4>
-                            <p style="text-align: center; font-size: 1.05rem; margin-bottom: 10px;">
-                                Costo Variable Unitario (Por Plato): <strong style="color: #ff3131;"
-                                    id="txtCostoVariableUnitario">$0.00</strong>
-                            </p>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Cantidad de Ventas</th>
-                                            <th>Costo Variable Total en Insumos</th>
-                                            <th>Explicación Dinámica</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>0 unidades</strong> (Sin producción)</td>
-                                            <td id="tdVariableCero" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>Si no cocinas, no gastas en materia prima. ¡El costo es cero!</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>100 hamburguesas</strong></td>
-                                            <td id="tdVariableCien" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>El costo unitario se multiplica por 100 unidades fabricadas.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1,000 hamburguesas</strong></td>
-                                            <td id="tdVariableMil" style="color: #ff3131; font-weight: bold;">$0.00</td>
-                                            <td>¡Aumenta drásticamente! A mayor producción, mayor es el costo total.
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- COSTOS DIRECTOS E INDIRECTOS -->
-            <!-- ========================= -->
-            <div id="sub3" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Costos Directos e Indirectos</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/costosDirectosIndirectos.png">
-                        </div>
-                    </div>
-
-                    <p>Los costos directos son aquellos que pueden identificarse fácilmente con la producción de un
-                        producto o servicio específico. Los costos indirectos son gastos necesarios para operar, pero no
-                        pueden asociarse directamente a un solo producto.</p>
-                    <h3>Costos Directos:</h3>
-                    <p>Gastos vinculados directamente con la fabricación de un producto específico, como la materia
-                        prima o la mano de obra del operario.</p>
-                    <h4>Ejemplos:</h4>
-                    <p>• Harina para hacer pan </p>
-                    <p>• Tela para fabricar ropa</p>
-                    <p>• Mano de obra del operario </p>
-                    <h3>Costos Indirectos</h3>
-                    <p>Gastos generales de funcionamiento necesarios para operar, pero que no se asocian a un solo
-                        producto, como la luz del local o el sueldo de un supervisor.</p>
-                    <h4>Ejemplos:</h4>
-                    <p>• Energía eléctrica del local</p>
-                    <p>• Sueldo del supervisor</p>
-                    <p>• Mantenimiento de equipos</p>
-                    <h3>Ejemplo General</h3>
-                    <p>En una panadería:</p>
-                    <p>• Harina = costo directo</p>
-                    <p>• Luz del establecimiento = costo indirecto</p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: Clasificación de Costos</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Modifica los valores mensuales o añade nuevos gastos. El sistema los clasificará para
-                            enseñarte cómo se dividen los costos del negocio:
-                        </p>
-
-                        <div id="listaParametrosDirectosIndirectos"
-                            style="max-width: 450px; margin: 0 auto; text-align: left;">
-
-                            <div class="parametro-mixto-item"
-                                style="margin-bottom: 12px; padding: 8px; background: #fff; border-radius: 6px; border: 1px solid #ffe0cc;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩
-                                    Carne e Ingredientes Totales ($):</label>
-                                <span style="font-size: 0.8rem; color: #ff914d; font-weight: bold;">[COSTO DIRECTO - Va
-                                    directo al plato]</span>
-                                <input type="number" class="input-costo-mixto" data-tipo="directo" value="600"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-mixto-item"
-                                style="margin-bottom: 12px; padding: 8px; background: #fff; border-radius: 6px; border: 1px solid #ffe0cc;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🔥 Gas
-                                    para las Cocinas ($):</label>
-                                <span style="font-size: 0.8rem; color: #2e7d32; font-weight: bold;">[COSTO INDIRECTO -
-                                    Es general para todo]</span>
-                                <input type="number" class="input-costo-mixto" data-tipo="indirecto" value="80"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-mixto-item"
-                                style="margin-bottom: 12px; padding: 8px; background: #fff; border-radius: 6px; border: 1px solid #ffe0cc;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💧
-                                    Agua y Limpieza del Local ($):</label>
-                                <span style="font-size: 0.8rem; color: #2e7d32; font-weight: bold;">[COSTO INDIRECTO -
-                                    No se mide por hamburguesa]</span>
-                                <input type="number" class="input-costo-mixto" data-tipo="indirecto" value="40"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                        </div>
-
-                        <div
-                            style="max-width: 450px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo gasto al
-                                restaurante:</h5>
-                            <input type="text" id="nuevoNombreMixto"
-                                placeholder="Ej. Envases desechables o Luz del local"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorMixto" placeholder="Ej. 120"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-
-                            <label
-                                style="font-weight: bold; font-size: 0.85rem; color: #444; display: block; margin-bottom: 5px;">Clasificación
-                                teórica:</label>
-                            <select id="nuevoTipoMixto"
-                                style="width: 100%; padding: 6px; margin-bottom: 12px; border: 1px solid #ff914d; border-radius: 4px;">
-                                <option value="directo">Costo Directo (Se ve en el plato)</option>
-                                <option value="indirecto">Costo Indirecto (Gasto general/CIF)</option>
-                            </select>
-
-                            <button type="button" onclick="agregarParametroMixto()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Clasificar y Añadir Gasto
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorMixto()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🔄 Separar y Calcular Totales
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorMixto()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar
-                            </button>
-                        </div>
-
-                        <div id="pizarraMixto"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 15px; text-align: center;">📊 Reporte Financiero
-                                de Clasificación</h4>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Tipo de Costo</th>
-                                            <th>Total Calculado</th>
-                                            <th>¿Para qué sirve saberlo? (Explicación)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>🟢 Costos Directos</strong></td>
-                                            <td id="tdTotalDirecto" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>Es el núcleo del gasto. Si controlas este número, mantienes bajo el
-                                                costo de cada plato.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>🔵 Costos Indirectos (CIF)</strong></td>
-                                            <td id="tdTotalIndirecto" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>Representa la logística operativa. Debes vender lo suficiente para
-                                                absorber este dinero.</td>
-                                        </tr>
-                                        <tr style="background-color: #fff0f0;">
-                                            <td><strong>🔥 Gasto Total Combinado</strong></td>
-                                            <td id="tdTotalMixto" style="color: #ff3131; font-weight: bold;">$0.00</td>
-                                            <td>La suma absoluta que requiere tu negocio de FastFood para operar este
-                                                mes.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- COSTOS MARERIA PRIMA -->
-            <!-- ========================= -->
-            <div id="sub4" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Costos de Materia Prima</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/materiaPrima.png">
-                        </div>
-                    </div>
-
-                    <p></p>
-                    <p>El costo de materia prima corresponde al valor de los materiales utilizados para fabricar un
-                        producto. Es uno de los elementos principales en los costos de producción y afecta directamente
-                        el precio final del producto.</p>
-                    <h3>Materia Prima</h3>
-                    <p>• Materia prima directa </p>
-                    <p>• Materia prima indirecta</p>
-                    <h3>Ejemplo:</h3>
-                    <p>Para preparar un pastel:</p>
-                    <p>• Harina = $2 </p>
-                    <p>• Huevos = $3 </p>
-                    <p>• Azúcar = $1 </p>
-                    <p>Costo total de materia prima = $6</p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: Cálculo de Lote de Materia Prima</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Define los costos unitarios de los ingredientes de tu receta y selecciona cuántos platos
-                            planeas cocinar para ver el presupuesto total de insumos necesario:
-                        </p>
-
-                        <div
-                            style="max-width: 400px; margin: 0 auto 20px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
-                            <label style="font-weight: bold; font-size: 0.95rem; color: #ff3131; display: block;">📊
-                                Cantidad de platos a preparar (Lote):</label>
-                            <input type="number" id="simuCantidadLote" value="150" min="1"
-                                style="margin-top: 5px; width: 100%; border: 1px solid #ff3131; font-weight: bold;">
-                        </div>
-
-                        <div id="listaParametrosMateria" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="parametro-materia-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🍟
-                                    Papas Cortadas (Costo por plato $):</label>
-                                <input type="number" class="input-costo-materia" value="0.60" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-materia-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🌭
-                                    Salchichas / Embutido (Costo por plato $):</label>
-                                <input type="number" class="input-costo-materia" value="0.40" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-materia-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🛢️
-                                    Aceite y Aderezos (Costo por plato $):</label>
-                                <input type="number" class="input-costo-materia" value="0.15" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar ingrediente
-                                extra a la receta:</h5>
-                            <input type="text" id="nuevoNombreMateria" placeholder="Ej. Queso Cheddar, Tocino, Salsas"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorMateria" placeholder="Costo por porción ej. 0.25"
-                                step="0.01" style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarParametroMateria()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Añadir a la Receta Base
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorMateria()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🚀 Calcular Costo del Lote
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorMateria()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar
-                            </button>
-                        </div>
-
-                        <div id="pizarraMateria"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Costo de Inversión
-                                en Materia Prima Directa</h4>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Concepto de Análisis</th>
-                                            <th>Costo Calculado</th>
-                                            <th>Explicación Técnica para el Alumno</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Costo Unitario Total</strong></td>
-                                            <td id="tdMateriaUnitario" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>Lo que cuesta estrictamente la comida de un solo plato en insumos.</td>
-                                        </tr>
-                                        <tr style="background-color: #fffaf0;">
-                                            <td><strong>Volumen Planificado</strong></td>
-                                            <td id="tdMateriaUnidadesLote" style="font-weight: bold; color: #ff914d;">0
-                                                unidades</td>
-                                            <td>La cantidad de órdenes de comida rápida que vas a preparar.</td>
-                                        </tr>
-                                        <tr style="background-color: #fff0f0;">
-                                            <td><strong>💰 Costo Total del Lote</strong></td>
-                                            <td id="tdMateriaTotalLote"
-                                                style="color: #ff3131; font-weight: bold; font-size: 1.1rem;">$0.00</td>
-                                            <td>El dinero total que necesitas invertir en el mercado para comprar estos
-                                                ingredientes.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- MANO DE OBRA-->
-            <!-- ========================= -->
-
-            <div id="sub5" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Mano de Obra</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/manoDeObra.png">
-                        </div>
-                    </div>
-
-                    <p></p>
-                    <p>Representan el valor de los materiales utilizados en la fabricación. Se dividen en directa e
-                        indirecta, y su control adecuado es vital para reducir desperdicios y mejorar la rentabilidad
-                        final del producto.</p>
-                    <p>Puede clasificarse en:</p>
-                    <h3>Mano de Obra Directa</h3>
-                    <p>Participa directamente en la fabricación</p>
-                    <h4>Ejemplo:</h4>
-                    <p>• Cocineros </p>
-                    <p>• Operarios </p>
-                    <p>• Carpinteros </p>
-                    <h3>Mano de Obra Indirecta</h3>
-                    <p>Apoya el proceso productivo</p>
-                    <h4>Ejemplo</h4>
-                    <p>• Supervisores</p>
-                    <p>• Personal de limpieza </p>
-                    <p>• Vigilantes </p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: Presupuesto de Personal</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Configura los sueldos del personal de cocina y atención, y define cuántos platos estiman
-                            preparar en el mes para calcular el costo de mano de obra por unidad:
-                        </p>
-
-                        <div
-                            style="max-width: 400px; margin: 0 auto 20px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
-                            <label style="font-weight: bold; font-size: 0.95rem; color: #ff3131; display: block;">🍔
-                                Estimación de platos a vender en el mes:</label>
-                            <input type="number" id="simuProduccionMano" value="1000" min="1"
-                                style="margin-top: 5px; width: 100%; border: 1px solid #ff3131; font-weight: bold;">
-                        </div>
-
-                        <div id="listaParametrosMano" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="parametro-mano-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">👨‍🍳
-                                    Sueldo Mensual del Cocinero ($):</label>
-                                <input type="number" class="input-costo-mano" value="450"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="parametro-mano-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💰
-                                    Sueldo Mensual del Cajero / Atendiente ($):</label>
-                                <input type="number" class="input-costo-mano" value="400"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo personal
-                                operativo:</h5>
-                            <input type="text" id="nuevoNombreMano" placeholder="Ej. Ayudante de cocina o Repartidor"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorMano" placeholder="Sueldo mensual ej. 350"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarParametroMano()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Contratar / Añadir al Equipo
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorMano()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🚀 Calcular Costo por Operación
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorMano()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar Pizarra
-                            </button>
-                        </div>
-
-                        <div id="pizarraMano"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Distribución del
-                                Costo de Mano de Obra</h4>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Concepto del Gasto</th>
-                                            <th>Costo Planificado</th>
-                                            <th>Explicación Didáctica</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Nómina Mensual Total</strong></td>
-                                            <td id="tdManoTotalMensual" style="color: #ff3131; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>El monto fijo total que debes pagar a fin de mes a todo tu personal.
-                                            </td>
-                                        </tr>
-                                        <tr style="background-color: #fffaf0;">
-                                            <td><strong>Meta de Producción</strong></td>
-                                            <td id="tdManoPlatosMeta" style="font-weight: bold; color: #ff914d;">0
-                                                platos</td>
-                                            <td>La cantidad de órdenes que estimas vender con este equipo de trabajo.
-                                            </td>
-                                        </tr>
-                                        <tr style="background-color: #fffaf0;">
-                                            <td><strong>Costo por hora</strong></td>
-                                            <td id="tdManoporHora" style="font-weight: bold; color: #ff914d;">0.00</td>
-                                            <td>costo del sueldo por hora.</td>
-                                        </tr>
-
-
-                                        <tr style="background-color: #fff0f0;">
-                                            <td><strong>💸 Costo de Mano de Obra por Plato</strong></td>
-                                            <td id="tdManoCostoPorPlato"
-                                                style="color: #2e7d32; font-weight: bold; font-size: 1.1rem;">$0.00</td>
-                                            <td>La cantidad de dinero de mano de obra invertida que absorbe cada plato
-                                                vendido.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- COSTOS DE RECETAS-->
-            <!-- ========================= -->
-            <div id="sub6" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Costeo de Recetas</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/costeoRecetas.png">
-                        </div>
-                    </div>
-
-                    <p></p>
-                    <p>Consiste en calcular el costo total de los ingredientes para preparar un alimento o bebida. Este
-                        proceso identifica cantidades y precios unitarios para establecer un precio de venta adecuado
-                        que garantice ganancias.</p>
-                    <h3>Elementos de Costeo</h3>
-                    <p>• Ingredientes </p>
-                    <p>• Cantidades</p>
-                    <p>• Precio unitario</p>
-                    <p>• Costo total </p>
-                    <h4>Ejemplo:</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Ingrediente</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Costo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Harina</td>
-                                <td>1 kg</td>
-                                <td>$2.00</td>
-                                <td>$2.00</td>
-                            </tr>
-                            <tr>
-                                <td>Huevos</td>
-                                <td>6</td>
-                                <td>$0.25</td>
-                                <td>$1.50</td>
-                            </tr>
-                            <tr>
-                                <td>Leche</td>
-                                <td>1 litro</td>
-                                <td>$1.00</td>
-                                <td>$1.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>Costo total = $4.50</p>
-                    <p>Si se desea obtener ganancia, se debe agregar el margen correspondiente al precio final.</p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: Simulador de Precio de Venta</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Agrupa los costos unitarios de tu receta, establece qué porcentaje de ganancia deseas
-                            obtener y descubre a cuánto debes vender tu plato:
-                        </p>
-
-                        <div id="listaComponentesReceta" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="componente-receta-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩
-                                    Materia Prima Directa (por porción $):</label>
-                                <input type="number" class="input-costo-receta" value="2.00" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="componente-receta-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">👨‍🍳
-                                    Mano de Obra Directa (por porción $):</label>
-                                <input type="number" class="input-costo-receta" value="0.50" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="componente-receta-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🏢
-                                    Costos Indirectos / CIF (por porción $):</label>
-                                <input type="number" class="input-costo-receta" value="0.30" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-
-                        <div
-                            style="max-width: 400px; margin: 15px auto 20px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
-                            <label style="font-weight: bold; font-size: 0.95rem; color: #ff3131; display: block;">📈
-                                Porcentaje de ganancia deseado (%):</label>
-                            <input type="number" id="simuPorcentajeGanancia" value="30" min="0" max="500"
-                                style="margin-top: 5px; width: 100%; border: 1px solid #ff3131; font-weight: bold;">
-                        </div>
-
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar otro
-                                componente de costo:</h5>
-                            <input type="text" id="nuevoNombreComponente" placeholder="Ej. Comisión de App de Delivery"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorComponente" placeholder="Costo extra ej. 0.20"
-                                step="0.01; " style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarParametroReceta()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Añadir Costo Extra a la Porción
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorReceta()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🚀 Fijar Precio de Venta
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorReceta()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar Pizarra
-                            </button>
-                        </div>
-
-                        <div id="pizarraReceta"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Estructura del
-                                Precio Final al Público</h4>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Elemento Financiero</th>
-                                            <th>Valor por Unidad</th>
-                                            <th>Análisis Práctico</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Costo Total de Producción</strong></td>
-                                            <td id="tdRecetaCostoTotal" style="color: #444; font-weight: bold;">$0.00
-                                            </td>
-                                            <td>Lo que te cuesta elaborar físicamente el plato (Suma de tus costos).
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Margen de Ganancia Neto</strong></td>
-                                            <td id="tdRecetaGananciaDolares" style="color: #2e7d32; font-weight: bold;">
-                                                $0.00</td>
-                                            <td>La ganancia neta en dinero que ingresará a tu bolsillo por cada venta.
-                                            </td>
-                                        </tr>
-                                        <tr style="background-color: #fff0f0;">
-                                            <td><strong>💰 Precio de Venta Sugerido (PVP)</strong></td>
-                                            <td id="tdRecetaPrecioVenta"
-                                                style="color: #ff3131; font-weight: bold; font-size: 1.15rem;">$0.00
-                                            </td>
-                                            <td>¡El valor final en el menú! Cobrando esto recuperas costos y ganas tu
-                                                porcentaje.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- MARGÉN DE GANANCIA -->
-            <!-- ========================= -->
-            <div id="sub7" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Margén de Ganancia</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/margenGanancia.png">
-                        </div>
-                    </div>
-
-                    <p></p>
-                    <p>Es la diferencia entre el costo total de un producto y su precio de venta. Representa la utilidad
-                        real obtenida y ayuda a tomar decisiones estratégicas sobre la rentabilidad del negocio.</p>
-                    <h3>Formula Margén Ganancia</h3>
-                    <p>Margen=Precio de Venta-Costo TotalMargen=Precio\ de\ Venta-Costo\</p>
-                    <p>TotalMargen=Precio de Venta-Costo Total</p>
-                    <h3>Fórmula del Porcentaje de Ganancia</h3>
-                    <p>% Ganancia=GananciaCosto×100\%\</p>
-                    <p>Ganancia=\frac{Ganancia}{Costo}\times100% Ganancia=CostoGanancia×100</p>
-                    <h3>Ejemplo</h3>
-                    <p>Costo de producción = $10</p>
-                    <p>Precio de venta = $15</p>
-                    <p>Ganancia:</p>
-                    <p>15−10=515-10=515−10=5</p>
-                    <p>Porcentaje:</p>
-                    <p>510×100=50%\frac{5}{10}\times100=50\%105×100=50%</p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: Análisis de Rentabilidad</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Ingresa el precio de venta en tu menú y el costo de preparación para calcular tu porcentaje
-                            de utilidad real:
-                        </p>
-
-                        <div id="listaComponentesMargen" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="componente-margen-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💰
-                                    Precio de Venta al Público (PVP $):</label>
-                                <input type="number" id="simuPrecioVentaBase" value="5.00" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="componente-margen-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩
-                                    Costo de Producción Total ($):</label>
-                                <input type="number" class="input-costo-margen" value="3.00" step="0.01"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar otro costo al
-                                producto analizado:</h5>
-                            <input type="text" id="nuevoNombreMargen"
-                                placeholder="Ej. Salsa Premium o Envoltura Especial"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorMargen" placeholder="Costo extra ej. 0.25" step="0.01"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarParametroMargen()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Añadir Gasto Extra al Costo
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorMargen()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🚀 Calcular Margen de Utilidad
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorMargen()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar Pizarra
-                            </button>
-                        </div>
-
-                        <div id="pizarraMargen"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Diagnóstico de
-                                Margen de Ganancia</h4>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Métrica Financiera</th>
-                                            <th>Resultado</th>
-                                            <th>Lectura Comercial para el Alumno</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Ingreso por Venta (PVP)</strong></td>
-                                            <td id="tdMargenPVP" style="color: #444; font-weight: bold;">$0.00</td>
-                                            <td>El dinero total que el cliente paga en caja por el producto.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Costo Total Acumulado</strong></td>
-                                            <td id="tdMargenCostoAcumulado" style="color: #ff3131; font-weight: bold;">
-                                                $0.00</td>
-                                            <td>Lo que te cuesta producirlo (Base + Extras añadidos).</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Utilidad en Dinero</strong></td>
-                                            <td id="tdMargenUtilidadDolares" style="color: #2e7d32; font-weight: bold;">
-                                                $0.00</td>
-                                            <td>La ganancia real líquida en dólares por cada unidad vendida.</td>
-                                        </tr>
-                                        <tr style="background-color: #fff0f0;">
-                                            <td><strong>📈 Porcentaje de Margen Bruto</strong></td>
-                                            <td id="tdMargenPorcentaje"
-                                                style="color: #ff3131; font-weight: bold; font-size: 1.15rem;">0.00%
-                                            </td>
-                                            <td>¡Tu rentabilidad! Muestra qué porcentaje del precio es ganancia pura.
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <!-- ========================= -->
-            <!-- PUNTO DE EQUILIBRIO -->
-            <!-- ========================= -->
-            <div id="sub8" class="subtema-contenido" style="display: none;">
-                <article class="articulo-centrado">
-                    <h2>Punto de Equilibrio</h2>
-
-                    <div class="contenedor-imagenes">
-                        <div class="card-imagen">
-                            <img src="img/puntoEquilibrio.png">
-                        </div>
-                    </div>
-
-                    <p></p>
-                    <p>Es una herramienta financiera que determina el nivel de ventas necesario para que los ingresos
-                        igualen a los costos totales. En este punto, la empresa no tiene pérdidas ni ganancias,
-                        permitiendo conocer cuántas unidades mínimas deben venderse para cubrir la operación.</p>
-                    <h3>Fórmula del Punto de Equilibrio</h3>
-                    <p>PE=Costos FijosPrecio de Venta−Costo Variable UnitarioPE=\frac{Costos\ Fijos}{Precio\de\
-                        Venta-Costo\ Variable\Unitario}PE=Precio de Venta−Costo Variable UnitarioCostos Fijos</p>
-                    <h3>Donde:</h3>
-                    <p>• PE = punto de equilibrio</p>
-                    <p>• Costos fijos = gastos permanentes</p>
-                    <p>• Precio de venta = valor del producto</p>
-                    <p>• Costo variable unitario = costo de producir una unidad</p>
-                    <h3>Ejemplo:</h3>
-                    <p>• Costos fijos = $1000</p>
-                    <p>• Precio de venta = $20</p>
-                    <p>• Costo variable = $10 </p>
-                    <p>PE=100020−10PE=\frac{1000}{20-10}PE=20−101000</p>
-                    <p>PE=100010=100PE=\frac{1000}{10}=100PE=101000=100</p>
-                    <p>La empresa debe vender 100 unidades para no perder dinero.</p>
-
-                    <div class="canvas-simulador"
-                        style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮
-                            Pizarra Interactiva: Cálculo del Punto de Equilibrio</h4>
-                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
-                            Define los costos fijos de operación, el precio de venta de tu plato y su costo variable
-                            para descubrir tu meta mínima de ventas:
-                        </p>
-
-                        <div
-                            style="max-width: 400px; margin: 0 auto 15px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
-                            <div style="margin-bottom: 8px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #ff3131; display: block;">💰
-                                    Precio de Venta del Combo (PVP $):</label>
-                                <input type="number" id="simuEquilibrioPVP" value="5.00" step="0.01"
-                                    style="margin-top: 5px; width: 100%; border: 1px solid #ff3131;">
-                            </div>
-                            <div>
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #ff3131; display: block;">🥩
-                                    Costo Variable Unitario (Ingredientes $):</label>
-                                <input type="number" id="simuEquilibrioVariable" value="2.00" step="0.01"
-                                    style="margin-top: 5px; width: 100%; border: 1px solid #ff3131;">
-                            </div>
-                        </div>
-
-                        <div id="listaCostosFijosEquilibrio"
-                            style="max-width: 400px; margin: 0 auto; text-align: left;">
-                            <div class="costo-fijo-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🏢
-                                    Costo Fijo: Alquiler del Local ($/mes):</label>
-                                <input type="number" class="input-costo-fijo" value="400"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-
-                            <div class="costo-fijo-item" style="margin-bottom: 10px;">
-                                <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🔌
-                                    Costo Fijo: Servicios Básicos ($/mes):</label>
-                                <input type="number" class="input-costo-fijo" value="200"
-                                    style="margin-top: 5px; width: 100%;">
-                            </div>
-                        </div>
-                        <div
-                            style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
-                            <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar otro costo
-                                fijo mensual:</h5>
-                            <input type="text" id="nuevoNombreFijoPE" placeholder="Ej. Publicidad en Redes o Internet"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <input type="number" id="nuevoValorFijoPE" placeholder="Valor mensual ej. 50"
-                                style="margin-bottom: 8px; width: 100%; padding: 6px;">
-                            <button type="button" onclick="agregarCostoFijoEquilibrio()"
-                                style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
-                                Añadir Gasto Fijo Obligatorio
-                            </button>
-                        </div>
-
-                        <div
-                            style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
-                            <button type="button" onclick="calcularSimuladorEquilibrio()"
-                                style="background-color: #ff914d; margin: 0;">
-                                🚀 Calcular Punto de Equilibrio
-                            </button>
-                            <button type="button" onclick="limpiarSimuladorEquilibrio()"
-                                style="background-color: #666; margin: 0;">
-                                🗑️ Limpiar Pizarra
-                            </button>
-                        </div>
-
-                        <div id="pizarraEquilibrio"
-                            style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
-                            <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Diagnóstico de
-                                Viabilidad</h4>
-
-                            <div style="overflow-x: auto;">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Indicador Metrológico</th>
-                                            <th>Valor Calculado</th>
-                                            <th>Interpretación Comercial</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Costos Fijos Totales</strong></td>
-                                            <td id="tdEquilibrioFijosTotales" style="color: #444; font-weight: bold;">
-                                                $0.00</td>
-                                            <td>Lo que debes pagar obligatoriamente, vendas o no vendas.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Margen de Contribución</strong></td>
-                                            <td id="tdEquilibrioMargenContribucion"
-                                                style="color: #2e7d32; font-weight: bold;">$0.00</td>
-                                            <td>Lo que le sobra a cada plato vendido para ayudar a pagar los costos
-                                                fijos.</td>
-                                        </tr>
-                                        <tr style="background-color: #fff0f0;">
-                                            <td><strong>🎯 Punto de Equilibrio (Unidades)</strong></td>
-                                            <td id="tdEquilibrioUnidades"
-                                                style="color: #ff3131; font-weight: bold; font-size: 1.15rem;">0
-                                                unidades</td>
-                                            <td><strong>¡La meta mínima!</strong> Debes vender esta cantidad exacta al
-                                                mes para cubrir el negocio.</td>
-                                        </tr>
-                                        <tr style="background-color: #f0f7f0;">
-                                            <td><strong>💵 Punto de Equilibrio (Ventas $)</strong></td>
-                                            <td id="tdEquilibrioVentasMoneda"
-                                                style="color: #2e7d32; font-weight: bold;">$0.00</td>
-                                            <td>El monto de dinero total que debe ingresar a caja para no registrar
-                                                pérdidas.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
+            <p style="margin-top: 15px; font-weight: bold; font-size: 0.95rem; color: #ff3131;">
+                💡 Selecciona uno de los siguientes subtemas para empezar a estudiar:
+            </p>
         </div>
+        <div class="botones-subtemas" style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
+            <button type="button" onclick="mostrarSubTemas('sub1')">💵 Costos Fijos</button>
+            <button type="button" onclick="mostrarSubTemas('sub2')">📋 Costos Variables</button>
+            <button type="button" onclick="mostrarSubTemas('sub3')">💡 Costos Directos e Indirectos</button>
+            <button type="button" onclick="mostrarSubTemas('sub4')">🍔 Costos Materia Prima</button>
+            <button type="button" onclick="mostrarSubTemas('sub5')">👨‍🍳 Mano de Obra</button>
+            <button type="button" onclick="mostrarSubTemas('sub6')">🍟 Costeo de Recetas</button>
+            <button type="button" onclick="mostrarSubTemas('sub7')">💰 Margen de Ganancia</button>
+            <button type="button" onclick="mostrarSubTemas('sub8')">📈 Punto de Equilibrio</button>
+        </div>
+        <!-- ========================= -->
+        <!-- COSTOS FIJOS -->
+        <!-- ========================= -->
+        <div id="sub1" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos Fijos</h2>
 
-        <!-- EVALUACION -->
-        <div id="evaluacion" class="subseccion">
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costosFijos.png">
+                     </div>
+                 </div>
 
-            <h3>📝 Evaluación de Costos</h3>
-            <p style="text-align: center; color: #666; margin-bottom: 20px;"> Se han seleccionado 5 preguntas aleatorias
-                para evaluar tu conocimiento.</p>
+                <p></p>
+                <p>Los costos fijos son aquellos gastos que permanecen constantes independientemente del nivel de producción o ventas de una empresa. Estos costos deben pagarse, aunque la empresa no produzca o venda productos. Los costos fijos son importantes porque permiten mantener el funcionamiento básico del negocio y ayudan a planificar presupuestos y ganancias.</p>
+                <h3>Características</h3>
+                <p>• No cambian a corto plazo. </p>
+                <p>• Se mantienen estables, aunque aumente o disminuya la producción. </p>
+                <p>• Son permanentes durante un período determinado. </p>
+                <h3>Ejemplos</h3>
+                <p>Una empresa paga:</p>
+                <p>• Alquiler: $800 </p>
+                <p>• Internet: $50 </p>
+                <p>• Seguro: $100 </p>
+                <p>Aunque no produzca nada, deberá pagar $950 mensuales.</p>
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: ¡Crea tus propios Costos Fijos!</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Modifica los valores base o agrega nuevos conceptos de gasto fijo para ver cómo se congelan en cada escenario de venta:
+                    </p>
 
-            <div id="registroEvaluacion">
-                <!-- ========================= -->
-                <!-- DATOS DEL ESTUDIANTE (AH.) -->
-                <!-- ========================= -->
-                <h3>👤 Datos del Estudiante</h3>
+                    <div id="listaParametrosFijos" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="parametro-fijo-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🏠 Alquiler / Arriendo ($):</label>
+                            <input type="number" class="input-costo-fijo" value="100" style="margin-top: 5px; width: 100%;">
+                        </div>
 
-                <input type="text" id="nombreEvaluacion" placeholder="Ingrese su nombre">
+                        <div class="parametro-fijo-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🌐 Internet del Local ($):</label>
+                            <input type="number" class="input-costo-fijo" value="25" style="margin-top: 5px; width: 100%;">
+                        </div>
 
-                <input type="text" id="apellidoEvaluacion" placeholder="Ingrese su apellido">
+                        <div class="parametro-fijo-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💧 Servicio Agua Potable ($):</label>
+                            <input type="number" class="input-costo-fijo" value="20" style="margin-top: 5px; width: 100%;">
+                        </div>
 
-                <button type="button" onclick="iniciarEvaluacion()">
+                        <div class="parametro-fijo-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">⚡ Servicio Electrico ($):</label>
+                            <input type="number" class="input-costo-fijo" value="20" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
 
-                    Comenzar Evaluación
-
-                </button>
-
-            </div>
-
-            <div id="contenidoEvaluacion" style="display:none;">
-
-                <form id="formEvaluacion">
-
-                    <div id="contenedor-preguntas"></div>
-
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button type="button" id="btnCalificar" onclick="calificarEvaluacion()">
-                            Enviar Evaluación
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo parámetro de costo:</h5>
+                        <input type="text" id="nuevoNombreFijo" placeholder="Ej. Sueldo de Supervisor" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorFijo" placeholder="Ej. 400" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarParametroFijo()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Añadir Parámetro al Local
                         </button>
                     </div>
 
-                </form>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button type="button" onclick="calcularSimuladorFijos()" style="background-color: #ff914d;">
+                            🔄 Calcular Escenarios de Producción
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorFijos()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar
+                        </button>
+                    </div>
 
-                <div id="resultado-evaluacion"
-                    style="display: none; margin-top: 30px; padding: 20px; border-radius: 10px; background-color: #f9f9f9; border: 2px solid #ddd;">
-                    <h3 id="puntaje-texto" style="text-align: center; margin-top: 0;"></h3>
-                    <div id="retroalimentacion-detalles" style="margin-top: 15px;"></div>
+                    <div id="pizarraFijos" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Impacto según el Volumen de Ventas</h4>
+                        <p style="text-align: center; font-size: 1.05rem; margin-bottom: 10px;">
+                            Tu Costo Fijo Total Acumulado es: <strong style="color: #ff3131;" id="txtCostoFijoTotal">$0.00</strong>
+                        </p>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Si vendes...</th>
+                                        <th>Tu Costo Fijo Total será:</th>
+                                        <th>Explicación Teórica</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>0 platos</strong> (Cerrado)</td>
+                                        <td id="tdFijoCero" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>Debes pagarlo obligatoriamente aunque no abras el local.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>250 salchipapas</strong></td>
+                                        <td id="tdFijoDoscientos" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>No cambia, el arriendo no aumenta por tener más clientes.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>1,000 hamburguesas</strong></td>
+                                        <td id="tdFijoMil" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>¡Se mantiene congelado! El costo es independiente de la producción.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article> 
+        </div>
+        <!-- ========================= -->
+        <!-- COSTOS VARIABLES -->
+        <!-- ========================= -->
+        <div id="sub2" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos Variables</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costosVariables.png">
+                     </div>
+                 </div>
+
+                <p>Los costos variables son aquellos que cambian de acuerdo con la cantidad de productos elaborados o servicios ofrecidos. Mientras mayor sea la producción, mayores serán los costos variables. Estos costos están directamente relacionados con la actividad productiva de la empresa.</p>
+                <h3>Características</h3>
+                <p>• Cambian según el volumen de producción. </p>
+                <p>• Aumentan o disminuyen dependiendo de las ventas. </p>
+                <p>• Son proporcionales a la actividad del negocio. </p>
+                <h3>Ejemplos:</h3>
+                <p>Si fabricar una pizza cuesta $3 en ingredientes:</p>
+                <p>• 10 pizzas = $30</p>
+                <p>• 50 pizzas = $150</p>
+                <p>El costo aumenta según la cantidad producida.</p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: ¡Simula tus Costos Variables por Plato!</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Ingresa cuánto gastas en insumos <b>por cada unidad producida</b> y mira cómo se multiplica según las ventas:
+                    </p>
+
+                    <div id="listaParametrosVariables" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="parametro-variable-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩 Carne / Proteína (por unidad $):</label>
+                            <input type="number" class="input-costo-variable" value="1.50" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-variable-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🍞 Pan / Base (por unidad $):</label>
+                            <input type="number" class="input-costo-variable" value="0.30" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-variable-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🛍️ Empaque / Desechable (por unidad $):</label>
+                            <input type="number" class="input-costo-variable" value="0.20" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
+
+
+                    
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo insumo unitario:</h5>
+                        <input type="text" id="nuevoNombreVariable" placeholder="Ej. Queso Cheddar o Salsas" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorVariable" placeholder="Ej. 0.15" step="0.01" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarParametroVariable()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Añadir Insumo al Plato
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorVariables()" style="background-color: #ff914d; margin: 0;">
+                            🔄 Calcular Multiplicación de Costos
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorVariables()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar
+                        </button>
+                    </div>
+
+                    <div id="pizarraVariables" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Comportamiento del Costo Variable Total</h4>
+                        <p style="text-align: center; font-size: 1.05rem; margin-bottom: 10px;">
+                            Costo Variable Unitario (Por Plato): <strong style="color: #ff3131;" id="txtCostoVariableUnitario">$0.00</strong>
+                        </p>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Cantidad de Ventas</th>
+                                        <th>Costo Variable Total en Insumos</th>
+                                        <th>Explicación Dinámica</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>0 unidades</strong> (Sin producción)</td>
+                                        <td id="tdVariableCero" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>Si no cocinas, no gastas en materia prima. ¡El costo es cero!</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>100 hamburguesas</strong></td>
+                                        <td id="tdVariableCien" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>El costo unitario se multiplica por 100 unidades fabricadas.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>1,000 hamburguesas</strong></td>
+                                        <td id="tdVariableMil" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>¡Aumenta drásticamente! A mayor producción, mayor es el costo total.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
+            </article>
+        </div>
+        <!-- ========================= -->
+        <!-- COSTOS DIRECTOS E INDIRECTOS -->
+        <!-- ========================= -->
+        <div id="sub3" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos Directos e Indirectos</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costosDirectosIndirectos.png">
+                     </div>
+                 </div>
+
+                <p>Los costos directos son aquellos que pueden identificarse fácilmente con la producción de un producto o servicio específico. Los costos indirectos son gastos necesarios para operar, pero no pueden asociarse directamente a un solo producto.</p>
+                <h3>Costos Directos:</h3>
+                <p>Gastos vinculados directamente con la fabricación de un producto específico, como la materia prima o la mano de obra del operario.</p>
+                <h4>Ejemplos:</h4>
+                <p>• Harina para hacer pan </p>
+                <p>• Tela para fabricar ropa</p>
+                <p>• Mano de obra del operario </p>
+                <h3>Costos Indirectos</h3>
+                <p>Gastos generales de funcionamiento necesarios para operar, pero que no se asocian a un solo producto, como la luz del local o el sueldo de un supervisor.</p>
+                <h4>Ejemplos:</h4>
+                <p>• Energía eléctrica del local</p>
+                <p>• Sueldo del supervisor</p>
+                <p>• Mantenimiento de equipos</p>
+                <h3>Ejemplo General</h3>
+                <p>En una panadería:</p>
+                <p>• Harina = costo directo</p>
+                <p>• Luz del establecimiento = costo indirecto</p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: Clasificación de Costos</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Modifica los valores mensuales o añade nuevos gastos. El sistema los clasificará para enseñarte cómo se dividen los costos del negocio:
+                    </p>
+
+                    <div id="listaParametrosDirectosIndirectos" style="max-width: 450px; margin: 0 auto; text-align: left;">
+                        
+                        <div class="parametro-mixto-item" style="margin-bottom: 12px; padding: 8px; background: #fff; border-radius: 6px; border: 1px solid #ffe0cc;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩 Carne e Ingredientes Totales ($):</label>
+                            <span style="font-size: 0.8rem; color: #ff914d; font-weight: bold;">[COSTO DIRECTO - Va directo al plato]</span>
+                            <input type="number" class="input-costo-mixto" data-tipo="directo" value="600" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-mixto-item" style="margin-bottom: 12px; padding: 8px; background: #fff; border-radius: 6px; border: 1px solid #ffe0cc;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🔥 Gas para las Cocinas ($):</label>
+                            <span style="font-size: 0.8rem; color: #2e7d32; font-weight: bold;">[COSTO INDIRECTO - Es general para todo]</span>
+                            <input type="number" class="input-costo-mixto" data-tipo="indirecto" value="80" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-mixto-item" style="margin-bottom: 12px; padding: 8px; background: #fff; border-radius: 6px; border: 1px solid #ffe0cc;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💧 Agua y Limpieza del Local ($):</label>
+                            <span style="font-size: 0.8rem; color: #2e7d32; font-weight: bold;">[COSTO INDIRECTO - No se mide por hamburguesa]</span>
+                            <input type="number" class="input-costo-mixto" data-tipo="indirecto" value="40" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div style="max-width: 450px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo gasto al restaurante:</h5>
+                        <input type="text" id="nuevoNombreMixto" placeholder="Ej. Envases desechables o Luz del local" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorMixto" placeholder="Ej. 120" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        
+                        <label style="font-weight: bold; font-size: 0.85rem; color: #444; display: block; margin-bottom: 5px;">Clasificación teórica:</label>
+                        <select id="nuevoTipoMixto" style="width: 100%; padding: 6px; margin-bottom: 12px; border: 1px solid #ff914d; border-radius: 4px;">
+                            <option value="directo">Costo Directo (Se ve en el plato)</option>
+                            <option value="indirecto">Costo Indirecto (Gasto general/CIF)</option>
+                        </select>
+
+                        <button type="button" onclick="agregarParametroMixto()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Clasificar y Añadir Gasto
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorMixto()" style="background-color: #ff914d; margin: 0;">
+                            🔄 Separar y Calcular Totales
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorMixto()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar
+                        </button>
+                    </div>
+
+                    <div id="pizarraMixto" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 15px; text-align: center;">📊 Reporte Financiero de Clasificación</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tipo de Costo</th>
+                                        <th>Total Calculado</th>
+                                        <th>¿Para qué sirve saberlo? (Explicación)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>🟢 Costos Directos</strong></td>
+                                        <td id="tdTotalDirecto" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>Es el núcleo del gasto. Si controlas este número, mantienes bajo el costo de cada plato.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>🔵 Costos Indirectos (CIF)</strong></td>
+                                        <td id="tdTotalIndirecto" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>Representa la logística operativa. Debes vender lo suficiente para absorber este dinero.</td>
+                                    </tr>
+                                    <tr style="background-color: #fff0f0;">
+                                        <td><strong>🔥 Gasto Total Combinado</strong></td>
+                                        <td id="tdTotalMixto" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>La suma absoluta que requiere tu negocio de FastFood para operar este mes.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- ========================= -->
+        <!-- COSTOS MARERIA PRIMA -->
+        <!-- ========================= -->
+        <div id="sub4" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costos de Materia Prima</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/materiaPrima.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>El costo de materia prima corresponde al valor de los materiales utilizados para fabricar un producto. Es uno de los elementos principales en los costos de producción y afecta directamente el precio final del producto.</p>
+                <h3>Materia Prima</h3>
+                <p>• Materia prima directa </p>
+                <p>• Materia prima indirecta</p>
+                <h3>Ejemplo:</h3>
+                <p>Para preparar un pastel:</p>
+                <p>• Harina = $2 </p>
+                <p>• Huevos = $3 </p>
+                <p>• Azúcar = $1 </p>
+                <p>Costo total de materia prima = $6</p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: Cálculo de Lote de Materia Prima</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Define los costos unitarios de los ingredientes de tu receta y selecciona cuántos platos planeas cocinar para ver el presupuesto total de insumos necesario:
+                    </p>
+
+                    <div style="max-width: 400px; margin: 0 auto 20px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
+                        <label style="font-weight: bold; font-size: 0.95rem; color: #ff3131; display: block;">📊 Cantidad de platos a preparar (Lote):</label>
+                        <input type="number" id="simuCantidadLote" value="150" min="1" style="margin-top: 5px; width: 100%; border: 1px solid #ff3131; font-weight: bold;">
+                    </div>
+
+                    <div id="listaParametrosMateria" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="parametro-materia-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🍟 Papas Cortadas (Costo por plato $):</label>
+                            <input type="number" class="input-costo-materia" value="0.60" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-materia-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🌭 Salchichas / Embutido (Costo por plato $):</label>
+                            <input type="number" class="input-costo-materia" value="0.40" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-materia-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🛢️ Aceite y Aderezos (Costo por plato $):</label>
+                            <input type="number" class="input-costo-materia" value="0.15" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
+
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar ingrediente extra a la receta:</h5>
+                        <input type="text" id="nuevoNombreMateria" placeholder="Ej. Queso Cheddar, Tocino, Salsas" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorMateria" placeholder="Costo por porción ej. 0.25" step="0.01" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarParametroMateria()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Añadir a la Receta Base
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorMateria()" style="background-color: #ff914d; margin: 0;">
+                            🚀 Calcular Costo del Lote
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorMateria()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar
+                        </button>
+                    </div>
+
+                    <div id="pizarraMateria" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Costo de Inversión en Materia Prima Directa</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Concepto de Análisis</th>
+                                        <th>Costo Calculado</th>
+                                        <th>Explicación Técnica para el Alumno</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Costo Unitario Total</strong></td>
+                                        <td id="tdMateriaUnitario" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>Lo que cuesta estrictamente la comida de un solo plato en insumos.</td>
+                                    </tr>
+                                    <tr style="background-color: #fffaf0;">
+                                        <td><strong>Volumen Planificado</strong></td>
+                                        <td id="tdMateriaUnidadesLote" style="font-weight: bold; color: #ff914d;">0 unidades</td>
+                                        <td>La cantidad de órdenes de comida rápida que vas a preparar.</td>
+                                    </tr>
+                                    <tr style="background-color: #fff0f0;">
+                                        <td><strong>💰 Costo Total del Lote</strong></td>
+                                        <td id="tdMateriaTotalLote" style="color: #ff3131; font-weight: bold; font-size: 1.1rem;">$0.00</td>
+                                        <td>El dinero total que necesitas invertir en el mercado para comprar estos ingredientes.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- ========================= -->
+        <!-- MANO DE OBRA-->
+        <!-- ========================= -->
+
+        <div id="sub5" class="subtema-contenido" style="display: none;">
+           <article class="articulo-centrado">
+                <h2>Mano de Obra</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/manoDeObra.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Representan el valor de los materiales utilizados en la fabricación. Se dividen en directa e indirecta, y su control adecuado es vital para reducir desperdicios y mejorar la rentabilidad final del producto.</p>
+                <p>Puede clasificarse en:</p>
+                <h3>Mano de Obra Directa</h3>
+                <p>Participa directamente en la fabricación</p>
+                <h4>Ejemplo:</h4>
+                <p>• Cocineros </p>
+                <p>• Operarios </p>
+                <p>• Carpinteros </p>
+                <h3>Mano de Obra Indirecta</h3>
+                <p>Apoya el proceso productivo</p>
+                <h4>Ejemplo</h4>
+                <p>• Supervisores</p>
+                <p>• Personal de limpieza </p>
+                <p>• Vigilantes </p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: Presupuesto de Personal</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Configura los sueldos del personal de cocina y atención, y define cuántos platos estiman preparar en el mes para calcular el costo de mano de obra por unidad:
+                    </p>
+
+                    <div style="max-width: 400px; margin: 0 auto 20px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
+                        <label style="font-weight: bold; font-size: 0.95rem; color: #ff3131; display: block;">🍔 Estimación de platos a vender en el mes:</label>
+                        <input type="number" id="simuProduccionMano" value="1000" min="1" style="margin-top: 5px; width: 100%; border: 1px solid #ff3131; font-weight: bold;">
+                    </div>
+
+                    <div id="listaParametrosMano" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="parametro-mano-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">👨‍🍳 Sueldo Mensual del Cocinero ($):</label>
+                            <input type="number" class="input-costo-mano" value="450" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="parametro-mano-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💰 Sueldo Mensual del Cajero / Atendiente ($):</label>
+                            <input type="number" class="input-costo-mano" value="400" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
+
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar nuevo personal operativo:</h5>
+                        <input type="text" id="nuevoNombreMano" placeholder="Ej. Ayudante de cocina o Repartidor" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorMano" placeholder="Sueldo mensual ej. 350" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarParametroMano()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Contratar / Añadir al Equipo
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorMano()" style="background-color: #ff914d; margin: 0;">
+                            🚀 Calcular Costo por Operación
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorMano()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar Pizarra
+                        </button>
+                    </div>
+
+                    <div id="pizarraMano" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Distribución del Costo de Mano de Obra</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Concepto del Gasto</th>
+                                        <th>Costo Planificado</th>
+                                        <th>Explicación Didáctica</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Nómina Mensual Total</strong></td>
+                                        <td id="tdManoTotalMensual" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>El monto fijo total que debes pagar a fin de mes a todo tu personal.</td>
+                                    </tr>
+                                    <tr style="background-color: #fffaf0;">
+                                        <td><strong>Meta de Producción</strong></td>
+                                        <td id="tdManoPlatosMeta" style="font-weight: bold; color: #ff914d;">0 platos</td>
+                                        <td>La cantidad de órdenes que estimas vender con este equipo de trabajo.</td>
+                                    </tr>
+                                    <tr style="background-color: #fffaf0;">
+                                        <td><strong>Costo por hora</strong></td>
+                                        <td id="tdManoporHora" style="font-weight: bold; color: #ff914d;">0.00</td>
+                                        <td>costo del sueldo por hora.</td>
+                                    </tr>
+
+
+                                    <tr style="background-color: #fff0f0;">
+                                        <td><strong>💸 Costo de Mano de Obra por Plato</strong></td>
+                                        <td id="tdManoCostoPorPlato" style="color: #2e7d32; font-weight: bold; font-size: 1.1rem;">$0.00</td>
+                                        <td>La cantidad de dinero de mano de obra invertida que absorbe cada plato vendido.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- ========================= -->
+        <!-- COSTOS DE RECETAS-->
+        <!-- ========================= -->
+        <div id="sub6" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Costeo de Recetas</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/costeoRecetas.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Consiste en calcular el costo total de los ingredientes para preparar un alimento o bebida. Este proceso identifica cantidades y precios unitarios para establecer un precio de venta adecuado que garantice ganancias.</p>
+                <h3>Elementos de Costeo</h3>
+                <p>• Ingredientes </p>
+                <p>• Cantidades</p>
+                <p>• Precio unitario</p>
+                <p>• Costo total </p>
+                <h4>Ejemplo:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ingrediente</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Harina</td>
+                            <td>1 kg</td>
+                            <td>$2.00</td>
+                            <td>$2.00</td>
+                        </tr>
+                        <tr>
+                            <td>Huevos</td>
+                            <td>6</td>
+                            <td>$0.25</td>
+                            <td>$1.50</td>
+                        </tr>
+                        <tr>
+                            <td>Leche</td>
+                            <td>1 litro</td>
+                            <td>$1.00</td>
+                            <td>$1.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Costo total = $4.50</p>
+                <p>Si se desea obtener ganancia, se debe agregar el margen correspondiente al precio final.</p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: Simulador de Precio de Venta</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Agrupa los costos unitarios de tu receta, establece qué porcentaje de ganancia deseas obtener y descubre a cuánto debes vender tu plato:
+                    </p>
+
+                    <div id="listaComponentesReceta" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="componente-receta-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩 Materia Prima Directa (por porción $):</label>
+                            <input type="number" class="input-costo-receta" value="2.00" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="componente-receta-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">👨‍🍳 Mano de Obra Directa (por porción $):</label>
+                            <input type="number" class="input-costo-receta" value="0.50" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="componente-receta-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🏢 Costos Indirectos / CIF (por porción $):</label>
+                            <input type="number" class="input-costo-receta" value="0.30" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
+
+                    <div style="max-width: 400px; margin: 15px auto 20px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
+                        <label style="font-weight: bold; font-size: 0.95rem; color: #ff3131; display: block;">📈 Porcentaje de ganancia deseado (%):</label>
+                        <input type="number" id="simuPorcentajeGanancia" value="30" min="0" max="500" style="margin-top: 5px; width: 100%; border: 1px solid #ff3131; font-weight: bold;">
+                    </div>
+
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar otro componente de costo:</h5>
+                        <input type="text" id="nuevoNombreComponente" placeholder="Ej. Comisión de App de Delivery" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorComponente" placeholder="Costo extra ej. 0.20" step="0.01; " style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarParametroReceta()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Añadir Costo Extra a la Porción
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorReceta()" style="background-color: #ff914d; margin: 0;">
+                            🚀 Fijar Precio de Venta
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorReceta()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar Pizarra
+                        </button>
+                    </div>
+
+                    <div id="pizarraReceta" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Estructura del Precio Final al Público</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Elemento Financiero</th>
+                                        <th>Valor por Unidad</th>
+                                        <th>Análisis Práctico</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Costo Total de Producción</strong></td>
+                                        <td id="tdRecetaCostoTotal" style="color: #444; font-weight: bold;">$0.00</td>
+                                        <td>Lo que te cuesta elaborar físicamente el plato (Suma de tus costos).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Margen de Ganancia Neto</strong></td>
+                                        <td id="tdRecetaGananciaDolares" style="color: #2e7d32; font-weight: bold;">$0.00</td>
+                                        <td>La ganancia neta en dinero que ingresará a tu bolsillo por cada venta.</td>
+                                    </tr>
+                                    <tr style="background-color: #fff0f0;">
+                                        <td><strong>💰 Precio de Venta Sugerido (PVP)</strong></td>
+                                        <td id="tdRecetaPrecioVenta" style="color: #ff3131; font-weight: bold; font-size: 1.15rem;">$0.00</td>
+                                        <td>¡El valor final en el menú! Cobrando esto recuperas costos y ganas tu porcentaje.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- ========================= -->
+        <!-- MARGÉN DE GANANCIA -->
+        <!-- ========================= -->
+        <div id="sub7" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Margén de Ganancia</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/margenGanancia.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Es la diferencia entre el costo total de un producto y su precio de venta. Representa la utilidad real obtenida y ayuda a tomar decisiones estratégicas sobre la rentabilidad del negocio.</p>
+                <h3>Formula Margén Ganancia</h3>
+                <p>Margen=Precio de Venta-Costo TotalMargen=Precio\ de\ Venta-Costo\</p>
+                <p>TotalMargen=Precio de Venta-Costo Total</p>
+                <h3>Fórmula del Porcentaje de Ganancia</h3>
+                <p>% Ganancia=GananciaCosto×100\%\</p>
+                <p>Ganancia=\frac{Ganancia}{Costo}\times100% Ganancia=CostoGanancia×100</p>
+                <h3>Ejemplo</h3>
+                <p>Costo de producción = $10</p>
+                <p>Precio de venta = $15</p>
+                <p>Ganancia:</p>
+                <p>15−10=515-10=515−10=5</p>
+                <p>Porcentaje:</p>
+                <p>510×100=50%\frac{5}{10}\times100=50\%105×100=50%</p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: Análisis de Rentabilidad</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Ingresa el precio de venta en tu menú y el costo de preparación para calcular tu porcentaje de utilidad real:
+                    </p>
+
+                    <div id="listaComponentesMargen" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="componente-margen-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">💰 Precio de Venta al Público (PVP $):</label>
+                            <input type="number" id="simuPrecioVentaBase" value="5.00" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="componente-margen-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🥩 Costo de Producción Total ($):</label>
+                            <input type="number" class="input-costo-margen" value="3.00" step="0.01" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
+
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar otro costo al producto analizado:</h5>
+                        <input type="text" id="nuevoNombreMargen" placeholder="Ej. Salsa Premium o Envoltura Especial" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorMargen" placeholder="Costo extra ej. 0.25" step="0.01" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarParametroMargen()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Añadir Gasto Extra al Costo
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorMargen()" style="background-color: #ff914d; margin: 0;">
+                            🚀 Calcular Margen de Utilidad
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorMargen()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar Pizarra
+                        </button>
+                    </div>
+
+                    <div id="pizarraMargen" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Diagnóstico de Margen de Ganancia</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Métrica Financiera</th>
+                                        <th>Resultado</th>
+                                        <th>Lectura Comercial para el Alumno</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Ingreso por Venta (PVP)</strong></td>
+                                        <td id="tdMargenPVP" style="color: #444; font-weight: bold;">$0.00</td>
+                                        <td>El dinero total que el cliente paga en caja por el producto.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Costo Total Acumulado</strong></td>
+                                        <td id="tdMargenCostoAcumulado" style="color: #ff3131; font-weight: bold;">$0.00</td>
+                                        <td>Lo que te cuesta producirlo (Base + Extras añadidos).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Utilidad en Dinero</strong></td>
+                                        <td id="tdMargenUtilidadDolares" style="color: #2e7d32; font-weight: bold;">$0.00</td>
+                                        <td>La ganancia real líquida en dólares por cada unidad vendida.</td>
+                                    </tr>
+                                    <tr style="background-color: #fff0f0;">
+                                        <td><strong>📈 Porcentaje de Margen Bruto</strong></td>
+                                        <td id="tdMargenPorcentaje" style="color: #ff3131; font-weight: bold; font-size: 1.15rem;">0.00%</td>
+                                        <td>¡Tu rentabilidad! Muestra qué porcentaje del precio es ganancia pura.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- ========================= -->
+        <!-- PUNTO DE EQUILIBRIO -->
+        <!-- ========================= -->
+        <div id="sub8" class="subtema-contenido" style="display: none;">
+            <article class="articulo-centrado">
+                <h2>Punto de Equilibrio</h2>
+
+                <div class="contenedor-imagenes">
+                    <div class="card-imagen">
+                        <img src="img/puntoEquilibrio.png">
+                     </div>
+                 </div>
+
+                <p></p>
+                <p>Es una herramienta financiera que determina el nivel de ventas necesario para que los ingresos igualen a los costos totales. En este punto, la empresa no tiene pérdidas ni ganancias, permitiendo conocer cuántas unidades mínimas deben venderse para cubrir la operación.</p>
+                <h3>Fórmula del Punto de Equilibrio</h3>
+                <p>PE=Costos FijosPrecio de Venta−Costo Variable UnitarioPE=\frac{Costos\ Fijos}{Precio\de\ Venta-Costo\ Variable\Unitario}PE=Precio de Venta−Costo Variable UnitarioCostos Fijos</p>
+                <h3>Donde:</h3>
+                <p>• PE = punto de equilibrio</p>
+                <p>• Costos fijos = gastos permanentes</p>
+                <p>• Precio de venta = valor del producto</p>
+                <p>• Costo variable unitario = costo de producir una unidad</p>
+                <h3>Ejemplo:</h3>
+                <p>• Costos fijos = $1000</p>
+                <p>• Precio de venta = $20</p>
+                <p>• Costo variable = $10 </p>
+                <p>PE=100020−10PE=\frac{1000}{20-10}PE=20−101000</p>
+                <p>PE=100010=100PE=\frac{1000}{10}=100PE=101000=100</p>
+                <p>La empresa debe vender 100 unidades para no perder dinero.</p>
+
+                <div class="canvas-simulador" style="background-color: #fffaf7; border: 2px dashed #ff914d; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <h4 style="color: #ff3131; margin-bottom: 10px; font-size: 1.2rem; text-align: center;">🎮 Pizarra Interactiva: Cálculo del Punto de Equilibrio</h4>
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">
+                        Define los costos fijos de operación, el precio de venta de tu plato y su costo variable para descubrir tu meta mínima de ventas:
+                    </p>
+
+                    <div style="max-width: 400px; margin: 0 auto 15px auto; background: #fff0f0; padding: 12px; border-radius: 8px; border: 1px solid #ff3131; text-align: left;">
+                        <div style="margin-bottom: 8px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #ff3131; display: block;">💰 Precio de Venta del Combo (PVP $):</label>
+                            <input type="number" id="simuEquilibrioPVP" value="5.00" step="0.01" style="margin-top: 5px; width: 100%; border: 1px solid #ff3131;">
+                        </div>
+                        <div>
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #ff3131; display: block;">🥩 Costo Variable Unitario (Ingredientes $):</label>
+                            <input type="number" id="simuEquilibrioVariable" value="2.00" step="0.01" style="margin-top: 5px; width: 100%; border: 1px solid #ff3131;">
+                        </div>
+                    </div>
+
+                    <div id="listaCostosFijosEquilibrio" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <div class="costo-fijo-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🏢 Costo Fijo: Alquiler del Local ($/mes):</label>
+                            <input type="number" class="input-costo-fijo" value="400" style="margin-top: 5px; width: 100%;">
+                        </div>
+
+                        <div class="costo-fijo-item" style="margin-bottom: 10px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">🔌 Costo Fijo: Servicios Básicos ($/mes):</label>
+                            <input type="number" class="input-costo-fijo" value="200" style="margin-top: 5px; width: 100%;">
+                        </div>
+                    </div>
+                    <div style="max-width: 400px; margin: 20px auto; padding: 15px; background-color: #fff; border: 1px solid #ffe0cc; border-radius: 8px; text-align: left;">
+                        <h5 style="margin: 0 0 10px 0; color: #ff914d; font-size: 0.95rem;">➕ Agregar otro costo fijo mensual:</h5>
+                        <input type="text" id="nuevoNombreFijoPE" placeholder="Ej. Publicidad en Redes o Internet" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <input type="number" id="nuevoValorFijoPE" placeholder="Valor mensual ej. 50" style="margin-bottom: 8px; width: 100%; padding: 6px;">
+                        <button type="button" onclick="agregarCostoFijoEquilibrio()" style="background-color: #ff3131; font-size: 0.85rem; padding: 6px 12px; width: 100%;">
+                            Añadir Gasto Fijo Obligatorio
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button type="button" onclick="calcularSimuladorEquilibrio()" style="background-color: #ff914d; margin: 0;">
+                            🚀 Calcular Punto de Equilibrio
+                        </button>
+                        <button type="button" onclick="limpiarSimuladorEquilibrio()" style="background-color: #666; margin: 0;">
+                            🗑️ Limpiar Pizarra
+                        </button>
+                    </div>
+
+                    <div id="pizarraEquilibrio" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ffe0cc; display: none;">
+                        <h4 style="color: #ff3131; margin-bottom: 10px; text-align: center;">📊 Diagnóstico de Viabilidad</h4>
+                        
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Indicador Metrológico</th>
+                                        <th>Valor Calculado</th>
+                                        <th>Interpretación Comercial</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Costos Fijos Totales</strong></td>
+                                        <td id="tdEquilibrioFijosTotales" style="color: #444; font-weight: bold;">$0.00</td>
+                                        <td>Lo que debes pagar obligatoriamente, vendas o no vendas.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Margen de Contribución</strong></td>
+                                        <td id="tdEquilibrioMargenContribucion" style="color: #2e7d32; font-weight: bold;">$0.00</td>
+                                        <td>Lo que le sobra a cada plato vendido para ayudar a pagar los costos fijos.</td>
+                                    </tr>
+                                    <tr style="background-color: #fff0f0;">
+                                        <td><strong>🎯 Punto de Equilibrio (Unidades)</strong></td>
+                                        <td id="tdEquilibrioUnidades" style="color: #ff3131; font-weight: bold; font-size: 1.15rem;">0 unidades</td>
+                                        <td><strong>¡La meta mínima!</strong> Debes vender esta cantidad exacta al mes para cubrir el negocio.</td>
+                                    </tr>
+                                    <tr style="background-color: #f0f7f0;">
+                                        <td><strong>💵 Punto de Equilibrio (Ventas $)</strong></td>
+                                        <td id="tdEquilibrioVentasMoneda" style="color: #2e7d32; font-weight: bold;">$0.00</td>
+                                        <td>El monto de dinero total que debe ingresar a caja para no registrar pérdidas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+    </div>
+
+    <!-- EVALUACION -->
+    <div id="evaluacion" class="subseccion">
+
+        <h3>📝 Evaluación de Costos</h3>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;"> Se han seleccionado 5 preguntas aleatorias para evaluar tu conocimiento.</p>
+
+        <div id="registroEvaluacion">
+     <!-- ========================= -->
+        <!-- DATOS DEL ESTUDIANTE (AH.) -->
+        <!-- ========================= -->
+    <h3>👤 Datos del Estudiante</h3>
+
+    <input
+        type="text"
+        id="nombreEvaluacion"
+        placeholder="Ingrese su nombre">
+
+    <input
+        type="text"
+        id="apellidoEvaluacion"
+        placeholder="Ingrese su apellido">
+
+    <button
+        type="button"
+        onclick="iniciarEvaluacion()">
+
+        Comenzar Evaluación
+
+    </button>
+
+    </div>
+
+    <div id="contenidoEvaluacion" style="display:none;">
+
+        <form id="formEvaluacion">
+            
+            <div id="contenedor-preguntas"></div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="button" id="btnCalificar" onclick="calificarEvaluacion()">
+                    Enviar Evaluación
+                </button>
             </div>
+
+        </form>
+
+        <div id="resultado-evaluacion" style="display: none; margin-top: 30px; padding: 20px; border-radius: 10px; background-color: #f9f9f9; border: 2px solid #ddd;">
+            <h3 id="puntaje-texto" style="text-align: center; margin-top: 0;"></h3>
+            <div id="retroalimentacion-detalles" style="margin-top: 15px;"></div>
+        </div>
+
+    </div>
 
     </section>
     <!-- ========================= -->
@@ -1338,388 +1098,79 @@
     <!-- ========================= -->
     <section id="resultados" class="pagina">
 
-        <h2>📊 Resultados de Evaluaciones</h2>
+    <h2>📊 Resultados de Evaluaciones</h2>
 
-        <table>
+    <table>
 
-            <thead>
+        <thead>
 
-                <tr>
+            <tr>
 
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Nota</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nota</th>
 
-                </tr>
+            </tr>
 
-            </thead>
+        </thead>
 
-            <tbody id="tablaResultados">
+        <tbody id="tablaResultados">
 
-            </tbody>
+        </tbody>
 
-        </table>
-        <button type="button" onclick="borrarResultados()" style="background-color: #f42626; margin: 0;">
-            🗑️ Borrar Resultados
-        </button>
+    </table>
+    <button type="button" onclick="borrarResultados()" style="background-color: #f42626; margin: 0;">
+        🗑️ Borrar Resultados
+    </button>
 
-    </section>
-    <section id="valoracion" class="pagina">
+</section>
+<section id="valoracion" class="pagina">
 
-        <h2>⭐ Califica la Página</h2>
-        <p>
-            Evalúa la utilidad de FastFood Express del 1 al 10.
-        </p>
+    <h2>⭐ Califica la Página</h2>
+    <p>
+        Evalúa la utilidad de FastFood Express del 1 al 10.
+    </p>
 
-        <input type="range" id="valoracionUsuario" min="1" max="10" value="5">
-        <h3>
-            Calificación:
-            <span id="valorActual">
+    <input
+        type="range"
+        id="valoracionUsuario"
+        min="1"
+        max="10"
+        value="5">
+    <h3>
+        Calificación:
+        <span id="valorActual">
 
-                5
+            5
 
-            </span>
-        </h3>
+        </span>
+    </h3>
 
-        <button onclick="guardarValoracion()">
-            Enviar Calificación
-        </button>
-        <hr>
-        <h3>
+    <button onclick="guardarValoracion()">
+        Enviar Calificación
+    </button>
+    <hr>
+    <h3>
 
-            Promedio General:
-            <span id="promedioValoracion">
+        Promedio General:
+        <span id="promedioValoracion">
 
-                0
+            0
 
-            </span>
-            /10
-        </h3>
+        </span>
+        /10
+    </h3>
 
-        <h3>
-            Total de Votos:
-            <span id="cantidadVotos">
+    <h3>
+        Total de Votos:
+        <span id="cantidadVotos">
 
-                0
+            0
 
-            </span>
-        </h3>
+        </span>
+    </h3>
 
-    </section>
-
-
-
-    <section id="gestionCostos" class="pagina" style="display: none;">
-        <h2>📊 Módulo de Gestión, Costeo y Finanzas</h2>
-        <p>Administra los insumos, diseña recetas, controla gastos operativos y analiza el punto de equilibrio.</p>
-
-        <div class="botones-subtemas"
-            style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
-            <button type="button" onclick="mostrarSubSeccionCostos('subMateriaPrima')"
-                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📦
-                Materia Prima</button>
-            <button type="button" onclick="mostrarSubSeccionCostos('subRecetas')"
-                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">🍔
-                Recetas</button>
-            <button type="button" onclick="mostrarSubSeccionCostos('subGastosOperativos')"
-                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">💼
-                Gastos Operativos</button>
-            <button type="button" onclick="mostrarSubSeccionCostos('subResumenFinanciero')"
-                style="text-align: center; margin-bottom: 25px; gap: 10px; display: flex; flex-wrap: wrap; justify-content: center;">📈
-                Resumen Financiero</button>
-        </div>
-
-        <!-- ========================= -->
-        <!-- MATERIA PRIMA -->
-        <!-- ========================= -->
-
-        <div id="subMateriaPrima" class="sub-seccion-costos">
-
-            <h2>📦 Registro de Materia Prima</h2>
-
-            <input type="text" id="nombreMP" placeholder="Nombre del ingrediente">
-
-            <select id="unidadMP">
-
-                <option value="kg">Kilogramos</option>
-
-                <option value="gramos">Gramos</option>
-
-                <option value="Lb">Libras</option>
-
-                <option value="unidades">Unidades</option>
-
-                <option value="litros">Litros</option>
-
-                <option value="Ml">Mililitros</option>
-
-            </select>
-
-            <input type="number" id="cantidadCompraMP" placeholder="Cantidad comprada">
-
-            <input type="number" id="precioCompraMP" placeholder="Precio de compra">
-
-            <input type="number" id="mermaMP" placeholder="% de merma">
-
-            <button type="button" onclick="agregarMateriaPrima()">
-
-                Agregar Materia Prima
-
-            </button>
-
-            <button type="button" id="btnAgregarAReceta" >
-                ➕ Agregar a Receta
-            </button>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Ingrediente</th>
-                        <th>Unidad</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Merma</th>
-                        <th>Acciones</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="tablaMateriaPrima">
-
-                </tbody>
-
-            </table>
-            <h2>🥤 Bebidas y Productos de Venta Directa</h2>
-            <input type="text" id="nombreBebida" placeholder="Nombre de la bebida">
-
-            <select id="unidadBebida">
-
-                <option value="unidades">Unidades</option>
-
-            </select>
-
-            <input type="number" id="cantidadBebida" placeholder="Cantidad">
-
-            <input type="number" id="precioBebida" placeholder="Precio">
-
-            <button id="btnAgregarBebida">
-
-                Agregar Bebida
-
-            </button>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Producto</th>
-                        <th>Unidad</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="tablaBebidas">
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <!-- ========================= -->
-        <!-- RECETAS -->
-        <!-- ========================= -->
-
-        <div id="subRecetas" class="sub-seccion-costos" style="display: none;">
-
-            <h2>🍔 Registro de Recetas</h2>
-
-            <div class="botones-recetas">
-
-                <button onclick="mostrarSubReceta('estandarizadas')">
-                    📋 Recetas Estandarizadas
-                </button>
-
-                <button onclick="mostrarSubReceta('personalizadas')">
-                    ➕ Recetas Personalizadas
-                </button>
-
-            </div>
-
-            <div id="estandarizadas" class="subreceta" style="display: none;">
-
-                <h3>📋 Recetas Estandarizadas</h3>
-
-                <select id="selectorReceta" onchange="mostrarDetalleReceta()">
-                    <option value="">Seleccione una receta</option>
-                </select>
-
-                <div id="detalleReceta"></div>
-
-                <div id="carrito">
-                    <h3>🛒 Carrito de pedidos</h3>
-                </div>
-
-            </div>
-
-            <div id="personalizadas" class="subreceta" style="display: none;">
-
-                <input type="text" id="nombreReceta" placeholder="Nombre de la receta">
-
-                <input type="number" id="tiempoPreparacion" placeholder="Tiempo (minutos)">
-
-                <input type="number" id="porciones" placeholder="Número de porciones">
-
-                <input type="text" id="imagenReceta" placeholder="Nombre de imagen. Ej: miHamburguesa.png">
-
-                <h3>Ingredientes de la receta</h3>
-
-                <select id="ingredienteReceta"></select>
-
-                <input type="number" id="cantidadIngredienteReceta" placeholder="Cantidad utilizada">
-
-                <select id="unidadIngredienteReceta">
-                    <option value="u">Unidades</option>
-                    <option value="gr">Gramos</option>
-                    <option value="kilogramos">Kilogramos</option>
-                    <option value="libras">Libras</option>
-                    <option value="ml">Mililitros</option>
-                    <option value="litros">Litros</option>
-                </select>
-                <button type="button" onclick="agregarIngredienteReceta()">
-                    Agregar Ingrediente
-                </button>
-
-                <div id="listaIngredientesReceta"></div>
-
-                <button type="button" onclick="crearReceta()">
-                    Crear Receta
-                </button>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Receta</th>
-                            <th>Tiempo</th>
-                            <th>Porciones</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="tablaRecetas"></tbody>
-                </table>
-
-            </div>
-
-        </div>
-
-
-        <div id="subGastosOperativos" class="sub-seccion-costos" style="display: none;">
-            <h3>💼 Administración de Gastos Operativos</h3>
-            <p>Ingresa los costos operacionales mensuales fijos, variables y el valor estimado de mano de obra.</p>
-
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
-                <div
-                    style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                    <h3>➕ Registrar Costo Mensual</h3>
-                    <div style="margin-bottom: 12px;">
-                        <label style="display:block; font-weight:bold;">Tipo de Costo:</label>
-                        <select id="tipoGastoOperativo" onchange="cambiarPlaceholderGasto()"
-                            style="width:100%; padding:8px; margin-top:5px;">
-                            <option value="fijo">Costo Fijo (Arriendo, Internet, etc.)</option>
-                            <option value="variable">Costo Variable Operativo (Servilletas, etc.)</option>
-                            <option value="manodeobra">Mano de Obra (Sueldos, Cocineros)</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label style="display:block; font-weight:bold;">Descripción / Concepto:</label>
-                        <input type="text" id="descGastoOperativo" placeholder="Ej. Alquiler del Local comercial"
-                            style="width:100%; padding:8px; margin-top:5px;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display:block; font-weight:bold;">Monto Mensual ($):</label>
-                        <input type="number" id="montoGastoOperativo" step="0.01" placeholder="Ej. 250.00"
-                            style="width:100%; padding:8px; margin-top:5px;">
-                    </div>
-                    <button type="button" onclick="guardarGastoOperativo()"
-                        style="background-color: #ff3131; width:100%; padding: 10px; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                        💾 Guardar Gasto
-                    </button>
-                </div>
-
-                <div
-                    style="flex: 2; min-width: 300px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <h3>Gastos Mensuales Registrados</h3>
-                    <table style="width:100%; margin-top:10px; border-collapse: collapse;">
-                        <thead>
-                            <tr style="background:#f5f5f5; text-align:left;">
-                                <th style="padding:8px;">Concepto</th>
-                                <th style="padding:8px;">Tipo</th>
-                                <th style="padding:8px;">Monto</th>
-                                <th style="padding:8px;">Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaGastosOperativosBody"></tbody>
-                    </table>
-                    <div
-                        style="margin-top: 15px; font-size: 1.1rem; text-align: right; font-weight: bold; color: #ff914d;">
-                        Gastos Operativos Totales: $<span id="totalGastosOperativosGeneral">0.00</span>/mes
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="subResumenFinanciero" class="sub-seccion-costos" style="display: none;">
-            <h3>📈 Resumen Financiero Dinámico</h3>
-            <p>Análisis en tiempo real cruzando el costo de materia prima calculado por plato y los costos operativos
-                del establecimiento.</p>
-
-            <div
-                style="background: #222; color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 10px;">
-                <div style="text-align: center;">
-                    <span style="display: block; font-size: 0.85rem; color: #aaa;">Costos Fijos:</span>
-                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span
-                            id="resumenFijosTotal">0.00</span></strong>
-                </div>
-                <div style="text-align: center;">
-                    <span style="display: block; font-size: 0.85rem; color: #aaa;">Costos Variables:</span>
-                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span
-                            id="resumenVariablesTotal">0.00</span></strong>
-                </div>
-                <div style="text-align: center;">
-                    <span style="display: block; font-size: 0.85rem; color: #aaa;">Mano de Obra:</span>
-                    <strong style="font-size: 1.2rem; color: #ff914d;">$<span id="resumenMOTotal">0.00</span></strong>
-                </div>
-                <div style="text-align: center; border-left: 1px solid #444; padding-left: 15px;">
-                    <span style="display: block; font-size: 0.85rem; color: #ccc;">Carga Operativa Global:</span>
-                    <strong style="font-size: 1.2rem; color: #ff3131;">$<span
-                            id="resumenCostoFijoIndirecto">0.00</span></strong>
-                </div>
-            </div>
-
-            <div
-                style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="background-color: #f8f9fa; border-bottom: 2px solid #ddd;">
-                            <th style="padding:12px;">Receta / Producto</th>
-                            <th style="padding:12px;">Costo Materia Prima</th>
-                            <th style="padding:12px;">Precio Sugerido (30% Margen)</th>
-                            <th style="padding:12px;">Utilidad Neta ($)</th>
-                            <th style="padding:12px;">Análisis de Punto de Equilibrio Obligatorio</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaResumenFinancieroBody"></tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+</section>
 
     <!-- ========================= -->
     <!-- FOOTER -->

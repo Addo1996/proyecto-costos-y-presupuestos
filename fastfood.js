@@ -746,26 +746,53 @@ function limpiarSimuladorFijos() {
 // ============================================
 function agregarParametroVariable() {
     let nombre = document.getElementById("nuevoNombreVariable").value.trim();
-    let valor = parseFloat(document.getElementById("nuevoValorVariable").value);
+    let valorTexto = document.getElementById("nuevoValorVariable").value.trim();
 
-    if (nombre === "" || isNaN(valor)) {
-        alert("Por favor, introduce el nombre del insumo y su costo por unidad.");
+    let errores = [];
+
+    let regex = /^-?[0-9]+([,][0-9]+)?$/;
+    let cantidadComas = (valorTexto.match(/,/g) || []).length;
+
+    if (nombre === "") {
+        errores.push("Ingrese el nombre del insumo.");
+    }
+
+    if (valorTexto === "") {
+        errores.push("Ingrese un valor.");
+    }
+
+    if (!regex.test(valorTexto)) {
+        errores.push("El valor debe contener solo números y comas.");
+    }
+
+    if (cantidadComas > 1) {
+        errores.push("Solo se permite una coma.");
+    }
+
+    if (errores.length > 0) {
+        alert(errores.join("\n"));
         return;
     }
 
+    let valor = parseFloat(valorTexto.replace(",", "."));
+
     let lista = document.getElementById("listaParametrosVariables");
     let nuevoItem = document.createElement("div");
+
     nuevoItem.className = "parametro-variable-item";
     nuevoItem.style.marginBottom = "10px";
 
     nuevoItem.innerHTML = `
-        <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">📋 ${nombre} (por unidad $):</label>
-        <input type="number" class="input-costo-variable" value="${valor}" step="0.01" style="margin-top: 5px; width: 100%;">
+        <label style="font-weight: bold; font-size: 0.9rem; color: #444; display: block;">
+            📋 ${nombre} (por unidad $):
+        </label>
+        <input type="number" class="input-costo-variable"
+               value="${valor}" step="0.01"
+               style="margin-top: 5px; width: 100%;">
     `;
 
     lista.appendChild(nuevoItem);
 
-    // Limpiar campos del mini formulario
     document.getElementById("nuevoNombreVariable").value = "";
     document.getElementById("nuevoValorVariable").value = "";
 }
@@ -1045,6 +1072,7 @@ function calcularSimuladorMano() {
     document.getElementById("tdManoTotalMensual").textContent = "$" + sueldoTotalMensual.toFixed(2);
     document.getElementById("tdManoPlatosMeta").textContent = produccionMeta + " platos";
     document.getElementById("tdManoCostoPorPlato").textContent = "$" + costoManoPorPlato.toFixed(2);
+    document.getElementById("tdManoporHora").textContent = "$" + (costoManoPorPlato / 0.5).toFixed(2)+" por hora( Asumiendo 30 minutos de trabajo por el plato)";
 
     // Desplegar panel con scroll fluido
     let pizarra = document.getElementById("pizarraMano");
