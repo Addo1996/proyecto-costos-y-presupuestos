@@ -474,57 +474,60 @@ function mostrarDetalleReceta() {
     let html = `
     
     <h3>🍽️ ${receta.nombre}</h3>
-    <img src="${receta.imagen}"alt="${receta.nombre}"class="imagen-receta">
-    <p><strong>Tiempo de preparación:</strong>
-    ${receta.tiempoPreparacion} minutos</p>
+    <img src="${receta.imagen}" alt="${receta.nombre}" class="imagen-receta" style="margin-bottom: 20px;">
+    
+    <div class="grid-casillas-receta">
+        <div class="casilla-info">
+            <span class="etiqueta">⏱️ Tiempo</span>
+            <span class="valor">${receta.tiempoPreparacion} min</span>
+        </div>
+        <div class="casilla-info">
+            <span class="etiqueta">🍽️ Porciones</span>
+            <span class="valor">${receta.porciones}</span>
+        </div>
+        <div class="casilla-info">
+            <span class="etiqueta">📦 C. Materia Prima</span>
+            <span class="valor">$${costoBase.toFixed(2)}</span>
+        </div>
+        <div class="casilla-info">
+            <span class="etiqueta">🍕 Costo x Porción</span>
+            <span class="valor">$${costoPorPorcion.toFixed(2)}</span>
+        </div>
+        <div class="casilla-info">
+            <span class="etiqueta">👨‍🍳 Mano de Obra</span>
+            <span class="valor">$${costoManoObraReceta.toFixed(2)}</span>
+        </div>
+        <div class="casilla-info">
+            <span class="etiqueta">⚙️ C. Indirectos</span>
+            <span class="valor">$${costoIndirectoReceta.toFixed(2)}</span>
+        </div>
+        <div class="casilla-info destacada-naranja">
+            <span class="etiqueta">💰 C. Producción Total</span>
+            <span class="valor">$${costoProduccionTotal.toFixed(2)}</span>
+        </div>
+        <div class="casilla-info destacada-verde">
+            <span class="etiqueta">🏷️ Precio Sugerido</span>
+            <span class="valor">$${precioSugerido.toFixed(2)}</span>
+        </div>
+        <div class="casilla-info">
+            <span class="etiqueta">📈 Margen</span>
+            <span class="valor">${margenGanancia}%</span>
+        </div>
+    </div>
 
-    <p><strong>Porciones:</strong>
-    ${receta.porciones}</p>
-
-   <p>
-    <strong>Costo Materia Prima:</strong>
-    $${costoBase.toFixed(2)}
-</p>
-
-<p>
-    <strong>Costo por Porción:</strong>
-    $${costoPorPorcion.toFixed(2)}
-</p>
-<p>
-    <strong>Costo Mano de Obra:</strong>
-    $${costoManoObraReceta.toFixed(2)}
-</p>
-<p>
-    <strong>Costos Indirectos:</strong>
-    $${costoIndirectoReceta.toFixed(2)}
-</p>
-<p>
-    <strong>Costo Total Producción:</strong>
-    $${costoProduccionTotal.toFixed(2)}
-</p>
-<p>
-    <strong>Precio Sugerido de Venta:</strong>
-    $${precioSugerido.toFixed(2)}
-</p>
-<p>
-    <strong>Margen de Ganancia:</strong>
-    ${margenGanancia}%
-</p>
-    <h4 class="titulo-ficha">
-    📋 Ficha Técnica de Ingredientes
+    <h4 class="titulo-ficha" style="margin-top: 25px;">
+        📋 Ficha Técnica de Ingredientes
     </h4>
 
-<table class="tabla-ingredientes-receta">
-
-    <thead>
-        <tr>
-            <th>Ingrediente</th>
-            <th>Cantidad</th>
-            <th>Unidad</th>
-        </tr>
-    </thead>
-
-    <tbody>
+    <table class="tabla-ingredientes-receta">
+        <thead>
+            <tr>
+                <th>Ingrediente</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+            </tr>
+        </thead>
+        <tbody>
     `;
 
     receta.ingredientes.forEach(function (ingrediente) {
@@ -818,12 +821,17 @@ function convertirUnidad(cantidad, unidadReceta, unidadCompra) {
 
     if ((unidadReceta === "gr" || unidadReceta === "g") &&
         unidadCompra === "kilogramos") {
-        return cantidad / 1000;
+        return (cantidad / 1000);
+    }
+
+    if ((unidadReceta === "gr" || unidadReceta === "g") &&
+        unidadCompra === "kg") {
+        return (cantidad / 1000);
     }
 
     if (unidadReceta === "kilogramos" &&
         (unidadCompra === "gr" || unidadCompra === "g")) {
-        return cantidad * 1000;
+        return (cantidad * 1000);
     }
 
     if ((unidadReceta === "gr" || unidadReceta === "g") &&

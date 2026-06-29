@@ -1049,3 +1049,64 @@ table tbody tr:hover{
         padding:40px 15px;
     }
 }
+
+/* ============================================
+   ESTILOS PARA LAS CASILLAS DEL DETALLE DE RECETA
+============================================ */
+
+.grid-casillas-receta {
+    display: grid;
+    /* Se adapta automáticamente: en móviles muestra 2 columnas, en PC muestra 3 o 4 */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.casilla-info {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.casilla-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    border-color: #d0d0d0;
+}
+
+.casilla-info .etiqueta {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.casilla-info .valor {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Variaciones de color para resaltar datos clave */
+.casilla-info.destacada-naranja {
+    background-color: #fff8f5;
+    border-color: #ffccb3;
+}
+.casilla-info.destacada-naranja .valor {
+    color: #e65100;
+}
+
+.casilla-info.destacada-verde {
+    background-color: #f1f8f1;
+    border-color: #c8e6c9;
+}
+.casilla-info.destacada-verde .valor {
+    color: #2e7d32;
+    font-size: 1.3rem; /* Ligeramente más grande porque es el PVP final */
+}
